@@ -1,21 +1,18 @@
 package test;
 
 import static org.testng.Assert.assertEquals;
-
-import java.util.ArrayList;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import pages.dashboard;
+import pages.loginPage;
+
 
 
 public class YarsaBazarTest {
@@ -36,10 +33,53 @@ public class YarsaBazarTest {
 		test.pass("Website Launch Verified");
 
 		dashboardobject.isLogoDisplayed();
+	}
 
+	@Test(priority = 2, dataProvider = "dsm")
+	public void LoginPageTest(String name, String phone, String email, String password) throws InterruptedException {
+		ExtentTest test = extent.createTest("Verify the Login");
+		loginPage loginpageobj = new loginPage(driver);
 
+		loginpageobj.click_login_button();
+		Thread.sleep(1000);
+
+		String browserLoginURL = driver.getCurrentUrl();
+		String loginURL = loginpageobj.LoginURL;
+		assertEquals(browserLoginURL, loginURL);
+		test.pass("The Login url is: " + browserLoginURL);
+		test.pass("Login Page is opened");
+
+		Object[][] data = datasupply();
+		Object[] lastRow = data[6];
+		String PhoneNumber = (String) lastRow[1];
+		String Password = (String) lastRow[3];
+
+		loginpageobj.email_Input(PhoneNumber);
+		Thread.sleep(2000);
+		loginpageobj.password_Input(Password);
+		Thread.sleep(2000);
+		loginpageobj.login_Click();
+		Thread.sleep(2000);
+
+		String browserLoggedInURL = driver.getCurrentUrl();
+		String loggedinURL = loginpageobj.LoggedInURL;
+		assertEquals(browserLoggedInURL, loggedinURL);
+		test.pass("The Logged in url is: " + browserLoggedInURL);
+		test.pass("User " + PhoneNumber + " is logged in successfully");
+	}
+	
+	@DataProvider(name = "dsm")
+
+	public Object[][] datasupply() {
+
+		Object[][] data = {
+				{ "Sabina", "9898989898", "sabina@gmail.com", "Sabina@1" }
+
+		};
+		return data;
 
 	}
+
 
 	@BeforeTest
 	public void setUpTest() throws InterruptedException {

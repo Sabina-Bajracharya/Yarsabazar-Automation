@@ -1,6 +1,8 @@
 package pages;
 
-public class signUpPage {
+import org.openqa.selenium.WebDriver;
 
+public class signUpPage {
+//WebDriver driver;
 
 }
