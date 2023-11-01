@@ -23,6 +23,20 @@ public class YarsaBazarTest {
 	ExtentSparkReporter spark = new ExtentSparkReporter("Extentreport.html");
 	String actualBrowserURL = "https://www.yarsabazar.com/";
 
+	@BeforeTest
+	public void setUpTest() throws InterruptedException {
+
+		extent.attachReporter(spark);
+
+		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win64\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.get("https://www.yarsabazar.com");
+		driver.manage().window().maximize();
+		Thread.sleep(3000);
+
+	}
+
+
 	@Test(priority = 1)
 	public void dashboardTest() {
 		ExtentTest test = extent.createTest("Launch website");
@@ -36,12 +50,12 @@ public class YarsaBazarTest {
 	}
 
 	@Test(priority = 2, dataProvider = "dsm")
-	public void LoginPageTest(String name, String phone, String email, String password) throws InterruptedException {
+	public void LoginPageTest(String PhoneNumber, String Password) throws InterruptedException {
 		ExtentTest test = extent.createTest("Verify the Login");
 		loginPage loginpageobj = new loginPage(driver);
 
 		loginpageobj.click_login_button();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		String browserLoginURL = driver.getCurrentUrl();
 		String loginURL = loginpageobj.LoginURL;
@@ -50,9 +64,9 @@ public class YarsaBazarTest {
 		test.pass("Login Page is opened");
 
 		Object[][] data = datasupply();
-		Object[] lastRow = data[6];
-		String PhoneNumber = (String) lastRow[1];
-		String Password = (String) lastRow[3];
+		Object[] lastRow = data[0];
+        PhoneNumber = (String) lastRow[1];
+        Password = (String) lastRow[3];
 
 		loginpageobj.email_Input(PhoneNumber);
 		Thread.sleep(2000);
@@ -67,32 +81,6 @@ public class YarsaBazarTest {
 		test.pass("The Logged in url is: " + browserLoggedInURL);
 		test.pass("User " + PhoneNumber + " is logged in successfully");
 	}
-	
-	@DataProvider(name = "dsm")
-
-	public Object[][] datasupply() {
-
-		Object[][] data = {
-				{ "Sabina", "9898989898", "sabina@gmail.com", "Sabina@1" }
-
-		};
-		return data;
-
-	}
-
-
-	@BeforeTest
-	public void setUpTest() throws InterruptedException {
-
-		extent.attachReporter(spark);
-
-		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win64\\chromedriver.exe");
-		driver = new ChromeDriver();
-		driver.get("https://www.yarsabazar.com");
-		driver.manage().window().maximize();
-		Thread.sleep(3000);
-
-	}
 
 	@AfterTest
 	public void tearDownTest() {
@@ -103,4 +91,22 @@ public class YarsaBazarTest {
 
 	}
 
+	@DataProvider(name = "dsm")
+
+	public Object[][] datasupply() {
+
+		Object[][] data = {
+				{"9898989898", "Sabina@1" }
+
+		};
+		return data;
+
+	}
+	private void assertEqual(String actual, String expected, ExtentTest test, String passMessage, String failMessage) {
+		if (actual.equals(expected)) {
+			test.pass(passMessage);
+		} else {
+			test.fail(failMessage);
+		}
+}
 }
