@@ -10,8 +10,8 @@ public class loginPage {
     public String LoggedInURL = "https://www.yarsabazar.com/account";
 
     By login_button_click = By.xpath("//a[contains(text(),'Login')]");
-    By email_input = By.xpath("//input[@id='username']");
-    By password_input = By.xpath("//input[@id='password']");
+    By email_input = By.xpath("(//input[@id='username'])[1]");
+    By password_input = By.xpath("(//input[@id='password'])[1]");
     By login_click = By.xpath("//button[normalize-space()='Login']");
 
 //    By incorrect_Credentials = By.xpath("//div[contains(text(),'Email or phone is incorrect')]");
