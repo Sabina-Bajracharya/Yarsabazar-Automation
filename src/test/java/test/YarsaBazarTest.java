@@ -12,7 +12,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import pages.dashboard;
 import pages.loginPage;
-//import pages.search;
+import pages.search;
 import pages.signUpPage;
 
 
@@ -82,6 +82,7 @@ public class YarsaBazarTest {
 		signuppageobj.back_button();
 		Thread.sleep(2000);
 
+		test.pass("User " + phone + " is signed up successfully");
 	}
 
 	@DataProvider(name= "signUpData")
@@ -127,39 +128,38 @@ public class YarsaBazarTest {
 	public Object[][] getLoginData(){
 			return new Object[][]{
 					{"9898000098", "Sabina@1"},
-//					{"9080908098", "Sabina@2"},
+
 		};
 	}
 
-//@Test(priority = 4, dataProvider = "SearchData")
-//public  void SearchTest(String Item) throws InterruptedException{
-//		ExtentTest test = extent.createTest("Verify the Search");
-//		search Searchobj = new search(driver);
-//
-//		Searchobj.click_search_button();
-//		Thread.sleep(3000);
-//
-//		String browsersearchURL = driver.getCurrentUrl();
-//		String SearchURL = Searchobj.searchURL;
-//		assertEquals(browsersearchURL, SearchURL);
-//		test.pass("The search url is: " + browsersearchURL);
-//		test.pass("Search page is opened");
-//
-//		Searchobj.click_search_button();
-//		Thread.sleep(2000);
-//
-//		Searchobj.input_search_bar(Item);
-//		Thread.sleep(2000);
-//	test.pass("Item " + Item + " is searched successfully");
-//}
-//
-//	@DataProvider(name = "SearchData")
-//	public Object[][] getSearchData(){
-//		return new Object[][]{
-//				{"dog food"}
-//
-//		};
-//	}
+@Test(priority = 4, dataProvider = "SearchData")
+public  void SearchTest(String Item) throws InterruptedException{
+		ExtentTest test = extent.createTest("Verify the Search");
+		search Searchobj = new search(driver);
+
+	Searchobj.input_search_bar(Item);
+	Thread.sleep(5000);
+
+	test.pass("Item " + Item + " is searched successfully");
+
+	Searchobj.click_dog_food();
+	Thread.sleep(5000);
+
+	test.pass("Item " + Item + " is clicked successfully");
+
+	Searchobj.click_back_to_dashborad();
+	Thread.sleep(2000);
+
+	test.pass("Returned back to dashborad successfully");
+}
+
+	@DataProvider(name = "SearchData")
+	public Object[][] getSearchData(){
+		return new Object[][]{
+				{"dog food"}
+
+		};
+	}
 
 
 	@AfterTest
