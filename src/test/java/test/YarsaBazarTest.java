@@ -12,6 +12,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import pages.dashboard;
 import pages.loginPage;
+//import pages.search;
 import pages.signUpPage;
 
 
@@ -28,7 +29,7 @@ public class YarsaBazarTest {
 
 		extent.attachReporter(spark);
 
-		System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win64\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\chromedriver-win64\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.get("https://www.yarsabazar.com");
 		driver.manage().window().maximize();
@@ -47,6 +48,7 @@ public class YarsaBazarTest {
 		test.pass("Website Launch Verified");
 
 		dashboardobject.isLogoDisplayed();
+
 	}
 
 	@Test(priority = 2, dataProvider = "signUpData")
@@ -58,7 +60,7 @@ public class YarsaBazarTest {
 		signUpPage signuppageobj = new signUpPage(driver);
 
 		signuppageobj.click_SignUp_Button();
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 
 		String browserSignUpURL = driver.getCurrentUrl();
 		String actualsignupURL = signuppageobj.actualSignUpURL;
@@ -128,6 +130,36 @@ public class YarsaBazarTest {
 //					{"9080908098", "Sabina@2"},
 		};
 	}
+
+//@Test(priority = 4, dataProvider = "SearchData")
+//public  void SearchTest(String Item) throws InterruptedException{
+//		ExtentTest test = extent.createTest("Verify the Search");
+//		search Searchobj = new search(driver);
+//
+//		Searchobj.click_search_button();
+//		Thread.sleep(3000);
+//
+//		String browsersearchURL = driver.getCurrentUrl();
+//		String SearchURL = Searchobj.searchURL;
+//		assertEquals(browsersearchURL, SearchURL);
+//		test.pass("The search url is: " + browsersearchURL);
+//		test.pass("Search page is opened");
+//
+//		Searchobj.click_search_button();
+//		Thread.sleep(2000);
+//
+//		Searchobj.input_search_bar(Item);
+//		Thread.sleep(2000);
+//	test.pass("Item " + Item + " is searched successfully");
+//}
+//
+//	@DataProvider(name = "SearchData")
+//	public Object[][] getSearchData(){
+//		return new Object[][]{
+//				{"dog food"}
+//
+//		};
+//	}
 
 
 	@AfterTest
