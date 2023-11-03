@@ -36,18 +36,62 @@ public class YarsaBazarTest {
 
 
 	@Test(priority = 1)
-	public void dashboardTest() {
+	public void dashboardTest()throws InterruptedException {
 		ExtentTest test = extent.createTest("Launch website");
 		dashboard dashboardobject = new dashboard(driver);
+
 		String browserURL = driver.getCurrentUrl();
 		assertEquals(browserURL, actualBrowserURL);
-		test.pass("User launced to website URL : " + browserURL);
+		test.pass("User launched to website URL : " + browserURL);
 		test.pass("Website Launch Verified");
 
 		dashboardobject.isLogoDisplayed();
 		test.pass("Logo is displayed");
 
+		dashboardobject.click_help();
+		test.pass("Help button clicked. Navigated to help.");
+		Thread.sleep(3000);
+		driver.navigate().refresh();
+
+//		Thread.sleep(3000);
+//		dashboardobject.click_login();
+//		test.pass("Login button clicked. Navigated to Login Page.");
+//		dashboardobject.click_back();
+//		Thread.sleep(3000);
+//
+//		dashboardobject.click_signup();
+//		test.pass("Signup button clicked. Navigated to Signup Page.");
+//		dashboardobject.click_back();
+//		Thread.sleep(2000);
+//
+//		dashboardobject.isYarsabazarDisplayed();
+//		test.pass("Yarsa Bazar is displayed");
+//
+//
+//		dashboardobject.isSearchDisplayed();
+//		test.pass("Search bar is displayed");
+//
+//		dashboardobject.click_search_button();
+//		test.pass("Search button clicked. Navigated to Search Page.");
+//		driver.navigate().back();
+//
+//		dashboardobject.isIndustriesDisplayed();
+//		test.pass("Industries is displayed");
+//
+//		dashboardobject.click_see_all();
+//		test.pass("See all button clicked. Navigated to industries Page.");
+//		driver.navigate().back();
+//
+//		dashboardobject.click_request_here();
+//		test.pass("Request here button clicked.");
+//		driver.navigate().back();
+//
+//		dashboardobject.click_start_selling();
+//		test.pass("Start selling button clicked.");
+//		driver.navigate().back();
+
 	}
+
 
 	@Test(priority = 2, dataProvider = "signUpData")
 
@@ -112,20 +156,20 @@ public class YarsaBazarTest {
 		Thread.sleep(2000);
 		loginpageobj.login_Click();
 		Thread.sleep(2000);
+		test.pass("User " + PhoneNumber + " is logged in successfully");
+
+
 		loginpageobj.logout_Click();
 		Thread.sleep(2000);
 
-//		String browserLoggedInURL = driver.getCurrentUrl();
-//		String loggedinURL = loginpageobj.LoggedInURL;
-//		assertEquals(browserLoggedInURL, loggedinURL);
-//		test.pass("The Logged in url is: " + browserLoggedInURL);
-		test.pass("User " + PhoneNumber + " is logged in successfully");
+
+
 	}
 
 	@DataProvider(name = "loginData")
 	public Object[][] getLoginData(){
 			return new Object[][]{
-					{"9898000098", "Sabina@1"},
+					{"9823579453", "Sabina@123"}
 
 		};
 	}
@@ -190,11 +234,12 @@ public  void SearchTest(String Item) throws InterruptedException{
 		test.pass("Terms of Services is opened successfully");
 
 //		Footerobj.click_Sell_on_Yarsa_Bazar();
-//		Thread.sleep(2000);
+//		Thread.sleep(1000);
 //		test.pass("Sell on Yarsa Bazar is opened successfully");
 	}
 
 
+	@AfterTest
 	public void tearDownTest() {
 		driver.close();
 		driver.quit();
