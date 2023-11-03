@@ -175,8 +175,26 @@ public  void SearchTest(String Item) throws InterruptedException{
 
 	}
 
+	@Test(priority = 6)
+	public void FooterTest()throws InterruptedException{
+		ExtentTest test = extent.createTest("Verify the Footer");
+		Footer Footerobj = new Footer(driver);
 
-	@AfterTest
+		Footerobj.click_Privacy_Policy();
+		Thread.sleep(1000);
+
+		test.pass("Privacy Policy is opened successfully");
+
+		Footerobj.click_Terms_of_Services();
+		Thread.sleep(1000);
+		test.pass("Terms of Services is opened successfully");
+
+//		Footerobj.click_Sell_on_Yarsa_Bazar();
+//		Thread.sleep(2000);
+//		test.pass("Sell on Yarsa Bazar is opened successfully");
+	}
+
+
 	public void tearDownTest() {
 		driver.close();
 		driver.quit();
