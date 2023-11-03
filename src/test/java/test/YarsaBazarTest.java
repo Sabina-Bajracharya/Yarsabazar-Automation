@@ -10,10 +10,7 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import pages.dashboard;
-import pages.loginPage;
-import pages.search;
-import pages.signUpPage;
+import pages.*;
 
 
 public class YarsaBazarTest {
@@ -48,6 +45,7 @@ public class YarsaBazarTest {
 		test.pass("Website Launch Verified");
 
 		dashboardobject.isLogoDisplayed();
+		test.pass("Logo is displayed");
 
 	}
 
@@ -138,12 +136,12 @@ public  void SearchTest(String Item) throws InterruptedException{
 		search Searchobj = new search(driver);
 
 	Searchobj.input_search_bar(Item);
-	Thread.sleep(5000);
+	Thread.sleep(4000);
 
 	test.pass("Item " + Item + " is searched successfully");
 
 	Searchobj.click_dog_food();
-	Thread.sleep(5000);
+	Thread.sleep(2000);
 
 	test.pass("Item " + Item + " is clicked successfully");
 
@@ -153,12 +151,28 @@ public  void SearchTest(String Item) throws InterruptedException{
 	test.pass("Returned back to dashborad successfully");
 }
 
+
 	@DataProvider(name = "SearchData")
 	public Object[][] getSearchData(){
 		return new Object[][]{
 				{"dog food"}
 
 		};
+	}
+
+	@Test (priority = 5)
+	public void industriesTest()throws InterruptedException{
+		ExtentTest test = extent.createTest("Verify the Browse All Industries");
+		IndustriesPage Industriesobj = new IndustriesPage(driver);
+
+		Industriesobj.click_browse_all_industries();
+		Thread.sleep(2000);
+		test.pass("Browse All Industries page is opened successfully");
+
+		Industriesobj.click_back_to_dashboard();
+		Thread.sleep(2000);
+		test.pass("Returned back to Dashboard from Browse All Industries page ");
+
 	}
 
 
