@@ -1,14 +1,43 @@
-# YarsaBazar_Automation
-Selenium with Java to automate YarsaBazar which demonstrates automated web testing using Selenium WebDriver in Java for ChromeBrowser. 
+# YarsaBazar Automated Testing
 
-# Prerequisites
+This repository contains automated tests for the YarsaBazar website using WebDriver in Java. The tests are designed to ensure that the website's key features and functionalities including dashboard, login, signup, search, and footer,  work as expected. 
 
-As this is a maven project, all the dependencies are already set in pom.xml file. 
-I have used the latest version of chromedriver and used the location of chromedriver which is stored in my local. Please ensure the location of the chromedriver is set correctly. 
+## Prerequisites
 
-# Getting Started
+Before running the tests, make sure you have the following prerequisites set up:
 
-After you clone this repository to your local machine, you can set the location of your chromebrowser. Right click the YarsaBazarTest.java class and run as testNG file. 
+- Java Development Kit (JDK)
+- Selenium WebDriver
+- TestNG
+- Chrome WebDriver
+- Extent Reports
+- YarsaBazar website URL
+- Maven Dependencies
 
-The Browser starts and tests starts running. 
+2. Download the ChromeDriver and specify its path in the test code.
+
+3. Install the necessary maven dependencies, including Selenium WebDriver, TestNG, and Extent Reports.
+
+4. Ensure the YarsaBazar website is accessible at the URL specified in the "actualBrowserURL" variable.
+
+## Running Tests
+
+The main test class to execute is `YarsaBazarTest`.
+
+## Test Structure
+
+The tests are organized into different classes within the `test` package:
+
+YarsaBazarTest: The main test class containing test methods for different features of the YarsaBazar website.
+
+Each test class corresponds to a specific feature or page of the website.
+
+## Data Providers
+
+Data providers are used to parameterize test methods. Data for test cases can be found within the same test class.
+
+getSignUpData: Provides data for testing the sign-up process.
+getLoginData: Provides data for testing the login process.
+getSearchData: Provides data for testing the search functionality.
+
 
