@@ -138,8 +138,8 @@ public class YarsaBazarTest {
 
 	@DataProvider(name = "loginData")
 	public Object[][] getLoginData(){
-			return new Object[][]{
-					{"9823579453", "Sabina@123"}
+		return new Object[][]{
+				{"9823579453", "Sabina@123"}
 
 		};
 	}
@@ -172,33 +172,33 @@ public class YarsaBazarTest {
 
 
 	}
-		@DataProvider(name = "UserUpdateData")
-				public Object[][] getuserUpdateData(){
-			return new Object[][]{
-					{"Sabina Bajracharya", "sabina1@gmail.com"}
+	@DataProvider(name = "UserUpdateData")
+	public Object[][] getuserUpdateData(){
+		return new Object[][]{
+				{"Sabina Bajracharya", "sabina1@gmail.com"}
 		};
 	}
 
-@Test(priority = 5, dataProvider = "SearchData")
-public  void SearchTest(String Item) throws InterruptedException{
+	@Test(priority = 5, dataProvider = "SearchData")
+	public  void SearchTest(String Item) throws InterruptedException{
 		ExtentTest test = extent.createTest("Verify the Search");
 		search Searchobj = new search(driver);
 
-	Searchobj.input_search_bar(Item);
-	Thread.sleep(4000);
+		Searchobj.input_search_bar(Item);
+		Thread.sleep(4000);
 
-	test.pass("Item " + Item + " is searched successfully");
+		test.pass("Item " + Item + " is searched successfully");
 
-	Searchobj.click_dog_food();
-	Thread.sleep(2000);
+		Searchobj.click_dog_food();
+		Thread.sleep(2000);
 
-	test.pass("Item " + Item + " is clicked successfully");
+		test.pass("Item " + Item + " is clicked successfully");
 
-	Searchobj.click_back_to_dashborad();
-	Thread.sleep(2000);
+		Searchobj.click_back_to_dashborad();
+		Thread.sleep(2000);
 
-	test.pass("Returned back to dashborad successfully");
-}
+		test.pass("Returned back to dashborad successfully");
+	}
 
 
 	@DataProvider(name = "SearchData")
@@ -247,5 +247,5 @@ public  void SearchTest(String Item) throws InterruptedException{
 		System.out.println("Test Completed Successfully");
 		extent.flush();
 
-}
+	}
 }

@@ -12,7 +12,7 @@ public class search {
     By back_to_dashboard = By.xpath("/html[1]/body[1]/header[1]/div[1]/div[1]/div[1]/div[1]/a[1]/img[2]");
 
     public search(WebDriver driver){
-     this.driver =driver;
+        this.driver =driver;
     }
 
     public void input_search_bar(String text){
@@ -28,3 +28,4 @@ public class search {
     }
 
 }
+

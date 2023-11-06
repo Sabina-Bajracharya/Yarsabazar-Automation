@@ -10,14 +10,13 @@ public class dashboard {
 
 
 
-public dashboard(WebDriver driver){
-    this.driver = driver;
-}
+    public dashboard(WebDriver driver){
+        this.driver = driver;
+    }
     //to display verify login page is opened
     public  boolean isLogoDisplayed() {
 
-    driver.findElement(logo).isDisplayed();
+        driver.findElement(logo).isDisplayed();
         return displayed;
     }
 }
-
