@@ -7,7 +7,7 @@ public class loginPage {
     WebDriver driver;
 
     public String LoginURL = "https://www.yarsabazar.com/login";
-//    public String LoggedinURL ="https://www.yarsabazar.com/account";
+    public String LoggedInURL ="https://www.yarsabazar.com/verify?redirectTo=/account";
 
     By login_button_click = By.xpath("//a[contains(text(),'Login')]");
     By email_input = By.xpath("(//input[@id='username'])[1]");

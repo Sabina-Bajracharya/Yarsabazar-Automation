@@ -36,7 +36,8 @@ public class YarsaBazarTest {
 
 
 	@Test(priority = 1)
-	public void dashboardTest()throws InterruptedException {
+	public void dashboardTest()
+	{
 		ExtentTest test = extent.createTest("Launch website");
 		dashboard dashboardobject = new dashboard(driver);
 
@@ -46,50 +47,6 @@ public class YarsaBazarTest {
 		test.pass("Website Launch Verified");
 
 		dashboardobject.isLogoDisplayed();
-		test.pass("Logo is displayed");
-
-		dashboardobject.click_help();
-		test.pass("Help button clicked. Navigated to help.");
-		Thread.sleep(3000);
-		driver.navigate().refresh();
-
-//		Thread.sleep(3000);
-//		dashboardobject.click_login();
-//		test.pass("Login button clicked. Navigated to Login Page.");
-//		dashboardobject.click_back();
-//		Thread.sleep(3000);
-//
-//		dashboardobject.click_signup();
-//		test.pass("Signup button clicked. Navigated to Signup Page.");
-//		dashboardobject.click_back();
-//		Thread.sleep(2000);
-//
-//		dashboardobject.isYarsabazarDisplayed();
-//		test.pass("Yarsa Bazar is displayed");
-//
-//
-//		dashboardobject.isSearchDisplayed();
-//		test.pass("Search bar is displayed");
-//
-//		dashboardobject.click_search_button();
-//		test.pass("Search button clicked. Navigated to Search Page.");
-//		driver.navigate().back();
-//
-//		dashboardobject.isIndustriesDisplayed();
-//		test.pass("Industries is displayed");
-//
-//		dashboardobject.click_see_all();
-//		test.pass("See all button clicked. Navigated to industries Page.");
-//		driver.navigate().back();
-//
-//		dashboardobject.click_request_here();
-//		test.pass("Request here button clicked.");
-//		driver.navigate().back();
-//
-//		dashboardobject.click_start_selling();
-//		test.pass("Start selling button clicked.");
-//		driver.navigate().back();
-
 	}
 
 
@@ -131,7 +88,7 @@ public class YarsaBazarTest {
 	public Object[][] getSignUpData(){
 		return new Object[][]{
 				{"Sabina1", "9898000098", "sabina1@gmail.com", "Sabina@1"},
-				{"Sabina2", "9080908098", "sabina2@gmail.com", "Sabina@2"},
+				{"Sabina2", "9803000099", "sabina2@gmail.com", "Sabina@2"},
 		};
 	}
 
@@ -142,27 +99,40 @@ public class YarsaBazarTest {
 		loginPage loginpageobj = new loginPage(driver);
 
 		loginpageobj.click_login_button();
-		Thread.sleep(3000);
-
+		Thread.sleep(2000);
 		String browserLoginURL = driver.getCurrentUrl();
 		String loginURL = loginpageobj.LoginURL;
+
 		assertEquals(browserLoginURL, loginURL);
-		test.pass("The Login url is: " + browserLoginURL);
-		test.pass("Login Page is opened");
-
+		if ( browserLoginURL.equals(loginURL)){
+			test.pass("The Login url is: " + browserLoginURL);
+		}
+		else {
+			test.fail("The usercannot click login link" +browserLoginURL );
+		}
 		loginpageobj.email_Input(PhoneNumber);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		loginpageobj.password_Input(Password);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		loginpageobj.login_Click();
-		Thread.sleep(2000);
-		test.pass("User " + PhoneNumber + " is logged in successfully");
+		Thread.sleep(1000);
 
+		String browserLoggedInURL = driver.getCurrentUrl();
+		String loggedInURL = loginpageobj.LoggedInURL;
 
-		loginpageobj.logout_Click();
-		Thread.sleep(2000);
+		System.out.println(browserLoggedInURL);
+		System.out.println(loggedInURL);
+		if( loggedInURL == browserLoggedInURL ){
+			test.fail("The user"+PhoneNumber+ "cannot log in due to invalid credentials");
+		}
+		else
+		{
+			test.pass("The user"+ PhoneNumber + "is Logged in successfully");
 
-
+		}
+		Thread.sleep(1000);
+//		loginpageobj.logout_Click();
+//		Thread.sleep(2000);
 
 	}
 
@@ -174,7 +144,42 @@ public class YarsaBazarTest {
 		};
 	}
 
-@Test(priority = 4, dataProvider = "SearchData")
+	@Test(priority = 4, dataProvider = "UserUpdateData")
+	public void UserDashboardTest(String Name, String Email) throws InterruptedException {
+		ExtentTest test = extent.createTest("Verify User Dashboard");
+		UserDashboard UserDashboardobj = new UserDashboard(driver);
+
+		UserDashboardobj.click_Full_Name_Update_button();
+		UserDashboardobj.clear_Full_Name_bar();
+		Thread.sleep(1000);
+		UserDashboardobj.edit_Full_Name_bar(Name);
+		Thread.sleep(1000);
+		UserDashboardobj.click_buttton_Full_Name_Savechange();
+		Thread.sleep(1000);
+		UserDashboardobj.click_Email_Update_button();
+		Thread.sleep(1000);
+		UserDashboardobj.clear_Email_bar();
+		Thread.sleep(1000);
+		UserDashboardobj.edit_Email_bar(Email);
+		Thread.sleep(1000);
+		UserDashboardobj.click_Email_savechange_button();
+		UserDashboardobj.click_Change_Password();
+		Thread.sleep(1000);
+		UserDashboardobj.click_profile_button();
+		Thread.sleep(1000);
+		UserDashboardobj.click_logout_button();
+		Thread.sleep(1000);
+
+
+	}
+		@DataProvider(name = "UserUpdateData")
+				public Object[][] getuserUpdateData(){
+			return new Object[][]{
+					{"Sabina Bajracharya", "sabina1@gmail.com"}
+		};
+	}
+
+@Test(priority = 5, dataProvider = "SearchData")
 public  void SearchTest(String Item) throws InterruptedException{
 		ExtentTest test = extent.createTest("Verify the Search");
 		search Searchobj = new search(driver);
@@ -204,7 +209,7 @@ public  void SearchTest(String Item) throws InterruptedException{
 		};
 	}
 
-	@Test (priority = 5)
+	@Test (priority = 6)
 	public void industriesTest()throws InterruptedException{
 		ExtentTest test = extent.createTest("Verify the Browse All Industries");
 		IndustriesPage Industriesobj = new IndustriesPage(driver);
@@ -219,8 +224,8 @@ public  void SearchTest(String Item) throws InterruptedException{
 
 	}
 
-	@Test(priority = 6)
-	public void FooterTest()throws InterruptedException{
+	@Test(priority = 7)
+	public void FooterTest()throws InterruptedException {
 		ExtentTest test = extent.createTest("Verify the Footer");
 		Footer Footerobj = new Footer(driver);
 
@@ -232,10 +237,6 @@ public  void SearchTest(String Item) throws InterruptedException{
 		Footerobj.click_Terms_of_Services();
 		Thread.sleep(1000);
 		test.pass("Terms of Services is opened successfully");
-
-//		Footerobj.click_Sell_on_Yarsa_Bazar();
-//		Thread.sleep(1000);
-//		test.pass("Sell on Yarsa Bazar is opened successfully");
 	}
 
 

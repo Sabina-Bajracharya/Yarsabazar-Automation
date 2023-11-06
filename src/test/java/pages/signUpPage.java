@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class signUpPage {
-    WebDriver driver = null;
+    WebDriver driver;
 
     public String actualSignUpURL = "https://www.yarsabazar.com/signup";
 
