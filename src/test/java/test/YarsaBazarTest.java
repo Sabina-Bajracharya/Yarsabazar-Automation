@@ -12,6 +12,8 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import pages.*;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class YarsaBazarTest {
 
@@ -80,7 +82,6 @@ public class YarsaBazarTest {
 		Thread.sleep(2000);
 		signuppageobj.back_button();
 		Thread.sleep(2000);
-
 		test.pass("User " + phone + " is signed up successfully");
 	}
 
@@ -139,7 +140,7 @@ public class YarsaBazarTest {
 	@DataProvider(name = "loginData")
 	public Object[][] getLoginData(){
 		return new Object[][]{
-				{"9823579453", "Sabina@123"}
+				{"9823579453", "Sabina12@34"}
 
 		};
 	}
@@ -149,6 +150,8 @@ public class YarsaBazarTest {
 		ExtentTest test = extent.createTest("Verify User Dashboard");
 		UserDashboard UserDashboardobj = new UserDashboard(driver);
 
+		UserDashboardobj.click_account_details();
+		Thread.sleep(2000);
 		UserDashboardobj.click_Full_Name_Update_button();
 		UserDashboardobj.clear_Full_Name_bar();
 		Thread.sleep(1000);
@@ -165,6 +168,72 @@ public class YarsaBazarTest {
 		UserDashboardobj.click_Email_savechange_button();
 		UserDashboardobj.click_Change_Password();
 		Thread.sleep(1000);
+		UserDashboardobj.input_New_Password_field("Sabina12@34");
+		Thread.sleep(1000);
+		UserDashboardobj.input_confirm_New_Password_field("Sabina12@34");
+		Thread.sleep(1000);
+		UserDashboardobj.Change_Password_button_click();
+		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		UserDashboardobj.click_account_details();
+		Thread.sleep(1000);
+		UserDashboardobj.click_Email_Verify_Button();
+		Thread.sleep(1000);
+		UserDashboardobj.verify_email_cancel();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		UserDashboardobj.click_help_button();
+		UserDashboardobj.drop_Account_information();
+		UserDashboardobj.drop_negotiation();
+		UserDashboardobj.drop_shopping();
+		UserDashboardobj.drop_user_onboarding_process();
+		Thread.sleep(2000);
+		UserDashboardobj.drop_user_dashboard_help_content();
+		Thread.sleep(1000);
+		UserDashboardobj.drop_Account_information();
+		UserDashboardobj.drop_negotiation();
+		UserDashboardobj.drop_shopping();
+		Thread.sleep(1000);
+		UserDashboardobj.drop_user_onboarding_process();
+		Thread.sleep(2000);
+		UserDashboardobj.drop_user_dashboard_help_content();
+		Thread.sleep(2000);
+		driver.navigate().refresh();
+		Thread.sleep(2000);
+		UserDashboardobj.input_user_dashboard_Search_bar("rose");
+		Thread.sleep(3000);
+		UserDashboardobj.search_rose_input_click();
+		Thread.sleep(1000);
+		UserDashboardobj.input_product_name("Red Rose");
+		UserDashboardobj.phone_number_input("9823579453");
+		UserDashboardobj.full_name_input("Sabina Bajra");
+		UserDashboardobj.input_email_address("sabina1@gmail.com");
+		UserDashboardobj.input_description("I need Red rose in full fresh condition.");
+		UserDashboardobj.input_submit();
+		Thread.sleep(1000);
+		UserDashboardobj.click_dismiss();
+
+		driver.navigate().to("https://www.yarsabazar.com/account");
+		Thread.sleep(1000);
+
+		////To signup on sell on yarsabazar through user dashboard
+//		UserDashboardobj.click_sell_on_yarsabzar();
+//		Thread.sleep(2000);
+//		UserDashboardobj.choose_line_of_business();
+//		Thread.sleep(2000);
+//		UserDashboardobj.click_next_step();
+//		Thread.sleep(1000);
+//		UserDashboardobj.click_go_back();
+//		Thread.sleep(1000);
+//		UserDashboardobj.click_next_step();
+//		Thread.sleep(1000);
+//		UserDashboardobj.input_username("SABINA");
+//		UserDashboardobj.input_company_name("Raw Production Pvt.Ltd");
+//		UserDashboardobj.input_company_email("raw@gmail.com");
+//		UserDashboardobj.input_mobile_number("9823579453");
+//		UserDashboardobj.drop_company_type();
+//		UserDashboardobj.input_start_year("2019");
+//		UserDashboardobj.click_start_Selling();
+
 		UserDashboardobj.click_profile_button();
 		Thread.sleep(1000);
 		UserDashboardobj.click_logout_button();
