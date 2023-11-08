@@ -3,9 +3,9 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class UserDashboard {
+public class UserDashboardBefore {
     WebDriver driver;
-    By account_Details_click = By.xpath("//span[contains(text(),'Account Details')]");
+
     By Full_Name_Update_button = By.xpath("//button[contains(text(),'Update')]");
     By Full_Name_bar= By.xpath("//body/div[2]/div[2]/div[2]/div[2]/dl[1]/div[1]/dd[1]/input[1]");
     By Full_Name_Savechange_button = By.xpath("//button[contains(text(),'Save Changes')]");
@@ -35,15 +35,23 @@ public class UserDashboard {
     By submit_click = By.xpath("//body/main[1]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/fieldset[1]/button[1]");
     By dismiss_click = By.xpath("//button[contains(text(),'Dismiss')]");
 
+    ////To signup on sell on yarsabazar through user dashboard
+    By sell_on_Yarsabazar = By.linkText("Sell on Yarsa Bazar");
+//    By line_of_business = By.xpath("/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/button[4]");
+//    By next_step = By.xpath("//span[contains(text(),'Next Step')]");
+//    By go_back= By.xpath("//button[contains(text(),'Go Back')]");
+//    By username = By.cssSelector("#userName");
+//    By companyname = By.xpath("//body/div[2]/div[2]/div[2]/div[1]/form[1]/div[1]/div[2]/input[1]");
+//    By company_email = By.xpath("//body/div[2]/div[2]/div[2]/div[1]/form[1]/div[1]/div[3]/input[1]");
+//    By mobile_number = By.xpath("//body/div[2]/div[2]/div[2]/div[1]/form[1]/div[1]/div[4]/input[1]");
+//    By company_type =By.xpath("select");
+//    By start_year = By.xpath("//body/div[2]/div[2]/div[2]/div[1]/form[1]/div[1]/div[6]/input[1]");
+//    By start_Selling = By.xpath("//body/div[2]/div[2]/div[1]/div[2]/button[2]");
+
     By Logout_click = By.xpath("/html[1]/body[1]/header[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/div[1]/div[1]/div[2]");
 
-
-    public void click_account_details(){
-        driver.findElement(account_Details_click).click();
-    }
-
-    public UserDashboard(WebDriver drivier){
-        this.driver= drivier;
+    public UserDashboardBefore(WebDriver driver) {
+        this.driver = driver;
     }
 
     public void click_Full_Name_Update_button(){
@@ -84,11 +92,11 @@ public class UserDashboard {
     }
 
     public void input_New_Password_field(String text){
-        driver.findElement(New_Password_field).sendKeys("Sabina12@34");
+        driver.findElement(New_Password_field).sendKeys(text);
     }
 
     public  void input_confirm_New_Password_field(String text){
-        driver.findElement(Confirm_New_Password_field).sendKeys("Sabina12@34");
+        driver.findElement(Confirm_New_Password_field).sendKeys(text);
     }
 
     public void Change_Password_button_click(){
@@ -140,15 +148,15 @@ public class UserDashboard {
     }
 
     public void phone_number_input(String text){
-        driver.findElement(phone_number).sendKeys("9823579453");
+        driver.findElement(phone_number).sendKeys("9762784654");
     }
 
     public  void full_name_input(String text){
-        driver.findElement(full_name).sendKeys("Sabina Bajra");
+        driver.findElement(full_name).sendKeys("Simran Bajra");
     }
 
     public void input_email_address(String text){
-        driver.findElement(email_address).sendKeys("sabina1@gmail.com");
+        driver.findElement(email_address).sendKeys("xyz@gmail.com");
     }
 
     public void input_description(String text){
@@ -163,6 +171,41 @@ public class UserDashboard {
         driver.findElement(dismiss_click).click();
     }
 
+    ////To signup on sell on yarsabazar through user dashboard
+    public void click_sell_on_yarsabzar(){
+        driver.findElement(sell_on_Yarsabazar).click();
+    }
+//    public void choose_line_of_business(){
+//        driver.findElement(line_of_business).click();
+//    }
+//    public void click_next_step(){
+//        driver.findElement(next_step).click();
+//    }
+//    public void click_go_back(){
+//        driver.findElement(go_back).click();
+//    }
+//    public void input_username(String text){
+//        driver.findElement(username).sendKeys("SABINA");
+//    }
+//    public void input_company_name(String text){
+//        driver.findElement(companyname).sendKeys("Raw Production Pvt.Ltd");
+//    }
+//    public void input_company_email(String text){
+//        driver.findElement(company_email).sendKeys("raw@gmail.com");
+//    }
+//    public void input_mobile_number(String text){
+//        driver.findElement(mobile_number).sendKeys("9823579453");
+//    }
+//    public void drop_company_type(){
+//        driver.findElement(company_type).click();
+//    }
+//    public void input_start_year(String text){
+//        driver.findElement(start_year).sendKeys("2019");
+//    }
+//    public void click_start_Selling(){
+//        driver.findElement(start_Selling).click();
+//    }
+
     public void click_profile_button(){
         driver.findElement(Profile_button_click).click();
     }
@@ -171,3 +214,4 @@ public class UserDashboard {
         driver.findElement(Logout_click).click();
     }
 }
+
