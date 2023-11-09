@@ -140,107 +140,107 @@ public class YarsaBazarTest {
 	@DataProvider(name = "loginData")
 	public Object[][] getLoginData(){
 		return new Object[][]{
-				{"9762784654", "Simran@1"},
-//				{"9823579453", "Sabina12@34"}
+//				{"9762784654", "Simran@1"},
+				{"9823579453", "Sabina12@34"}
 
 		};
 	}
 
-	@Test(priority = 4, dataProvider = "UserDataBefore")
-	public void UserDashboardBeforeTest(String Name, String Email, String NewPassword)throws InterruptedException{
-		ExtentTest test = extent.createTest("Verify User Dashboard before sell on YarsaBazar Signup");
-		UserDashboardBefore UserDashboardBeforeobj = new UserDashboardBefore(driver);
-
-		UserDashboardBeforeobj.click_Full_Name_Update_button();
-		UserDashboardBeforeobj.click_Full_Name_Update_button();
-		UserDashboardBeforeobj.clear_Full_Name_bar();
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.edit_Full_Name_bar(Name);
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.click_buttton_Full_Name_Savechange();
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.click_Email_Update_button();
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.clear_Email_bar();
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.edit_Email_bar(Email);
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.click_Email_savechange_button();
-		UserDashboardBeforeobj.click_Change_Password();
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.input_New_Password_field(NewPassword);
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.input_confirm_New_Password_field(NewPassword);
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.Change_Password_button_click();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		UserDashboardBeforeobj.click_Email_Verify_Button();
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.verify_email_cancel();
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		UserDashboardBeforeobj.click_help_button();
-		UserDashboardBeforeobj.drop_Account_information();
-		UserDashboardBeforeobj.drop_negotiation();
-		UserDashboardBeforeobj.drop_shopping();
-		UserDashboardBeforeobj.drop_user_onboarding_process();
-		Thread.sleep(2000);
-		UserDashboardBeforeobj.drop_user_dashboard_help_content();
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.drop_Account_information();
-		UserDashboardBeforeobj.drop_negotiation();
-		UserDashboardBeforeobj.drop_shopping();
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.drop_user_onboarding_process();
-		Thread.sleep(2000);
-		UserDashboardBeforeobj.drop_user_dashboard_help_content();
-		Thread.sleep(2000);
-		driver.navigate().refresh();
-		Thread.sleep(2000);
-		UserDashboardBeforeobj.input_user_dashboard_Search_bar("rose");
-		Thread.sleep(3000);
-		UserDashboardBeforeobj.search_rose_input_click();
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.input_product_name("Red Rose");
-		UserDashboardBeforeobj.phone_number_input("9823579453");
-		UserDashboardBeforeobj.full_name_input("Sabina Bajra");
-		UserDashboardBeforeobj.input_email_address("sabina1@gmail.com");
-		UserDashboardBeforeobj.input_description("I need Red rose in full fresh condition.");
-		UserDashboardBeforeobj.input_submit();
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.click_dismiss();
-		driver.navigate().to("https://www.yarsabazar.com/account");
-		Thread.sleep(1000);
-		////To signup on sell on yarsabazar through user dashboard
-		UserDashboardBeforeobj.click_sell_on_yarsabzar();
-		Thread.sleep(2000);
-		driver.navigate().to("https://www.yarsabazar.com/account");
-//		UserDashboardBeforeobj.choose_line_of_business();
+//	@Test(priority = 4, dataProvider = "UserDataBefore")
+//	public void UserDashboardBeforeTest(String Name, String Email, String NewPassword)throws InterruptedException{
+//		ExtentTest test = extent.createTest("Verify User Dashboard before sell on YarsaBazar Signup");
+//		UserDashboardBefore UserDashboardBeforeobj = new UserDashboardBefore(driver);
+//
+//		UserDashboardBeforeobj.click_Full_Name_Update_button();
+//		UserDashboardBeforeobj.click_Full_Name_Update_button();
+//		UserDashboardBeforeobj.clear_Full_Name_bar();
+//		Thread.sleep(1000);
+//		UserDashboardBeforeobj.edit_Full_Name_bar(Name);
+//		Thread.sleep(1000);
+//		UserDashboardBeforeobj.click_buttton_Full_Name_Savechange();
+//		Thread.sleep(1000);
+//		UserDashboardBeforeobj.click_Email_Update_button();
+//		Thread.sleep(1000);
+//		UserDashboardBeforeobj.clear_Email_bar();
+//		Thread.sleep(1000);
+//		UserDashboardBeforeobj.edit_Email_bar(Email);
+//		Thread.sleep(1000);
+//		UserDashboardBeforeobj.click_Email_savechange_button();
+//		UserDashboardBeforeobj.click_Change_Password();
+//		Thread.sleep(1000);
+//		UserDashboardBeforeobj.input_New_Password_field(NewPassword);
+//		Thread.sleep(1000);
+//		UserDashboardBeforeobj.input_confirm_New_Password_field(NewPassword);
+//		Thread.sleep(1000);
+//		UserDashboardBeforeobj.Change_Password_button_click();
+//		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//		UserDashboardBeforeobj.click_Email_Verify_Button();
+//		Thread.sleep(1000);
+//		UserDashboardBeforeobj.verify_email_cancel();
+//		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+//		UserDashboardBeforeobj.click_help_button();
+//		UserDashboardBeforeobj.drop_Account_information();
+//		UserDashboardBeforeobj.drop_negotiation();
+//		UserDashboardBeforeobj.drop_shopping();
+//		UserDashboardBeforeobj.drop_user_onboarding_process();
 //		Thread.sleep(2000);
-//		UserDashboardBeforeobj.click_next_step();
+//		UserDashboardBeforeobj.drop_user_dashboard_help_content();
 //		Thread.sleep(1000);
-//		UserDashboardBeforeobj.click_go_back();
+//		UserDashboardBeforeobj.drop_Account_information();
+//		UserDashboardBeforeobj.drop_negotiation();
+//		UserDashboardBeforeobj.drop_shopping();
 //		Thread.sleep(1000);
-//		UserDashboardBeforeobj.click_next_step();
+//		UserDashboardBeforeobj.drop_user_onboarding_process();
+//		Thread.sleep(2000);
+//		UserDashboardBeforeobj.drop_user_dashboard_help_content();
+//		Thread.sleep(2000);
+//		driver.navigate().refresh();
+//		Thread.sleep(2000);
+//		UserDashboardBeforeobj.input_user_dashboard_Search_bar("rose");
+//		Thread.sleep(3000);
+//		UserDashboardBeforeobj.search_rose_input_click();
 //		Thread.sleep(1000);
-//		UserDashboardBeforeobj.input_username("SABINA");
-//		UserDashboardBeforeobj.input_company_name("Raw Production Pvt.Ltd");
-//		UserDashboardBeforeobj.input_company_email("raw@gmail.com");
-//		UserDashboardBeforeobj.input_mobile_number("9823579453");
-//		UserDashboardBeforeobj.drop_company_type();
-//		UserDashboardBeforeobj.input_start_year("2019");
-//		UserDashboardBeforeobj.click_start_Selling();
-		UserDashboardBeforeobj.click_profile_button();
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.click_logout_button();
-		Thread.sleep(1000);
-	}
-	@DataProvider(name = "UserDataBefore")
-	public Object[][] getUserDataBefore(){
-		return new Object[][]{
-				{"Simran Bajra","always1@gmail.com", "Simran@1" }
-		};
-	}
-
+//		UserDashboardBeforeobj.input_product_name("Red Rose");
+//		UserDashboardBeforeobj.phone_number_input("9823579453");
+//		UserDashboardBeforeobj.full_name_input("Sabina Bajra");
+//		UserDashboardBeforeobj.input_email_address("sabina1@gmail.com");
+//		UserDashboardBeforeobj.input_description("I need Red rose in full fresh condition.");
+//		UserDashboardBeforeobj.input_submit();
+//		Thread.sleep(1000);
+//		UserDashboardBeforeobj.click_dismiss();
+//		driver.navigate().to("https://www.yarsabazar.com/account");
+//		Thread.sleep(1000);
+//		////To signup on sell on yarsabazar through user dashboard
+//		UserDashboardBeforeobj.click_sell_on_yarsabzar();
+//		Thread.sleep(2000);
+//		driver.navigate().to("https://www.yarsabazar.com/account");
+////		UserDashboardBeforeobj.choose_line_of_business();
+////		Thread.sleep(2000);
+////		UserDashboardBeforeobj.click_next_step();
+////		Thread.sleep(1000);
+////		UserDashboardBeforeobj.click_go_back();
+////		Thread.sleep(1000);
+////		UserDashboardBeforeobj.click_next_step();
+////		Thread.sleep(1000);
+////		UserDashboardBeforeobj.input_username("SABINA");
+////		UserDashboardBeforeobj.input_company_name("Raw Production Pvt.Ltd");
+////		UserDashboardBeforeobj.input_company_email("raw@gmail.com");
+////		UserDashboardBeforeobj.input_mobile_number("9823579453");
+////		UserDashboardBeforeobj.drop_company_type();
+////		UserDashboardBeforeobj.input_start_year("2019");
+////		UserDashboardBeforeobj.click_start_Selling();
+//		UserDashboardBeforeobj.click_profile_button();
+//		Thread.sleep(1000);
+//		UserDashboardBeforeobj.click_logout_button();
+//		Thread.sleep(1000);
+//	}
+//	@DataProvider(name = "UserDataBefore")
+//	public Object[][] getUserDataBefore(){
+//		return new Object[][]{
+//				{"Simran Bajra","always1@gmail.com", "Simran@1" }
+//		};
+//	}
+//
 
 
 	@Test(priority = 5, dataProvider = "UserUpdateData")

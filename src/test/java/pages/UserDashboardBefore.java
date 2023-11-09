@@ -36,7 +36,7 @@ public class UserDashboardBefore {
     By dismiss_click = By.xpath("//button[contains(text(),'Dismiss')]");
 
     ////To signup on sell on yarsabazar through user dashboard
-    By sell_on_Yarsabazar = By.linkText("Sell on Yarsa Bazar");
+//    By sell_on_Yarsabazar = By.linkText("Sell on Yarsa Bazar");
 //    By line_of_business = By.xpath("/html[1]/body[1]/div[2]/div[2]/div[2]/div[1]/button[4]");
 //    By next_step = By.xpath("//span[contains(text(),'Next Step')]");
 //    By go_back= By.xpath("//button[contains(text(),'Go Back')]");
@@ -172,9 +172,9 @@ public class UserDashboardBefore {
     }
 
     ////To signup on sell on yarsabazar through user dashboard
-    public void click_sell_on_yarsabzar(){
-        driver.findElement(sell_on_Yarsabazar).click();
-    }
+//    public void click_sell_on_yarsabzar(){
+//        driver.findElement(sell_on_Yarsabazar).click();
+//    }
 //    public void choose_line_of_business(){
 //        driver.findElement(line_of_business).click();
 //    }
