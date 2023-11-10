@@ -71,17 +71,17 @@ public class YarsaBazarTest {
 		test.pass("Sign Up Page Redirection Verified");
 
 		signuppageobj.input_Name(name);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		signuppageobj.input_PhoneNumber(phone);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		signuppageobj.input_Email(email);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		signuppageobj.input_Password(password);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		signuppageobj.click_SignUp();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		signuppageobj.back_button();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		test.pass("User " + phone + " is signed up successfully");
 	}
 
@@ -100,7 +100,7 @@ public class YarsaBazarTest {
 		loginPage loginpageobj = new loginPage(driver);
 
 		loginpageobj.click_login_button();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		String browserLoginURL = driver.getCurrentUrl();
 		String loginURL = loginpageobj.LoginURL;
 
@@ -309,8 +309,36 @@ public class YarsaBazarTest {
 		UserDashboardobj.input_submit();
 		Thread.sleep(1000);
 		UserDashboardobj.click_dismiss();
-		driver.navigate().to("https://www.yarsabazar.com/account");
+		driver.navigate().to("https://www.yarsabazar.com/vendor/products");
 		Thread.sleep(1000);
+		UserDashboardobj.click_My_store_page();
+		UserDashboardobj.click_company_info();
+		UserDashboardobj.click_products();
+//		UserDashboardobj.click_phone();
+//		driver.switchTo().alert().dismiss();
+//		Thread.sleep(3000);
+//		UserDashboardobj.click_email();
+//		driver.switchTo().alert().dismiss();
+
+		Thread.sleep(3000);
+		UserDashboardobj.click_image_slide_left();
+		Thread.sleep(1000);
+		UserDashboardobj.click_slide_right();
+		Thread.sleep(1000);
+		driver.navigate().refresh();
+		Thread.sleep(1000);
+		UserDashboardobj.click_dashboard();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		UserDashboardobj.click_request_for_quote();
+		Thread.sleep(1000);
+		UserDashboardobj.input_fullname_request("Sabina Bajra");
+		UserDashboardobj.input_MobileNumber_request("9823579453");
+		UserDashboardobj.input_ProductName_request("Boat earphones");
+		UserDashboardobj.input_quantity_request("18");
+		UserDashboardobj.input_More_Information_request("I need good quality Boat earphones before Tihar");
+		UserDashboardobj.click_submit_request();
+		Thread.sleep(1000);
+		UserDashboardobj.click_dismiss_request();
 
 		UserDashboardobj.click_profile_button();
 		Thread.sleep(1000);

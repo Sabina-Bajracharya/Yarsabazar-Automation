@@ -31,11 +31,61 @@ public class UserDashboard {
     By full_name = By.xpath("//body/main[1]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/fieldset[1]/div[3]/div[1]/input[1]");
     By email_address = By.xpath("//body/main[1]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/fieldset[1]/div[3]/div[2]/input[1]");
     By description = By.tagName("textarea");
-    By Profile_button_click = By.xpath("/html[1]/body[1]/header[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/button[1]");
     By submit_click = By.xpath("//body/main[1]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/fieldset[1]/button[1]");
     By dismiss_click = By.xpath("//button[contains(text(),'Dismiss')]");
-
+    By My_Store_Page_click = By.linkText("My Store Page");
+    By Company_Info_click = By.xpath("//span[contains(text(),'Company Info')]");
+    By products_click = By.xpath("//span[contains(text(),'Products')]");
+//    By phone_click = By.xpath("//span[contains(text(),'Phone')]");
+//    By Email_click = By.xpath("//span[contains(text(),'Email')]");
+    By image_slide_left_click = By.xpath("//body/main[1]/div[1]/div[1]/button[1]");
+    By image_slide_right_click = By.xpath("//body/main[1]/div[1]/div[1]/button[2]");
+    By Dashboard_click = By.linkText("Dashboard");
+    By request_for_quote_click = By.linkText("Request for Quote");
+    By request_fullname_input = By.xpath("//body/div[2]/div[2]/div[1]/form[1]/fieldset[1]/div[1]/input[1]");
+    By request_MobileNumber_input = By.xpath("//body/div[2]/div[2]/div[1]/form[1]/fieldset[1]/div[2]/input[1]");
+    By request_ProductName_input = By.xpath("//body/div[2]/div[2]/div[1]/form[1]/fieldset[1]/div[3]/div[1]/input[1]");
+    By request_quantity_input = By.xpath("//body/div[2]/div[2]/div[1]/form[1]/fieldset[1]/div[3]/div[2]/input[1]");
+    By reuest_More_Information_input = By.tagName("textarea");
+    By request_submit = By.xpath("//button[contains(text(),'Submit')]");
+    By request_dismiss_click = By.xpath("//button[contains(text(),'Dismiss')]");
+    By Profile_button_click = By.xpath("/html[1]/body[1]/header[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/button[1]");
     By Logout_click = By.xpath("/html[1]/body[1]/header[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/div[1]/div[1]/div[2]");
+    By Products = By.linkText("Products");
+    By products_Add_Product = By.linkText("Add Product");
+    By product_Product_name = By.xpath("//input[@id=':rca:-form-item']");
+    By Category_drop_click = By.xpath("//span[contains(text(),'Choose product category')]");
+    By Ring_Category = By.xpath("//div[contains(text(),'Blue Topaz Ring')]");
+    By highlight_name = By.xpath("//input[@id=':rcg:']");
+    By highlight_value = By.xpath("//input[@id=':rch:-form-item']");
+    By highlight_extra_info = By.xpath("//input[@id=':rci:-form-item']");
+    By add_highlight = By. xpath("//body/div[2]/div[2]/div[1]/div[2]/form[1]/div[2]/div[1]/div[2]/button[1]");
+    By highlight_delete = By.xpath("//body/div[2]/div[2]/div[1]/div[2]/form[1]/div[2]/div[1]/div[1]/div[2]/button[1]");
+    By highlight_choose_image = By.xpath("//body/div[2]/div[2]/div[1]/div[2]/form[1]/div[7]/div[1]/div[1]/div[1]/div[1]");
+    By highlight_create = By.xpath("//button[contains(text(),'Create')]");
+
+    By product_tag = By.xpath("//input[@id=':rcn:']");
+    By description_product = By.xpath("//body[1]/div[2]/div[2]/div[1]/div[2]/form[1]/div[3]/div[1]/div[2]/div[1]/p[1]");
+    By minimum_orders =By.xpath("//body[1]/div[2]/div[2]/div[1]/div[2]/form[1]/div[3]/div[1]/div[2]/div[1]/p[1]");
+    By Add_pricing = By.xpath("//button[contains(text(),'Add Pricing')]");
+    By currency = By.xpath("//span[contains(text(),'Choose choose currency')]");
+    By currency_nepalese_Rupee = By.xpath("//div[contains(text(),'Nepalese Rupee')]");
+    By price = By.xpath("//input[@id=':reu:-form-item']");
+    By Unit = By.xpath("//body/div[2]/div[2]/div[1]/div[2]/form[1]/div[6]/div[1]/div[1]/div[3]/button[1]/span[1]");
+    By back_to_products = By.xpath("//span[contains(text(),'Back to Products')]");
+
+    By business_information_click = By.xpath("Business Information");
+    By registration_details_click = By.linkText("Registration Details");
+    By Industries = By.linkText("Industries");
+    By Branches = By.linkText("Branches");
+    By Owners = By.linkText("Owners");
+    By Payment_Methods = By.linkText("Payment Methods");
+    By store_images = By.linkText("Store Images");
+    By Profile = By.linkText("Profile");
+    By Profile_Edit_Details = By.xpath("//button[contains(text(),'Edit Details')]");
+    By Update_Edit_Details = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/div[1]/div[1]/button[2]");
+
+
 
 
     public void click_account_details(){
@@ -162,6 +212,113 @@ public class UserDashboard {
     public void click_dismiss(){
         driver.findElement(dismiss_click).click();
     }
+
+    public void click_My_store_page(){
+        driver.findElement(My_Store_Page_click).click();
+    }
+    public void click_company_info(){
+        driver.findElement(Company_Info_click).click();
+    }
+
+    public void click_products(){
+        driver.findElement(products_click).click();
+    }
+
+//    public void click_phone(){
+//        driver.findElement(phone_click).click();
+//    }
+//
+//    public void click_email(){
+//        driver.findElement(Email_click).click();
+//    }
+
+    public void click_image_slide_left(){
+        driver.findElement(image_slide_left_click).click();
+    }
+
+    public void click_slide_right(){
+        driver.findElement(image_slide_right_click).click();
+    }
+
+    public void click_dashboard(){
+        driver.findElement(Dashboard_click).click();
+    }
+
+    public void click_request_for_quote(){
+        driver.findElement(request_for_quote_click).click();
+    }
+
+    public void input_fullname_request(String text){
+        driver.findElement(request_fullname_input).sendKeys("Sabina Bajra");
+    }
+
+    public void input_MobileNumber_request(String text){
+        driver.findElement(request_MobileNumber_input).sendKeys("9823579453");
+    }
+
+    public void input_ProductName_request(String text){
+        driver.findElement(request_ProductName_input).sendKeys("Boat earphones");
+    }
+
+    public void input_quantity_request(String text){
+        driver.findElement(request_quantity_input).sendKeys("18");
+    }
+
+    public void input_More_Information_request(String text){
+        driver.findElement(reuest_More_Information_input).sendKeys("I need good quality Boat earphones before Tihar");
+    }
+
+    public void click_submit_request(){
+        driver.findElement(request_submit).click();
+    }
+
+    public void click_dismiss_request(){
+        driver.findElement(request_dismiss_click).click();
+    }
+
+
+    public void click_products(){
+        driver.findElement(Products).click();
+    }
+
+    public void click_Add_products(){
+        driver.findElement(products_Add_Product).click();
+    }
+
+    public void input_product_name(String text){
+        driver.findElement(product_Product_name).sendKeys("Ring");
+    }
+
+    public void click_category_drop(){
+        driver.findElement(Category_drop_click).click();
+    }
+
+    public void click_ring_category(){
+        driver.findElement(Ring_Category).click();
+    }
+
+    public void input_name(String text){
+        driver.findElement(highlight_name).sendKeys("");
+    }
+
+    public void input_value(String text){
+        driver.findElement(highlight_value).sendKeys("");
+    }
+    public void input_extra_info(String text){
+        driver.findElement(highlight_extra_info).sendKeys("");
+    }
+    public void input_add_highlight(){
+        driver.findElement(add_highlight).click();
+    }
+    public void delete_highlight(){
+        driver.findElement(highlight_delete).click();
+    }
+
+    public void image_choose(String text){
+        driver.findElement(highlight_choose_image).sendKeys("\"C:\\Users\\hp\\YarsaBazar_Automation\\images\\uploaddog.jpg\"");
+    }
+
+    public void
 
     public void click_profile_button(){
         driver.findElement(Profile_button_click).click();
