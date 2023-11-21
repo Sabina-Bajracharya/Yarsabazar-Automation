@@ -150,7 +150,6 @@ public class YarsaBazarTest {
 //	public void UserDashboardBeforeTest(String Name, String Email, String NewPassword)throws InterruptedException{
 //		ExtentTest test = extent.createTest("Verify User Dashboard before sell on YarsaBazar Signup");
 //		UserDashboardBefore UserDashboardBeforeobj = new UserDashboardBefore(driver);
-//
 //		UserDashboardBeforeobj.click_Full_Name_Update_button();
 //		UserDashboardBeforeobj.click_Full_Name_Update_button();
 //		UserDashboardBeforeobj.clear_Full_Name_bar();

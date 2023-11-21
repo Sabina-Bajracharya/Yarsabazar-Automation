@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 
 public class UserDashboard {
     WebDriver driver;
+
+    ////for account details
+
     By account_Details_click = By.xpath("//span[contains(text(),'Account Details')]");
     By Full_Name_Update_button = By.xpath("//button[contains(text(),'Update')]");
     By Full_Name_bar= By.xpath("//body/div[2]/div[2]/div[2]/div[2]/dl[1]/div[1]/dd[1]/input[1]");
@@ -12,18 +15,27 @@ public class UserDashboard {
     By Email_Update_button = By.xpath("//body/div[2]/div[2]/div[2]/div[2]/dl[1]/div[3]/dd[1]/div[2]/button[1]");
     By Email_bar = By.xpath("//body/div[2]/div[2]/div[2]/div[2]/dl[1]/div[3]/dd[1]/input[1]");
     By Email_Savechange_button = By.xpath("//button[contains(text(),'Save Changes')]");
+
+    ////for change password
+
     By Change_Password_button = By.linkText("Change Password");
     By New_Password_field = By.xpath("//body/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/input[1]");
     By Confirm_New_Password_field = By.xpath("//body/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/input[1]");
     By Change_Password_click = By.xpath("//button[contains(text(),'Change Password')]");
     By Email_verify_button_click =By.xpath("//button[contains(text(),'Verify')]");
     By cancel_email_verify = By.xpath("//button[contains(text(),'Cancel')]");
+
+    //// for help field
+
     By help_button_click = By.xpath("//header/div[1]/div[1]/div[1]/ul[1]/li[1]/button[1]");
     By account_information_drop = By.xpath("//span[contains(text(),'Account Information')]");
     By negotiation_drop = By.xpath("//span[contains(text(),'Negotiation')]");
     By shopping_drop = By.xpath("//span[contains(text(),'Shopping')]");
     By user_onboarding_process_drop = By.xpath("//span[contains(text(),'User Onboarding Process')]");
     By user_dashboard_help_content_drop = By.xpath("//span[contains(text(),'User Dashboard Help Content')]");
+
+    //// for user search bar
+
     By user_dashboard_search_bar = By.tagName("input");
     By rose_input_search = By.xpath("//header/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/a[1]/div[1]/span[1]");
     By product_name = By.xpath("//body/main[1]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/fieldset[1]/div[1]/input[1]");
@@ -33,6 +45,8 @@ public class UserDashboard {
     By description = By.tagName("textarea");
     By submit_click = By.xpath("//body/main[1]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/fieldset[1]/button[1]");
     By dismiss_click = By.xpath("//button[contains(text(),'Dismiss')]");
+
+    ////for my store page
     By My_Store_Page_click = By.linkText("My Store Page");
     By Company_Info_click = By.xpath("//span[contains(text(),'Company Info')]");
     By products_click = By.xpath("//span[contains(text(),'Products')]");
@@ -41,6 +55,9 @@ public class UserDashboard {
     By image_slide_left_click = By.xpath("//body/main[1]/div[1]/div[1]/button[1]");
     By image_slide_right_click = By.xpath("//body/main[1]/div[1]/div[1]/button[2]");
     By Dashboard_click = By.linkText("Dashboard");
+
+    ////for request for quote secttion
+
     By request_for_quote_click = By.linkText("Request for Quote");
     By request_fullname_input = By.xpath("//body/div[2]/div[2]/div[1]/form[1]/fieldset[1]/div[1]/input[1]");
     By request_MobileNumber_input = By.xpath("//body/div[2]/div[2]/div[1]/form[1]/fieldset[1]/div[2]/input[1]");
@@ -49,8 +66,30 @@ public class UserDashboard {
     By reuest_More_Information_input = By.tagName("textarea");
     By request_submit = By.xpath("//button[contains(text(),'Submit')]");
     By request_dismiss_click = By.xpath("//button[contains(text(),'Dismiss')]");
-    By Profile_button_click = By.xpath("/html[1]/body[1]/header[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/button[1]");
-    By Logout_click = By.xpath("/html[1]/body[1]/header[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/div[1]/div[1]/div[2]");
+
+    ////for business information section
+    By Busines_Information_click = By.linkText("Business Information");
+    By Edit_Business_Information_Details = By.xpath("//button[contains(text(),'Edit Details')]");
+    By Update_Business_Information_Details = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/div[1]/div[1]/button[2]");
+    By Registration_Details = By.xpath("Registration Details");
+    By Edit_Registration_Details = By.xpath("//button[contains(text(),'Edit')]");
+    By Cancel_Registration_Details = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/div[1]/div[1]/button[1]");
+    By Industries = By.linkText("Industries");
+//    By Add_Industries = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/button[1]");
+//    By Add_Food_Industry = By.xpath("//body/div[@id='radix-:rho:']/div[2]/div[1]/button[4]");
+    By Branches = By.xpath("Branches");
+    By Add_Branches = By.xpath("//span[contains(text(),'Add Branch')]");
+    By Cancel_Add_Branches = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/div[1]/div[1]/button[1]");
+    By Owners = By.linkText("Owners");
+    By Add_Owners = By.linkText("//body/div[2]/div[2]/div[3]/div[1]/button[1]");
+    By Cancel_Add_Owners = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/div[1]/div[1]/button[1]");
+    By Payment_Methods = By.linkText("Payment Methods");
+    By Cash_Payment_Mehtods = By.xpath("//body/div[2]/div[2]/div[3]/div[2]/button[1]");
+    By Store_Images = By.linkText("Store Images");
+
+
+    ////for Products
+
     By Products = By.linkText("Products");
     By products_Add_Product = By.linkText("Add Product");
     By product_Product_name = By.xpath("//input[@id=':rca:-form-item']");
@@ -74,26 +113,21 @@ public class UserDashboard {
     By Unit = By.xpath("//body/div[2]/div[2]/div[1]/div[2]/form[1]/div[6]/div[1]/div[1]/div[3]/button[1]/span[1]");
     By back_to_products = By.xpath("//span[contains(text(),'Back to Products')]");
 
-    By business_information_click = By.xpath("Business Information");
-    By registration_details_click = By.linkText("Registration Details");
-    By Industries = By.linkText("Industries");
-    By Branches = By.linkText("Branches");
-    By Owners = By.linkText("Owners");
-    By Payment_Methods = By.linkText("Payment Methods");
-    By store_images = By.linkText("Store Images");
-    By Profile = By.linkText("Profile");
-    By Profile_Edit_Details = By.xpath("//button[contains(text(),'Edit Details')]");
-    By Update_Edit_Details = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/div[1]/div[1]/button[2]");
+
+    ////for logout
+
+    By Profile_button_click = By.xpath("/html[1]/body[1]/header[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/button[1]");
+    By Logout_click = By.xpath("/html[1]/body[1]/header[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/div[1]/div[1]/div[2]");
 
 
-
-
-    public void click_account_details(){
-        driver.findElement(account_Details_click).click();
-    }
+////for Account Details Section
 
     public UserDashboard(WebDriver drivier){
         this.driver= drivier;
+    }
+
+    public void click_account_details(){
+        driver.findElement(account_Details_click).click();
     }
 
     public void click_Full_Name_Update_button(){
@@ -129,6 +163,7 @@ public class UserDashboard {
         driver.findElement(Email_Savechange_button).click();
     }
 
+    ////for Change Password Section
     public void click_Change_Password(){
         driver.findElement(Change_Password_button).click();
     }
@@ -153,6 +188,7 @@ public class UserDashboard {
         driver.findElement(cancel_email_verify).click();
     }
 
+    ////for Help Section
     public void click_help_button(){
         driver.findElement(help_button_click).click();
     }
@@ -177,6 +213,7 @@ public class UserDashboard {
         driver.findElement(user_dashboard_help_content_drop).click();
     }
 
+    ////for Search Bar Section
     public void input_user_dashboard_Search_bar(String text){
         driver.findElement(user_dashboard_search_bar).sendKeys("rose");
     }
@@ -213,6 +250,7 @@ public class UserDashboard {
         driver.findElement(dismiss_click).click();
     }
 
+    ////for My Store Page Section
     public void click_My_store_page(){
         driver.findElement(My_Store_Page_click).click();
     }
@@ -276,18 +314,20 @@ public class UserDashboard {
         driver.findElement(request_dismiss_click).click();
     }
 
+    public void
 
-    public void click_products(){
-        driver.findElement(Products).click();
-    }
 
-    public void click_Add_products(){
-        driver.findElement(products_Add_Product).click();
-    }
-
-    public void input_product_name(String text){
-        driver.findElement(product_Product_name).sendKeys("Ring");
-    }
+//    public void click_products(){
+//        driver.findElement(Products).click();
+//    }
+//
+//    public void click_Add_products(){
+//        driver.findElement(products_Add_Product).click();
+//    }
+//
+//    public void input_product_name(String text){
+//        driver.findElement(product_Product_name).sendKeys("Ring");
+//    }
 
     public void click_category_drop(){
         driver.findElement(Category_drop_click).click();
@@ -318,7 +358,7 @@ public class UserDashboard {
         driver.findElement(highlight_choose_image).sendKeys("\"C:\\Users\\hp\\YarsaBazar_Automation\\images\\uploaddog.jpg\"");
     }
 
-    public void
+
 
     public void click_profile_button(){
         driver.findElement(Profile_button_click).click();
