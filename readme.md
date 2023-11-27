@@ -25,29 +25,28 @@ Before running the tests, make sure you have the following prerequisites set up:
 2. Open Intellij and choose the Maven Project.
 3. Open the cloned project on Intellij.
 4. Open pom.xml file to load the Maven Dependencies
-![Screenshot (94).png](..%2FOneDrive%2FPictures%2FScreenshots%2FScreenshot%20%2894%29.png)
 5. Click on Maven symbol shown on the image below to load all the presented Maven Dependencies.
 6. The Maven Dependencies consist of  Selenium Webdriver, junit, testng, and extent reports.
 7. Optional -> [If required you can search for maven dependencies from this link https://mvnrepository.com/ ]
 8. Copy the full path of your chrome driver from your local device.
 9. Replace the existing chrome driver path with your local chrome driver path.
-![Screenshot (97).png](..%2FOneDrive%2FPictures%2FScreenshots%2FScreenshot%20%2897%29.png)
 8. Run the test by right-clicking on YarsabazarTest and click on run.
 9. Leave the automation browser till it closes itself to generate the real time report.
 10. If the automated browser is closed before finishing the automation, the real time report will not overwrite.
 11. Right Click on Extentreport.html then click on open in browser to see the html report.
-![Screenshot (96).png](..%2FOneDrive%2FPictures%2FScreenshots%2FScreenshot%20%2896%29.png)
+
 ## Running Tests
 
 
 The main test class to execute is `YarsaBazarTest`.
+The vendor test class to execute is `YarsaBazarVendorTest`.
 
 ## Test Structure
 
 The tests are organized into different classes within the `test` package:
 
 YarsaBazarTest: The main test class containing test methods for different features of the YarsaBazar website.
-
+YarsaBazarVendorTest: The test class containing test methods for vendor dashboards only.
 Each test class corresponds to a specific feature or page of the website.
 
 ## Data Providers
