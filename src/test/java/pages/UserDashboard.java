@@ -113,6 +113,8 @@ public class UserDashboard {
     By Unit = By.xpath("//body/div[2]/div[2]/div[1]/div[2]/form[1]/div[6]/div[1]/div[1]/div[3]/button[1]/span[1]");
     By back_to_products = By.xpath("//span[contains(text(),'Back to Products')]");
 
+    ////For directing to main site
+    By back_to_main_site = By.xpath("//span[contains(text(),'Goto main site')]");
 
     ////for logout
 
@@ -359,6 +361,9 @@ public class UserDashboard {
     }
 
 
+    public void click_back_to_main_site(){
+        driver.findElement(back_to_main_site).click();
+    }
 
     public void click_profile_button(){
         driver.findElement(Profile_button_click).click();

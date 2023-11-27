@@ -162,6 +162,7 @@ public class YarsaBazarTest {
 		Thread.sleep(1000);
 		UserDashboardBeforeobj.click_buttton_Full_Name_Savechange();
 		Thread.sleep(1000);
+		test.pass("Name changed successfully");
 		UserDashboardBeforeobj.click_Email_Update_button();
 		Thread.sleep(1000);
 		UserDashboardBeforeobj.clear_Email_bar();
@@ -169,6 +170,7 @@ public class YarsaBazarTest {
 		UserDashboardBeforeobj.edit_Email_bar(Email);
 		Thread.sleep(1000);
 		UserDashboardBeforeobj.click_Email_savechange_button();
+		test.pass("Email updated successfully");
 		UserDashboardBeforeobj.click_Change_Password();
 		Thread.sleep(1000);
 		UserDashboardBeforeobj.input_New_Password_field(NewPassword);
@@ -176,6 +178,7 @@ public class YarsaBazarTest {
 		UserDashboardBeforeobj.input_confirm_New_Password_field(NewPassword);
 		Thread.sleep(1000);
 		UserDashboardBeforeobj.Change_Password_button_click();
+		test.pass("Password changed successfully");
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_Email_Verify_Button();
 		Thread.sleep(1000);
@@ -201,6 +204,7 @@ public class YarsaBazarTest {
 		Thread.sleep(2000);
 		UserDashboardBeforeobj.input_user_dashboard_Search_bar("rose");
 		Thread.sleep(3000);
+		test.pass("Search performed successfully");
 		UserDashboardBeforeobj.search_rose_input_click();
 		Thread.sleep(1000);
 		UserDashboardBeforeobj.input_product_name("Red Rose");
@@ -210,6 +214,7 @@ public class YarsaBazarTest {
 		UserDashboardBeforeobj.input_description("I need Red rose in full fresh condition.");
 		UserDashboardBeforeobj.input_submit();
 		Thread.sleep(1000);
+		test.pass("order placed successfully");
 		UserDashboardBeforeobj.click_dismiss();
 		driver.navigate().to("https://www.yarsabazar.com/account");
 		Thread.sleep(1000);
@@ -217,6 +222,7 @@ public class YarsaBazarTest {
 		UserDashboardBeforeobj.click_sell_on_yarsabzar();
 		Thread.sleep(2000);
 		driver.navigate().to("https://www.yarsabazar.com/account");
+		test.pass("Navigated to user account dashboard.");
 //		UserDashboardBeforeobj.choose_line_of_business();
 //		Thread.sleep(2000);
 //		UserDashboardBeforeobj.click_next_step();
@@ -236,6 +242,7 @@ public class YarsaBazarTest {
 		Thread.sleep(1000);
 		UserDashboardBeforeobj.click_logout_button();
 		Thread.sleep(1000);
+		test.pass("User Logged out successfully");
 	}
 	@DataProvider(name = "UserDataBefore")
 	public Object[][] getUserDataBefore(){
@@ -357,7 +364,7 @@ public class YarsaBazarTest {
 //		};
 //	}
 
-	@Test(priority = 6, dataProvider = "SearchData")
+	@Test(priority = 5, dataProvider = "SearchData")
 	public  void SearchTest(String Item) throws InterruptedException{
 		ExtentTest test = extent.createTest("Verify the Search");
 		search Searchobj = new search(driver);
@@ -387,7 +394,7 @@ public class YarsaBazarTest {
 		};
 	}
 
-	@Test (priority = 7)
+	@Test (priority = 6)
 	public void industriesTest()throws InterruptedException{
 		ExtentTest test = extent.createTest("Verify the Browse All Industries");
 		IndustriesPage Industriesobj = new IndustriesPage(driver);
@@ -402,7 +409,7 @@ public class YarsaBazarTest {
 
 	}
 
-	@Test(priority = 8)
+	@Test(priority = 7)
 	public void FooterTest()throws InterruptedException {
 		ExtentTest test = extent.createTest("Verify the Footer");
 		Footer Footerobj = new Footer(driver);
