@@ -6,7 +6,7 @@ public class dashboard {
     WebDriver driver;
     private boolean displayed;
 
-    By logo = By.xpath("/html[1]/body[1]/header[1]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
+    By logo = By.linkText("Sign Up");
 
 
 
