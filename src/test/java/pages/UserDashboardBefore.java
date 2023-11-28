@@ -50,6 +50,7 @@ public class UserDashboardBefore {
 
     By Logout_click = By.xpath("/html[1]/body[1]/header[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/div[1]/div[1]/div[2]");
 
+
     public UserDashboardBefore(WebDriver driver) {
         this.driver = driver;
     }
@@ -171,10 +172,12 @@ public class UserDashboardBefore {
         driver.findElement(dismiss_click).click();
     }
 
-    //To signup on sell on yarsabazar through user dashboard
     public void click_sell_on_yarsabzar(){
         driver.findElement(sell_on_Yarsabazar).click();
     }
+
+    //To signup on sell on yarsabazar through user dashboard
+
 //    public void choose_line_of_business(){
 //        driver.findElement(line_of_business).click();
 //    }

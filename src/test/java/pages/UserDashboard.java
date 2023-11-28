@@ -25,7 +25,7 @@ public class UserDashboard {
     By Email_verify_button_click =By.xpath("//button[contains(text(),'Verify')]");
     By cancel_email_verify = By.xpath("//button[contains(text(),'Cancel')]");
 
-    //// for help field
+    //// for help field on main site
 
     By help_button_click = By.xpath("//header/div[1]/div[1]/div[1]/ul[1]/li[1]/button[1]");
     By account_information_drop = By.xpath("//span[contains(text(),'Account Information')]");
@@ -45,6 +45,9 @@ public class UserDashboard {
     By description = By.tagName("textarea");
     By submit_click = By.xpath("//body/main[1]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/fieldset[1]/button[1]");
     By dismiss_click = By.xpath("//button[contains(text(),'Dismiss')]");
+
+    ////for help field on dashboard
+    By click_help_dashboard =By.xpath("//body[1]/div[2]/div[2]/div[1]/div[1]/div[2]/button[1]/span[1]");
 
     ////for my store page
     By My_Store_Page_click = By.linkText("My Store Page");
