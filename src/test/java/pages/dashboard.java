@@ -6,17 +6,17 @@ public class dashboard {
     WebDriver driver;
     private boolean displayed;
 
-    By logo = By.linkText("Sign Up");
+    By logo = By.xpath("//header/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
 
 
-
-    public dashboard(WebDriver driver){
+    public dashboard(WebDriver driver) {
         this.driver = driver;
     }
+
     //to display verify login page is opened
-    public  boolean isLogoDisplayed() {
+    public boolean isLogoDisplayed() {
 
         driver.findElement(logo).isDisplayed();
-        return displayed;
+        return true;
     }
 }

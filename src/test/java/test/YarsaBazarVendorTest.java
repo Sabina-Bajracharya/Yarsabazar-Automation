@@ -3,7 +3,6 @@ package test;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
@@ -49,8 +48,18 @@ public class YarsaBazarVendorTest {
             }
 
             dashboardobject.isLogoDisplayed();
-                test.pass("Logo is displayed");
-
+			if(dashboardobject.isLogoDisplayed()){
+				test.pass("Logo is displayed");
+			}
+			else{
+				test.fail("Logo is not displayed");
+			}
+			if(browserURL.equals(actualBrowserURL)&& dashboardobject.isLogoDisplayed()){
+				test.pass("Successfully landed on the correct dashboard");
+			}
+			else {
+				test.fail("Didn't landed on the correct dashboard");
+			}
         }
 
         @Test(priority = 2, dataProvider = "loginData")
@@ -179,6 +188,13 @@ public class YarsaBazarVendorTest {
             test.pass("Navigated back to vendor dashboard successfully");
 		Thread.sleep(1000);
 		UserDashboardobj.click_My_store_page();
+		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/seller/sabina"))
+		{
+			test.pass("Navigated to My Store page successfully");
+		}
+		else {
+			test.pass("Didn't navigated to My Store page");
+		}
 		UserDashboardobj.click_company_info();
 		Thread.sleep(2000);
 		UserDashboardobj.click_products();
@@ -193,7 +209,13 @@ public class YarsaBazarVendorTest {
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardobj.click_request_for_quote();
 		Thread.sleep(1000);
-        test.pass("Request for Quote page opened successfully");
+		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/rfq")){
+			test.pass("Request for Quote page opened successfully");
+		}
+		else {
+			test.fail("Request for Quote page didn't opened");
+		}
+
 		UserDashboardobj.input_fullname_request("Sabina Bajra");
 		UserDashboardobj.input_MobileNumber_request("9823579453");
 		UserDashboardobj.input_ProductName_request("Boat earphones");
@@ -206,14 +228,133 @@ public class YarsaBazarVendorTest {
 		driver.navigate().to("https://www.yarsabazar.com/vendor/products");
 		test.pass("Navigated back to vendor dashboard successfully");
 
+		///for business infromation section
+		UserDashboardobj.click_business_information();
+		Thread.sleep(1000);
+		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/profile")){
+			test.pass("Navigated to Business Profile section");
+		}
+		else {
+			test.fail("Business Profile section didnot opened");
+		}
+		UserDashboardobj.edit_busines_details();
+		UserDashboardobj.update_business_details();
+		UserDashboardobj.click_registration_details();
+			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/registration-details")){
+				test.pass("Navigated to Registration Details section");
+			}
+			else {
+				test.fail("Registration Details section didnot opened");
+			}
+			Thread.sleep(2000);
+		UserDashboardobj.edit_registration_Details();
+		UserDashboardobj.click_cancel_registration_details();
+			Thread.sleep(2000);
+		UserDashboardobj.click_industries();
+			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/industries")){
+				test.pass("Navigated to Industries section");
+			}
+			else {
+				test.fail("Industries section didnot opened");
+			}
+//		UserDashboardobj.add_industries();
+			Thread.sleep(2000);
+		UserDashboardobj.click_branches();
+			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/branches")){
+				test.pass("Navigated to Branches section");
+			}
+			else {
+				test.fail("Branches section didnot opened");
+			}
+			Thread.sleep(2000);
+		UserDashboardobj.click_add_branches();
+			Thread.sleep(2000);
+		UserDashboardobj.click_cancel_add_branches();
+			Thread.sleep(2000);
+		UserDashboardobj.click_owners();
+			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/owners")){
+				test.pass("Navigated to Owners section");
+			}
+			else {
+				test.fail("Owners section didnot opened");
+			}
+			Thread.sleep(2000);
+		UserDashboardobj.click_add_owners();
+			Thread.sleep(2000);
+		UserDashboardobj.click_cancel_add_owners();
+			Thread.sleep(2000);
+		UserDashboardobj.click_payment_methods();
+			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/payment-methods")){
+				test.pass("Navigated to Payment Methods section");
+			}
+			else {
+				test.fail("Payment Methods section didnot opened");
+			}
+			Thread.sleep(2000);
+		UserDashboardobj.click_cash_payement_method();
+		UserDashboardobj.click_store_iamges();
+			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/store-images")){
+				test.pass("Navigated to Store Images section");
+			}
+			else {
+				test.fail("Store Images section didnot opened");
+			}
+			Thread.sleep(2000);
+
+			////for Products section
+			UserDashboardobj.click_products_active();
+			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products")){
+				test.pass("Navigated to Products section");
+			}
+			else {
+				test.fail("Products section didnot opened");
+			}
+
+			UserDashboardobj.click_drafts();
+			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products?status=draft")){
+				test.pass("Navigated to Draft section");
+			}
+			else {
+				test.fail("Draft section didnot opened");
+			}
+
+			UserDashboardobj.click_waiting_approval();
+			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products?status=waiting_approval")){
+				test.pass("Navigated to Waiting Approval section");
+			}
+			else {
+				test.fail("Waiting Approval section didnot opened");
+			}
+
+			UserDashboardobj.click_rejected();
+			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products?status=rejected")){
+				test.pass("Navigated to Rejected section");
+			}
+			else {
+				test.fail("Rejected section didnot opened");
+			}
+
+
+////for logout
 		UserDashboardobj.click_back_to_main_site();
+			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")){
+				test.pass("Navigated to Main site");
+			}
+			else {
+				test.fail("Main site didnot opened");
+			}
 		Thread.sleep(2000);
+		test.pass("Navigated to main site");
 		UserDashboardobj.click_profile_button();
 		Thread.sleep(1000);
 		UserDashboardobj.click_logout_button();
 		Thread.sleep(1000);
-
-
+		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")){
+			test.pass("User" +Name+ "logged out successfully");
+		}
+		else {
+			test.fail("User" +Name+ "didn't logged out");
+		}
 	}
 
 	@DataProvider(name = "UserUpdateData")

@@ -74,17 +74,17 @@ public class UserDashboard {
     By Busines_Information_click = By.linkText("Business Information");
     By Edit_Business_Information_Details = By.xpath("//button[contains(text(),'Edit Details')]");
     By Update_Business_Information_Details = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/div[1]/div[1]/button[2]");
-    By Registration_Details = By.xpath("Registration Details");
+    By Registration_Details = By.linkText("Registration Details");
     By Edit_Registration_Details = By.xpath("//button[contains(text(),'Edit')]");
     By Cancel_Registration_Details = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/div[1]/div[1]/button[1]");
     By Industries = By.linkText("Industries");
-//    By Add_Industries = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/button[1]");
+    By Add_Industries = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/button[1]");
 //    By Add_Food_Industry = By.xpath("//body/div[@id='radix-:rho:']/div[2]/div[1]/button[4]");
-    By Branches = By.xpath("Branches");
-    By Add_Branches = By.xpath("//span[contains(text(),'Add Branch')]");
+    By Branches = By.linkText("Branches");
+    By Add_Branches = By.xpath("//button[contains(text(),'Add Branch')]");
     By Cancel_Add_Branches = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/div[1]/div[1]/button[1]");
     By Owners = By.linkText("Owners");
-    By Add_Owners = By.linkText("//body/div[2]/div[2]/div[3]/div[1]/button[1]");
+    By Add_Owners = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/button[1]");
     By Cancel_Add_Owners = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/div[1]/div[1]/button[1]");
     By Payment_Methods = By.linkText("Payment Methods");
     By Cash_Payment_Mehtods = By.xpath("//body/div[2]/div[2]/div[3]/div[2]/button[1]");
@@ -94,27 +94,30 @@ public class UserDashboard {
     ////for Products
 
     By Products = By.linkText("Products");
-    By products_Add_Product = By.linkText("Add Product");
-    By product_Product_name = By.xpath("//input[@id=':rca:-form-item']");
-    By Category_drop_click = By.xpath("//span[contains(text(),'Choose product category')]");
-    By Ring_Category = By.xpath("//div[contains(text(),'Blue Topaz Ring')]");
-    By highlight_name = By.xpath("//input[@id=':rcg:']");
-    By highlight_value = By.xpath("//input[@id=':rch:-form-item']");
-    By highlight_extra_info = By.xpath("//input[@id=':rci:-form-item']");
-    By add_highlight = By. xpath("//body/div[2]/div[2]/div[1]/div[2]/form[1]/div[2]/div[1]/div[2]/button[1]");
-    By highlight_delete = By.xpath("//body/div[2]/div[2]/div[1]/div[2]/form[1]/div[2]/div[1]/div[1]/div[2]/button[1]");
-    By highlight_choose_image = By.xpath("//body/div[2]/div[2]/div[1]/div[2]/form[1]/div[7]/div[1]/div[1]/div[1]/div[1]");
-    By highlight_create = By.xpath("//button[contains(text(),'Create')]");
-
-    By product_tag = By.xpath("//input[@id=':rcn:']");
-    By description_product = By.xpath("//body[1]/div[2]/div[2]/div[1]/div[2]/form[1]/div[3]/div[1]/div[2]/div[1]/p[1]");
-    By minimum_orders =By.xpath("//body[1]/div[2]/div[2]/div[1]/div[2]/form[1]/div[3]/div[1]/div[2]/div[1]/p[1]");
-    By Add_pricing = By.xpath("//button[contains(text(),'Add Pricing')]");
-    By currency = By.xpath("//span[contains(text(),'Choose choose currency')]");
-    By currency_nepalese_Rupee = By.xpath("//div[contains(text(),'Nepalese Rupee')]");
-    By price = By.xpath("//input[@id=':reu:-form-item']");
-    By Unit = By.xpath("//body/div[2]/div[2]/div[1]/div[2]/form[1]/div[6]/div[1]/div[1]/div[3]/button[1]/span[1]");
-    By back_to_products = By.xpath("//span[contains(text(),'Back to Products')]");
+    By Draft =By.linkText("Draft");
+    By Waiting_Approval = By.linkText("Waiting Approval");
+    By Rejected = By.linkText("Rejected");
+//    By products_Add_Product = By.linkText("Add Product");
+//    By product_Product_name = By.xpath("//input[@id=':rca:-form-item']");
+//    By Category_drop_click = By.xpath("//span[contains(text(),'Choose product category')]");
+//    By Ring_Category = By.xpath("//div[contains(text(),'Blue Topaz Ring')]");
+//    By highlight_name = By.xpath("//input[@id=':rcg:']");
+//    By highlight_value = By.xpath("//input[@id=':rch:-form-item']");
+//    By highlight_extra_info = By.xpath("//input[@id=':rci:-form-item']");
+//    By add_highlight = By. xpath("//body/div[2]/div[2]/div[1]/div[2]/form[1]/div[2]/div[1]/div[2]/button[1]");
+//    By highlight_delete = By.xpath("//body/div[2]/div[2]/div[1]/div[2]/form[1]/div[2]/div[1]/div[1]/div[2]/button[1]");
+//    By highlight_choose_image = By.xpath("//body/div[2]/div[2]/div[1]/div[2]/form[1]/div[7]/div[1]/div[1]/div[1]/div[1]");
+//    By highlight_create = By.xpath("//button[contains(text(),'Create')]");
+//
+//    By product_tag = By.xpath("//input[@id=':rcn:']");
+//    By description_product = By.xpath("//body[1]/div[2]/div[2]/div[1]/div[2]/form[1]/div[3]/div[1]/div[2]/div[1]/p[1]");
+//    By minimum_orders =By.xpath("//body[1]/div[2]/div[2]/div[1]/div[2]/form[1]/div[3]/div[1]/div[2]/div[1]/p[1]");
+//    By Add_pricing = By.xpath("//button[contains(text(),'Add Pricing')]");
+//    By currency = By.xpath("//span[contains(text(),'Choose choose currency')]");
+//    By currency_nepalese_Rupee = By.xpath("//div[contains(text(),'Nepalese Rupee')]");
+//    By price = By.xpath("//input[@id=':reu:-form-item']");
+//    By Unit = By.xpath("//body/div[2]/div[2]/div[1]/div[2]/form[1]/div[6]/div[1]/div[1]/div[3]/button[1]/span[1]");
+//    By back_to_products = By.xpath("//span[contains(text(),'Back to Products')]");
 
     ////For directing to main site
     By back_to_main_site = By.xpath("//span[contains(text(),'Goto main site')]");
@@ -319,50 +322,96 @@ public class UserDashboard {
         driver.findElement(request_dismiss_click).click();
     }
 
-
-
-
-//    public void click_products(){
-//        driver.findElement(Products).click();
-//    }
-//
-//    public void click_Add_products(){
-//        driver.findElement(products_Add_Product).click();
-//    }
-//
-//    public void input_product_name(String text){
-//        driver.findElement(product_Product_name).sendKeys("Ring");
-//    }
-
-    public void click_category_drop(){
-        driver.findElement(Category_drop_click).click();
+////for business information section
+    public void click_business_information(){
+        driver.findElement(Busines_Information_click).click();
     }
 
-    public void click_ring_category(){
-        driver.findElement(Ring_Category).click();
+    public void edit_busines_details(){
+        driver.findElement(Edit_Business_Information_Details).click();
     }
 
-    public void input_name(String text){
-        driver.findElement(highlight_name).sendKeys("");
+    public void update_business_details(){
+        driver.findElement(Update_Business_Information_Details).click();
     }
 
-    public void input_value(String text){
-        driver.findElement(highlight_value).sendKeys("");
-    }
-    public void input_extra_info(String text){
-        driver.findElement(highlight_extra_info).sendKeys("");
-    }
-    public void input_add_highlight(){
-        driver.findElement(add_highlight).click();
-    }
-    public void delete_highlight(){
-        driver.findElement(highlight_delete).click();
+    public void click_registration_details(){
+        driver.findElement(Registration_Details).click();
     }
 
-    public void image_choose(String text){
-        driver.findElement(highlight_choose_image).sendKeys("\"C:\\Users\\hp\\YarsaBazar_Automation\\images\\uploaddog.jpg\"");
+    public void edit_registration_Details(){
+        driver.findElement(Edit_Registration_Details).click();
     }
 
+    public void click_cancel_registration_details(){
+        driver.findElement(Cancel_Registration_Details).click();
+    }
+
+    public void click_industries(){
+        driver.findElement(Industries).click();
+    }
+
+    public void add_industries(){
+        driver.findElement(Add_Industries).click();
+    }
+
+    public void click_branches(){
+        driver.findElement(Branches).click();
+    }
+
+    public void click_add_branches(){
+        driver.findElement(Add_Branches).click();
+    }
+
+    public void click_cancel_add_branches(){
+        driver.findElement(Cancel_Add_Branches).click();
+    }
+
+    public void click_owners(){
+        driver.findElement(Owners).click();
+    }
+
+    public void click_add_owners(){
+        driver.findElement(Add_Owners).click();
+    }
+
+    public void click_cancel_add_owners(){
+        driver.findElement(Cancel_Add_Owners).click();
+    }
+
+    public void click_payment_methods(){
+        driver.findElement(Payment_Methods).click();
+    }
+
+    public void click_cash_payement_method(){
+        driver.findElement(Cash_Payment_Mehtods).click();
+    }
+
+    public void click_store_iamges(){
+        driver.findElement(Store_Images).click();
+    }
+
+    ////for products
+
+    public void click_products_active(){
+        driver.findElement(Products).click();
+    }
+
+    public void click_drafts(){
+        driver.findElement(Draft).click();
+    }
+
+    public void click_waiting_approval(){
+        driver.findElement(Waiting_Approval).click();
+    }
+
+    public void click_rejected(){
+        driver.findElement(Rejected).click();
+    }
+
+
+
+    ////for logout section
 
     public void click_back_to_main_site(){
         driver.findElement(back_to_main_site).click();

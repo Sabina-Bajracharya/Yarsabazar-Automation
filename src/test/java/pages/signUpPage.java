@@ -7,6 +7,7 @@ public class signUpPage {
     WebDriver driver;
 
     public String actualSignUpURL = "https://www.yarsabazar.com/signup";
+    public String actualSignedUpURL = "https://www.yarsabazar.com/verify";
 
     By click_SignUp_Button = By.xpath("//a[contains(text(),'Sign Up')]");
     By input_Name = By.xpath("(//input[@id='name'])[1]");

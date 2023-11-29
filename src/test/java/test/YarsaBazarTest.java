@@ -12,6 +12,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import pages.*;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 
@@ -50,7 +51,18 @@ public class YarsaBazarTest {
 		}
 
 		dashboardobject.isLogoDisplayed();
+		if(dashboardobject.isLogoDisplayed()){
 			test.pass("Logo is displayed");
+		}
+			else{
+				test.fail("Logo is not displayed");
+		}
+			if(browserURL.equals(actualBrowserURL)&& dashboardobject.isLogoDisplayed()){
+				test.pass("Successfully landed on the correct dashboard");
+			}
+			else {
+				test.fail("Didn't landed on the correct dashboard");
+			}
 
 	}
 
@@ -83,21 +95,85 @@ public class YarsaBazarTest {
 		Thread.sleep(1000);
 		signuppageobj.click_SignUp();
 		Thread.sleep(1000);
-		signuppageobj.back_button();
-		Thread.sleep(1000);
-		test.pass("User " + phone + " is signed up successfully");
+
+		String browserSignedUpURL = driver.getCurrentUrl();
+		String actualsignedupURL = signuppageobj.actualSignedUpURL;
+		if (browserSignedUpURL.equals(actualsignedupURL)) {
+			test.pass( " User" +phone+"signed Up successfully");
+			test.pass("User redirected to the otp verification");
+		}
+		else {
+			test.fail("User" +phone+ "didn't signed up");
+			test.fail("Enter valid sign Up credentials");
+			signuppageobj.back_button();
+			Thread.sleep(1000);
+		}
+		Thread.sleep(4000);
 	}
 
 	@DataProvider(name= "signUpData")
 	public Object[][] getSignUpData(){
 		return new Object[][]{
-				{"Sabina1", "9898000098", "sabina1@gmail.com", "Sabina@1"},
-				{"Sabina2", "9803000099", "sabina2@gmail.com", "Sabina@2"},
+				{"Sabina1", "9898000098", "sabina1@gmail.com", "Sabina@1"},   //existing credentials
+				{"Sabina2", "9803000099", "sabina2@gmail.com", "Sabina@2"},  //existing credentials
+				{"","","",""},   //all fields empty
+				{"R","9898000980","5","Radium@1"},   //invalid email value
+				{"Sabina","98098098981","sabina@gmail.com","Sabina@3"},   //invalid phone number value
+				{"Roseta", "9823458922","roseta@gmail.com","R"},    //invalid password value
+				{"Bloom9","9802020101","bloom9@gmail.com","Bloom#1"}   //replace this value everytime to verify the otp
 		};
+
+	}
+
+//otp verification test
+	@Test(priority = 3)
+	public void otpTest() throws InterruptedException{
+		ExtentTest test = extent.createTest("Verify the otp");
+		otp otpobj = new otp(driver);
+
+		String BrowserURL = driver.getCurrentUrl();
+		String actualverifyotpURL = otpobj.actualVerifyotp;
+		if(BrowserURL.equals(actualverifyotpURL)){
+			test.pass("User successfully landed on OTP Verification page");
+		}
+		else {
+			test.fail("User successfully landed on OTP Verification page");
+		}
+
+		Thread.sleep(3000);
+		otpobj.click_edit_phoneNumber();
+		Thread.sleep(2000);
+		otpobj.clear_edit_phoneNumber();
+		Thread.sleep(2000);
+		otpobj.input_edit_box_PhoneNumber("9802020102");
+		Thread.sleep(2000);
+		otpobj.click_tick_button();
+		test.pass("Phone Number is updated");
+//		otpobj.click_cross_button();
+//		test.pass("Phone Number not updated");
+		Thread.sleep(2000);
+		otpobj.click_help();
+		test.pass("Help is shown");
+		driver.navigate().refresh();
+		Thread.sleep(3000);
+		otpobj.click_profile_view();
+		Thread.sleep(2000);
+		otpobj.click_account();
+		Thread.sleep(4000);
+		otpobj.click_Verify_Now();
+		Thread.sleep(2000);
+		otpobj.click_logout();
+		Thread.sleep(2000);
+		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")){
+			test.pass("User logged out successfully");
+		}
+		else {
+			test.fail("User didn't logged out.");
+		}
 	}
 
 
-	@Test(priority = 3, dataProvider = "loginData")
+	@Test(priority = 4, dataProvider = "loginData")
 	public void LoginPageTest(String PhoneNumber, String Password) throws InterruptedException {
 		ExtentTest test = extent.createTest("Verify the Login");
 		loginPage loginpageobj = new loginPage(driver);
@@ -150,7 +226,7 @@ public class YarsaBazarTest {
 		};
 	}
 
-	@Test(priority = 4, dataProvider = "UserDataBefore")
+	@Test(priority = 5, dataProvider = "UserDataBefore")
 	public void UserDashboardBeforeTest(String Name, String Email, String NewPassword)throws InterruptedException{
 		ExtentTest test = extent.createTest("Verify User Dashboard before sell on YarsaBazar Signup");
 		UserDashboardBefore UserDashboardBeforeobj = new UserDashboardBefore(driver);
@@ -251,8 +327,8 @@ public class YarsaBazarTest {
 		};
 	}
 
-	@Test(priority = 5, dataProvider = "SearchData")
-	public  void SearchTest(String Item) throws InterruptedException{
+	@Test(priority = 6, dataProvider = "SearchData")
+	public  void SearchTest(String Item) throws InterruptedException {
 		ExtentTest test = extent.createTest("Verify the Search");
 		search Searchobj = new search(driver);
 
@@ -268,8 +344,12 @@ public class YarsaBazarTest {
 
 		Searchobj.click_back_to_dashborad();
 		Thread.sleep(2000);
-
-		test.pass("Returned back to dashborad successfully");
+		if (driver.getCurrentUrl().equals("https://www.yarsabazar.com/")) {
+			test.pass("Returned back to dashborad successfully");
+		}
+		else{
+			test.fail("Din't returned to dashboard");
+		}
 	}
 
 
@@ -281,34 +361,62 @@ public class YarsaBazarTest {
 		};
 	}
 
-	@Test (priority = 6)
+	@Test (priority = 7)
 	public void industriesTest()throws InterruptedException{
 		ExtentTest test = extent.createTest("Verify the Browse All Industries");
 		IndustriesPage Industriesobj = new IndustriesPage(driver);
 
 		Industriesobj.click_browse_all_industries();
 		Thread.sleep(2000);
-		test.pass("Browse All Industries page is opened successfully");
+		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/industries")) {
+			test.pass("Browse All Industries page is opened successfully");
+		}
+		else{
+			test.fail("Browse All Industries page did not opened.");
+		}
 
 		Industriesobj.click_back_to_dashboard();
 		Thread.sleep(2000);
-		test.pass("Returned back to Dashboard from Browse All Industries page ");
+		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")) {
+			test.pass("Returned back to Dashboard from Browse All Industries page ");
+		}
+		else{
+			test.fail("Didn't returned to dashboard");
+		}
 
 	}
 
-	@Test(priority = 7)
+	@Test(priority = 8)
 	public void FooterTest()throws InterruptedException {
 		ExtentTest test = extent.createTest("Verify the Footer");
 		Footer Footerobj = new Footer(driver);
 
 		Footerobj.click_Privacy_Policy();
 		Thread.sleep(1000);
+		ArrayList<String> tab = new ArrayList<>(driver.getWindowHandles());
+		driver.switchTo().window(tab.get(1));
 
+		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/privacy-policy")){
 		test.pass("Privacy Policy is opened successfully");
+		}
+		else {
+			test.fail("Privacy Policy didn't opened");
+		}
 
 		Footerobj.click_Terms_of_Services();
 		Thread.sleep(1000);
-		test.pass("Terms of Services is opened successfully");
+
+        tab = new ArrayList<>(driver.getWindowHandles());
+		driver.switchTo().window(tab.get(2));
+
+		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/terms-of-service"))
+		{
+			test.pass("Terms of Services is opened successfully");
+		}
+		else
+		{
+			test.fail("Terms of Services didn't opened");
+		}
 	}
 
 
@@ -316,7 +424,7 @@ public class YarsaBazarTest {
 	public void tearDownTest() {
 		driver.close();
 		driver.quit();
-		System.out.println("Test Completed Successfully");
+		System.out.println("Test Completed");
 		extent.flush();
 
 	}
