@@ -237,9 +237,11 @@ public class YarsaBazarVendorTest {
 		else {
 			test.fail("Business Profile section didnot opened");
 		}
+			Thread.sleep(2000);
 		UserDashboardobj.edit_busines_details();
 		UserDashboardobj.update_business_details();
 		UserDashboardobj.click_registration_details();
+			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/registration-details")){
 				test.pass("Navigated to Registration Details section");
 			}
@@ -251,6 +253,7 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.click_cancel_registration_details();
 			Thread.sleep(2000);
 		UserDashboardobj.click_industries();
+			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/industries")){
 				test.pass("Navigated to Industries section");
 			}
@@ -260,6 +263,7 @@ public class YarsaBazarVendorTest {
 //		UserDashboardobj.add_industries();
 			Thread.sleep(2000);
 		UserDashboardobj.click_branches();
+			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/branches")){
 				test.pass("Navigated to Branches section");
 			}
@@ -272,18 +276,20 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.click_cancel_add_branches();
 			Thread.sleep(2000);
 		UserDashboardobj.click_owners();
+			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/owners")){
 				test.pass("Navigated to Owners section");
 			}
 			else {
 				test.fail("Owners section didnot opened");
 			}
-			Thread.sleep(2000);
+
 		UserDashboardobj.click_add_owners();
 			Thread.sleep(2000);
 		UserDashboardobj.click_cancel_add_owners();
 			Thread.sleep(2000);
 		UserDashboardobj.click_payment_methods();
+			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/payment-methods")){
 				test.pass("Navigated to Payment Methods section");
 			}
@@ -292,7 +298,9 @@ public class YarsaBazarVendorTest {
 			}
 			Thread.sleep(2000);
 		UserDashboardobj.click_cash_payement_method();
+			Thread.sleep(2000);
 		UserDashboardobj.click_store_iamges();
+			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/store-images")){
 				test.pass("Navigated to Store Images section");
 			}
@@ -303,40 +311,45 @@ public class YarsaBazarVendorTest {
 
 			////for Products section
 			UserDashboardobj.click_products_active();
+			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products")){
 				test.pass("Navigated to Products section");
 			}
 			else {
 				test.fail("Products section didnot opened");
 			}
-
+			Thread.sleep(2000);
 			UserDashboardobj.click_drafts();
+			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products?status=draft")){
 				test.pass("Navigated to Draft section");
 			}
 			else {
 				test.fail("Draft section didnot opened");
 			}
-
+			Thread.sleep(2000);
 			UserDashboardobj.click_waiting_approval();
+			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products?status=waiting_approval")){
 				test.pass("Navigated to Waiting Approval section");
 			}
 			else {
 				test.fail("Waiting Approval section didnot opened");
 			}
-
+			Thread.sleep(2000);
 			UserDashboardobj.click_rejected();
+			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products?status=rejected")){
 				test.pass("Navigated to Rejected section");
 			}
 			else {
 				test.fail("Rejected section didnot opened");
 			}
-
+			Thread.sleep(2000);
 
 ////for logout
 		UserDashboardobj.click_back_to_main_site();
+			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")){
 				test.pass("Navigated to Main site");
 			}

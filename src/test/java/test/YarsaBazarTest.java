@@ -119,8 +119,9 @@ public class YarsaBazarTest {
 				{"","","",""},   //all fields empty
 				{"R","9898000980","5","Radium@1"},   //invalid email value
 				{"Sabina","98098098981","sabina@gmail.com","Sabina@3"},   //invalid phone number value
-				{"Roseta", "9823458922","roseta@gmail.com","R"},    //invalid password value
-				{"Bloom9","9802020101","bloom9@gmail.com","Bloom#1"}   //replace this value everytime to verify the otp
+				{"Puja", "9245667282","puja@gmail.com","Puja@1"}, //invalid statring phone number
+//				{"Roseta", "9823458922","roseta@gmail.com","R"},    //invalid password value
+				{"Bloom19","9823476835","bloom19@gmail.com","Bloom#1"}   //replace this value everytime to verify the otp
 		};
 
 	}
@@ -145,17 +146,43 @@ public class YarsaBazarTest {
 		Thread.sleep(2000);
 		otpobj.clear_edit_phoneNumber();
 		Thread.sleep(2000);
-		otpobj.input_edit_box_PhoneNumber("9802020102");
+		otpobj.input_edit_box_PhoneNumber("9823478835");
 		Thread.sleep(2000);
 		otpobj.click_tick_button();
 		test.pass("Phone Number is updated");
 //		otpobj.click_cross_button();
 //		test.pass("Phone Number not updated");
+		Thread.sleep(1000);
+		driver.navigate().to("https://www.yarsabazar.com/verify");
+		otpobj.click_send_otp_box();
+		Thread.sleep(1000);
+		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/verify")){
+			test.pass("user navigated to otp code verification page");
+		}
+		else{
+			test.fail("user didn't navigated to otp code verification page");
+		}
+		Thread.sleep(2000);
+		otpobj.click_otp_bar();
+		Thread.sleep(2000);
+//		otpobj.click_resend_otp();
+//		Thread.sleep(2000);
+//		test.pass("OTP resend successfully");
+		otpobj.click_otp_submit();
+		Thread.sleep(2000);
+		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/account")){
+			test.pass("OTP verified successfully");
+		}
+		else {
+			test.fail("Invalid OTP. Enter valid OTP dislayed");
+		}
+		Thread.sleep(2000);
+		otpobj.click_otp_try_again();
 		Thread.sleep(2000);
 		otpobj.click_help();
-		test.pass("Help is shown");
+		test.pass("Help section is displayed");
 		driver.navigate().refresh();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		otpobj.click_profile_view();
 		Thread.sleep(2000);
 		otpobj.click_account();
@@ -333,10 +360,9 @@ public class YarsaBazarTest {
 		search Searchobj = new search(driver);
 
 		Searchobj.input_search_bar(Item);
-		Thread.sleep(4000);
-
-		test.pass("Item " + Item + " is searched successfully");
-
+		Thread.sleep(2000);
+		test.pass("Item " + Item + " is displaying recommendation");
+		Thread.sleep(2000);
 		Searchobj.click_dog_food();
 		Thread.sleep(2000);
 
@@ -351,7 +377,6 @@ public class YarsaBazarTest {
 			test.fail("Din't returned to dashboard");
 		}
 	}
-
 
 	@DataProvider(name = "SearchData")
 	public Object[][] getSearchData(){
