@@ -121,7 +121,7 @@ public class YarsaBazarTest {
 				{"Sabina","98098098981","sabina@gmail.com","Sabina@3"},   //invalid phone number value
 				{"Puja", "9245667282","puja@gmail.com","Puja@1"}, //invalid statring phone number
 //				{"Roseta", "9823458922","roseta@gmail.com","R"},    //invalid password value
-				{"Bloom19","9823476835","bloom19@gmail.com","Bloom#1"}   //replace this value everytime to verify the otp
+				{"Bloom20","9823476884","bloom20@gmail.com","Bloom#1"}   //replace this value everytime to verify the otp
 		};
 
 	}
@@ -146,7 +146,7 @@ public class YarsaBazarTest {
 		Thread.sleep(2000);
 		otpobj.clear_edit_phoneNumber();
 		Thread.sleep(2000);
-		otpobj.input_edit_box_PhoneNumber("9823478835");
+		otpobj.input_edit_box_PhoneNumber("9823478885");
 		Thread.sleep(2000);
 		otpobj.click_tick_button();
 		test.pass("Phone Number is updated");
