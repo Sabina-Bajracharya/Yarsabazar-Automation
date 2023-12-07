@@ -1,6 +1,8 @@
 package test;
 
 import static org.testng.Assert.assertEquals;
+
+import YBtestData.ReadExcelFile;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
@@ -224,34 +226,37 @@ public class YarsaBazarTest {
 		loginpageobj.login_Click();
 		Thread.sleep(1000);
 
-		String browserLoggedInURL = driver.getCurrentUrl();
-		String loggedInURL = loginpageobj.LoggedInURL;
+		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/account")){
+			test.pass("The user"+ PhoneNumber + "is Logged in successfully");
+			loginpageobj.profile_button_click();
+			Thread.sleep(2000);
+			loginpageobj.logout_Click();
+			Thread.sleep(2000);
 
-		System.out.println(browserLoggedInURL);
-		System.out.println(loggedInURL);
-		if( loggedInURL == browserLoggedInURL ){
-			test.fail("The user"+PhoneNumber+ "cannot log in due to invalid credentials");
 		}
 		else
 		{
-			test.pass("The user"+ PhoneNumber + "is Logged in successfully");
-
+			test.fail("The user"+PhoneNumber+ "cannot log in due to invalid credentials");
+			driver.navigate().to("https://www.yarsabazar.com/");
 		}
-		Thread.sleep(1000);
-//		loginpageobj.logout_Click();
-//		Thread.sleep(2000);
-
+		Thread.sleep(2000);
 	}
 
 	@DataProvider(name = "loginData")
-	public Object[][] getLoginData(){
-		return new Object[][]{
-				{"9762784654", "Simran@1"}
-//				,
-//				{"9823579453", "Sabina12@34"}
 
-		};
+	public Object[][] getLoginData() {
+		ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\OneDrive\\Documents\\Yarsa Office\\My Assessments\\YBtestCredentials.xlsx");
+
+		int rows = config.getRowCount(0);
+		Object[][] credentials = new Object[rows][2];
+		for (int i = 0; i < rows; i++) {
+			credentials[i][0] = config.getData(0, i, 0);
+			credentials[i][1] = config.getData(0, i, 1);
+		}
+
+		return credentials;
 	}
+
 
 	@Test(priority = 5, dataProvider = "UserDataBefore")
 	public void UserDashboardBeforeTest(String Name, String Email, String NewPassword)throws InterruptedException{
