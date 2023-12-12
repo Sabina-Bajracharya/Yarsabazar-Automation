@@ -8,18 +8,15 @@ import java.io.File;
 import java.io.FileInputStream;
 
 public class ReadExcelFile {
-    XSSFWorkbook wb;
-    XSSFSheet sheet;
+    private XSSFWorkbook wb;
+    private XSSFSheet sheet;
 
-    public ReadExcelFile(String excelPath)
-    {
-        try{
+    public ReadExcelFile(String excelPath) {
+        try {
             File src = new File(excelPath);
             FileInputStream fis = new FileInputStream(src);
             wb = new XSSFWorkbook(fis);
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
@@ -44,13 +41,29 @@ public class ReadExcelFile {
         }
     }
 
-    public int getRowCount(int sheetIndex)
-    {
-        int row = wb.getSheetAt(sheetIndex).getLastRowNum();
-        row = row+1;
-        return row;
+    public int getRowCount(int sheetIndex) {
+        return wb.getSheetAt(sheetIndex).getPhysicalNumberOfRows();
+    }
 
+    // New method to get header names
+    public String[] getHeaders(int sheetIndex) {
+        sheet = wb.getSheetAt(sheetIndex);
+        int headerRow = 0; // Assuming the header is in the first row
+
+        int columnCount = sheet.getRow(headerRow).getPhysicalNumberOfCells();
+        String[] headers = new String[columnCount];
+
+        for (int i = 0; i < columnCount; i++) {
+            Cell cell = sheet.getRow(headerRow).getCell(i);
+            if (cell != null) {
+                headers[i] = cell.getStringCellValue();
+            } else {
+                headers[i] = "";
+            }
         }
 
+        return headers;
     }
+}
+
 

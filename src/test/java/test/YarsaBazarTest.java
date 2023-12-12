@@ -1,7 +1,6 @@
 package test;
 
 import static org.testng.Assert.assertEquals;
-
 import YBtestData.ReadExcelFile;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,7 +12,6 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import pages.*;
-
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -101,11 +99,11 @@ public class YarsaBazarTest {
 		String browserSignedUpURL = driver.getCurrentUrl();
 		String actualsignedupURL = signuppageobj.actualSignedUpURL;
 		if (browserSignedUpURL.equals(actualsignedupURL)) {
-			test.pass( " User" +phone+"signed Up successfully");
+			test.pass( " User" +phone+ "signed Up successfully");
 			test.pass("User redirected to the otp verification");
 		}
 		else {
-			test.fail("User" +phone+ "didn't signed up");
+			test.fail("User" +phone+  "didn't signed up");
 			test.fail("Enter valid sign Up credentials");
 			signuppageobj.back_button();
 			Thread.sleep(1000);
@@ -113,20 +111,27 @@ public class YarsaBazarTest {
 		Thread.sleep(4000);
 	}
 
-	@DataProvider(name= "signUpData")
-	public Object[][] getSignUpData(){
-		return new Object[][]{
-				{"Sabina1", "9898000098", "sabina1@gmail.com", "Sabina@1"},   //existing credentials
-				{"Sabina2", "9803000099", "sabina2@gmail.com", "Sabina@2"},  //existing credentials
-				{"","","",""},   //all fields empty
-				{"R","9898000980","5","Radium@1"},   //invalid email value
-				{"Sabina","98098098981","sabina@gmail.com","Sabina@3"},   //invalid phone number value
-				{"Puja", "9245667282","puja@gmail.com","Puja@1"}, //invalid statring phone number
-//				{"Roseta", "9823458922","roseta@gmail.com","R"},    //invalid password value
-				{"Bloom20","9823476884","bloom20@gmail.com","Bloom#1"}   //replace this value everytime to verify the otp
-		};
 
-	}
+	@DataProvider(name = "signUpData")
+	public Object[][] getSignupData() {
+			ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\OneDrive\\Documents\\Yarsa Office\\My Assessments\\YBtestCredentials.xlsx");
+
+			int rows = config.getRowCount(1); // Change sheet index to 1
+			Object[][] credentials = new Object[rows - 1][4]; // Adjusted to handle 4 input fields
+
+			// Assuming the headers are present, use getHeaders to skip the header row
+			String[] headers = config.getHeaders(1); // Change sheet index to 1
+
+			for (int i = 1; i < rows; i++) { // Start from 1 to skip the header row
+				credentials[i - 1][0] = config.getData(1, i, 0); // Adjust index to match the data row
+				credentials[i - 1][1] = config.getData(1, i, 1);
+				credentials[i - 1][2] = config.getData(1, i, 2);
+				credentials[i - 1][3] = config.getData(1, i, 3);
+			}
+
+			return credentials;
+		}
+
 
 //otp verification test
 	@Test(priority = 3)
@@ -208,7 +213,7 @@ public class YarsaBazarTest {
 		loginPage loginpageobj = new loginPage(driver);
 
 		loginpageobj.click_login_button();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		String browserLoginURL = driver.getCurrentUrl();
 		String loginURL = loginpageobj.LoginURL;
 
@@ -224,9 +229,10 @@ public class YarsaBazarTest {
 		loginpageobj.password_Input(Password);
 		Thread.sleep(1000);
 		loginpageobj.login_Click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/account")){
+			Thread.sleep(1000);
 			test.pass("The user"+ PhoneNumber + "is Logged in successfully");
 			loginpageobj.profile_button_click();
 			Thread.sleep(2000);
@@ -234,10 +240,14 @@ public class YarsaBazarTest {
 			Thread.sleep(2000);
 
 		}
+
 		else
 		{
+			Thread.sleep(2000);
 			test.fail("The user"+PhoneNumber+ "cannot log in due to invalid credentials");
 			driver.navigate().to("https://www.yarsabazar.com/");
+			Thread.sleep(2000);
+			driver.navigate().refresh();
 		}
 		Thread.sleep(2000);
 	}
@@ -249,11 +259,14 @@ public class YarsaBazarTest {
 
 		int rows = config.getRowCount(0);
 		Object[][] credentials = new Object[rows][2];
-		for (int i = 0; i < rows; i++) {
-			credentials[i][0] = config.getData(0, i, 0);
-			credentials[i][1] = config.getData(0, i, 1);
-		}
 
+			// Assuming the headers are present, use getHeaders to skip the header row
+			String[] headers = config.getHeaders(0);
+
+			for (int i = 1; i < rows; i++) { // Start from 1 to skip the header row
+				credentials[i - 1][0] = config.getData(0, i, 0); // Adjust index to match the data row
+				credentials[i - 1][1] = config.getData(0, i, 1);
+			}
 		return credentials;
 	}
 
