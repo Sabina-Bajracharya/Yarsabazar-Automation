@@ -2,6 +2,8 @@ package test;
 
 import static org.testng.Assert.assertEquals;
 import YBtestData.ReadExcelFile;
+import com.github.javafaker.Faker;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
@@ -17,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class YarsaBazarTest {
-
+	Faker faker = new Faker();
 	private static WebDriver driver = null;
 
 	ExtentReports extent = new ExtentReports();
@@ -143,67 +145,68 @@ public class YarsaBazarTest {
 		String actualverifyotpURL = otpobj.actualVerifyotp;
 		if(BrowserURL.equals(actualverifyotpURL)){
 			test.pass("User successfully landed on OTP Verification page");
-		}
-		else {
-			test.fail("User successfully landed on OTP Verification page");
-		}
 
-		Thread.sleep(3000);
-		otpobj.click_edit_phoneNumber();
-		Thread.sleep(2000);
-		otpobj.clear_edit_phoneNumber();
-		Thread.sleep(2000);
-		otpobj.input_edit_box_PhoneNumber("9823478885");
-		Thread.sleep(2000);
-		otpobj.click_tick_button();
-		test.pass("Phone Number is updated");
+			otpobj.click_edit_phoneNumber();
+			Thread.sleep(2000);
+			otpobj.clear_edit_phoneNumber();
+			Thread.sleep(2000);
+			otpobj.input_edit_box_PhoneNumber("9823478885");
+			Thread.sleep(2000);
+			otpobj.click_tick_button();
+			test.pass("Phone Number is updated");
 //		otpobj.click_cross_button();
 //		test.pass("Phone Number not updated");
-		Thread.sleep(1000);
-		driver.navigate().to("https://www.yarsabazar.com/verify");
-		otpobj.click_send_otp_box();
-		Thread.sleep(1000);
-		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/verify")){
-			test.pass("user navigated to otp code verification page");
-		}
-		else{
-			test.fail("user didn't navigated to otp code verification page");
-		}
-		Thread.sleep(2000);
-		otpobj.click_otp_bar();
-		Thread.sleep(2000);
+			Thread.sleep(1000);
+			driver.navigate().to("https://www.yarsabazar.com/verify");
+			otpobj.click_send_otp_box();
+			Thread.sleep(1000);
+			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/verify")){
+				test.pass("user navigated to otp code verification page");
+			}
+			else{
+				test.fail("user didn't navigated to otp code verification page");
+			}
+			Thread.sleep(2000);
+			otpobj.click_otp_bar();
+			Thread.sleep(2000);
 //		otpobj.click_resend_otp();
 //		Thread.sleep(2000);
 //		test.pass("OTP resend successfully");
-		otpobj.click_otp_submit();
-		Thread.sleep(2000);
-		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/account")){
-			test.pass("OTP verified successfully");
+			otpobj.click_otp_submit();
+			Thread.sleep(2000);
+			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/account")){
+				test.pass("OTP verified successfully");
+			}
+			else {
+				test.fail("Invalid OTP. Enter valid OTP dislayed");
+			}
+			Thread.sleep(2000);
+			otpobj.click_otp_try_again();
+			Thread.sleep(2000);
+			otpobj.click_help();
+			test.pass("Help section is displayed");
+			driver.navigate().refresh();
+			Thread.sleep(2000);
+			otpobj.click_profile_view();
+			Thread.sleep(2000);
+			otpobj.click_account();
+			Thread.sleep(4000);
+			otpobj.click_Verify_Now();
+			Thread.sleep(2000);
+			otpobj.click_logout();
+			Thread.sleep(2000);
+			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")){
+				test.pass("User logged out successfully");
+			}
+			else {
+				test.fail("User didn't logged out.");
+			}
 		}
 		else {
-			test.fail("Invalid OTP. Enter valid OTP dislayed");
+			test.fail("User did not landed on OTP Verification page");
+			driver.navigate().to("https://www.yarsabazar.com/");
 		}
-		Thread.sleep(2000);
-		otpobj.click_otp_try_again();
-		Thread.sleep(2000);
-		otpobj.click_help();
-		test.pass("Help section is displayed");
-		driver.navigate().refresh();
-		Thread.sleep(2000);
-		otpobj.click_profile_view();
-		Thread.sleep(2000);
-		otpobj.click_account();
-		Thread.sleep(4000);
-		otpobj.click_Verify_Now();
-		Thread.sleep(2000);
-		otpobj.click_logout();
-		Thread.sleep(2000);
-		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")){
-			test.pass("User logged out successfully");
-		}
-		else {
-			test.fail("User didn't logged out.");
-		}
+		Thread.sleep(3000);
 	}
 
 
@@ -258,7 +261,7 @@ public class YarsaBazarTest {
 		ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\OneDrive\\Documents\\Yarsa Office\\My Assessments\\YBtestCredentials.xlsx");
 
 		int rows = config.getRowCount(0);
-		Object[][] credentials = new Object[rows][2];
+		Object[][] credentials = new Object[rows - 1 ][2];
 
 			// Assuming the headers are present, use getHeaders to skip the header row
 			String[] headers = config.getHeaders(0);
@@ -272,14 +275,22 @@ public class YarsaBazarTest {
 
 
 	@Test(priority = 5, dataProvider = "UserDataBefore")
-	public void UserDashboardBeforeTest(String Name, String Email, String NewPassword)throws InterruptedException{
+	public void UserDashboardBeforeTest(String searchItem, String phone, String fullname, String email, String desc )throws InterruptedException{
 		ExtentTest test = extent.createTest("Verify User Dashboard before sell on YarsaBazar Signup");
 		UserDashboardBefore UserDashboardBeforeobj = new UserDashboardBefore(driver);
+		UserDashboardBeforeobj.click_login_button();
+		Thread.sleep(2000);
+		UserDashboardBeforeobj.input_email("9762784654");
+		Thread.sleep(1000);
+		UserDashboardBeforeobj.input_password("Simran@1");
+		Thread.sleep(1000);
+		UserDashboardBeforeobj.click_logins_buttons();
+		Thread.sleep(2000);
 		UserDashboardBeforeobj.click_Full_Name_Update_button();
 		UserDashboardBeforeobj.click_Full_Name_Update_button();
 		UserDashboardBeforeobj.clear_Full_Name_bar();
 		Thread.sleep(1000);
-		UserDashboardBeforeobj.edit_Full_Name_bar(Name);
+		UserDashboardBeforeobj.edit_Full_Name_bar("Sabina Bajracharya");
 		Thread.sleep(1000);
 		UserDashboardBeforeobj.click_buttton_Full_Name_Savechange();
 		Thread.sleep(1000);
@@ -288,15 +299,15 @@ public class YarsaBazarTest {
 		Thread.sleep(1000);
 		UserDashboardBeforeobj.clear_Email_bar();
 		Thread.sleep(1000);
-		UserDashboardBeforeobj.edit_Email_bar(Email);
+		UserDashboardBeforeobj.edit_Email_bar("always1@gmail.com");
 		Thread.sleep(1000);
 		UserDashboardBeforeobj.click_Email_savechange_button();
 		test.pass("Email updated successfully");
 		UserDashboardBeforeobj.click_Change_Password();
 		Thread.sleep(1000);
-		UserDashboardBeforeobj.input_New_Password_field(NewPassword);
+		UserDashboardBeforeobj.input_New_Password_field("Simran@1");
 		Thread.sleep(1000);
-		UserDashboardBeforeobj.input_confirm_New_Password_field(NewPassword);
+		UserDashboardBeforeobj.input_confirm_New_Password_field("Simran@1");
 		Thread.sleep(1000);
 		UserDashboardBeforeobj.Change_Password_button_click();
 		test.pass("Password changed successfully");
@@ -323,16 +334,17 @@ public class YarsaBazarTest {
 		Thread.sleep(2000);
 		driver.navigate().refresh();
 		Thread.sleep(2000);
-		UserDashboardBeforeobj.input_user_dashboard_Search_bar("rose");
+		UserDashboardBeforeobj.input_user_dashboard_Search_bar(searchItem);
 		Thread.sleep(3000);
+		UserDashboardBeforeobj.click_user_dashboard_search(Keys.ENTER);
 		test.pass("Search performed successfully");
-		UserDashboardBeforeobj.search_rose_input_click();
-		Thread.sleep(1000);
-		UserDashboardBeforeobj.input_product_name("Red Rose");
-		UserDashboardBeforeobj.phone_number_input("9823579453");
-		UserDashboardBeforeobj.full_name_input("Sabina Bajra");
-		UserDashboardBeforeobj.input_email_address("sabina1@gmail.com");
-		UserDashboardBeforeobj.input_description("I need Red rose in full fresh condition.");
+		UserDashboardBeforeobj.click_fist_category();
+		Thread.sleep(2000);
+		UserDashboardBeforeobj.input_product_name(searchItem);
+		UserDashboardBeforeobj.phone_number_input(phone);
+		UserDashboardBeforeobj.full_name_input(fullname);
+		UserDashboardBeforeobj.input_email_address(email);
+		UserDashboardBeforeobj.input_description(desc);
 		UserDashboardBeforeobj.input_submit();
 		Thread.sleep(1000);
 		test.pass("order placed successfully");
@@ -367,10 +379,24 @@ public class YarsaBazarTest {
 	}
 	@DataProvider(name = "UserDataBefore")
 	public Object[][] getUserDataBefore(){
-		return new Object[][]{
-				{"Simran Bajra","always1@gmail.com", "Simran@1" }
-		};
-	}
+			ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\OneDrive\\Documents\\Yarsa Office\\My Assessments\\YBtestCredentials.xlsx");
+
+			int rows = config.getRowCount(2);
+			Object[][] credentials = new Object[rows - 1 ][5];
+
+			// Assuming the headers are present, use getHeaders to skip the header row
+			String[] headers = config.getHeaders(2);
+
+			for (int i = 1; i < rows; i++) { // Start from 1 to skip the header row
+				credentials[i - 1][0] = config.getData(2, i, 0); // Adjust index to match the data row
+				credentials[i - 1][1] = config.getData(2, i, 1);
+				credentials[i - 1][2] = config.getData(2, i, 2); // Adjust index to match the data row
+				credentials[i - 1][3] = config.getData(2, i, 3);
+				credentials[i - 1][4] = config.getData(2, i, 4); // Adjust index to match the data row
+
+			}
+			return credentials;
+		}
 
 	@Test(priority = 6, dataProvider = "SearchData")
 	public  void SearchTest(String Item) throws InterruptedException {
@@ -381,25 +407,23 @@ public class YarsaBazarTest {
 		Thread.sleep(2000);
 		test.pass("Item " + Item + " is displaying recommendation");
 		Thread.sleep(2000);
-		Searchobj.click_dog_food();
-		Thread.sleep(2000);
-
+		Searchobj.click_Search_icon();
 		test.pass("Item " + Item + " is clicked successfully");
-
-		Searchobj.click_back_to_dashborad();
 		Thread.sleep(2000);
+		driver.navigate().to("https://www.yarsabazar.com/");
+
 		if (driver.getCurrentUrl().equals("https://www.yarsabazar.com/")) {
 			test.pass("Returned back to dashborad successfully");
 		}
 		else{
-			test.fail("Din't returned to dashboard");
+			test.fail("Didn't returned to dashboard");
 		}
 	}
 
 	@DataProvider(name = "SearchData")
 	public Object[][] getSearchData(){
 		return new Object[][]{
-				{"dog food"}
+				{faker.food().fruit()}
 
 		};
 	}

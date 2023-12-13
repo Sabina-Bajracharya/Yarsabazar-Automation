@@ -1,12 +1,16 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 public class UserDashboardBefore {
     WebDriver driver;
-
+    By login_button_click = By.linkText("Login");
+    By email_input = By.cssSelector("#username");
+    By password_input = By.cssSelector("#password");
     By Full_Name_Update_button = By.xpath("//button[contains(text(),'Update')]");
+    By click_logins_button = By.xpath("/html[1]/body[1]/div[2]/div[2]/div[1]/form[1]/button[1]");
     By Full_Name_bar= By.xpath("//body/div[2]/div[2]/div[2]/div[2]/dl[1]/div[1]/dd[1]/input[1]");
     By Full_Name_Savechange_button = By.xpath("//button[contains(text(),'Save Changes')]");
     By Email_Update_button = By.xpath("//body/div[2]/div[2]/div[2]/div[2]/dl[1]/div[3]/dd[1]/div[2]/button[1]");
@@ -25,7 +29,7 @@ public class UserDashboardBefore {
     By user_onboarding_process_drop = By.xpath("//span[contains(text(),'User Onboarding Process')]");
     By user_dashboard_help_content_drop = By.xpath("//span[contains(text(),'User Dashboard Help Content')]");
     By user_dashboard_search_bar = By.tagName("input");
-    By rose_input_search = By.xpath("//header/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/a[1]/div[1]/span[1]");
+    By click_categories_first = By.xpath("//body/main[1]/div[2]/div[1]/div[1]/div[1]/a[1]/div[1]");
     By product_name = By.xpath("//body/main[1]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/fieldset[1]/div[1]/input[1]");
     By phone_number = By.xpath("//body/main[1]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/fieldset[1]/div[2]/input[1]");
     By full_name = By.xpath("//body/main[1]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/fieldset[1]/div[3]/div[1]/input[1]");
@@ -55,9 +59,26 @@ public class UserDashboardBefore {
         this.driver = driver;
     }
 
+    public void click_login_button(){
+        driver.findElement(login_button_click).click();}
+
+    public void input_email(String text){
+        driver.findElement(email_input).sendKeys(text);
+    }
+
+    public void input_password(String text)
+    {
+        driver.findElement(password_input).sendKeys(text);
+    }
+
     public void click_Full_Name_Update_button(){
         driver.findElement(Full_Name_Update_button).click();
     }
+
+    public void click_logins_buttons(){
+        driver.findElement(click_logins_button).click();
+    }
+
 
     public void clear_Full_Name_bar(){
         driver.findElement(Full_Name_bar).clear();
@@ -137,31 +158,35 @@ public class UserDashboardBefore {
     }
 
     public void input_user_dashboard_Search_bar(String text){
-        driver.findElement(user_dashboard_search_bar).sendKeys("rose");
+        driver.findElement(user_dashboard_search_bar).sendKeys(text);
     }
 
-    public void search_rose_input_click(){
-        driver.findElement(rose_input_search).click();
+    public void click_user_dashboard_search(Keys enter){
+        driver.findElement(user_dashboard_search_bar).sendKeys(Keys.ENTER);
+    }
+
+    public  void click_fist_category(){
+        driver.findElement(click_categories_first).click();
     }
 
     public void input_product_name(String text){
-        driver.findElement(product_name).sendKeys("Red Rose");
+        driver.findElement(product_name).sendKeys(text);
     }
 
     public void phone_number_input(String text){
-        driver.findElement(phone_number).sendKeys("9762784654");
+        driver.findElement(phone_number).sendKeys(text);
     }
 
     public  void full_name_input(String text){
-        driver.findElement(full_name).sendKeys("Simran Bajra");
+        driver.findElement(full_name).sendKeys(text);
     }
 
     public void input_email_address(String text){
-        driver.findElement(email_address).sendKeys("xyz@gmail.com");
+        driver.findElement(email_address).sendKeys(text);
     }
 
     public void input_description(String text){
-        driver.findElement(description).sendKeys("I need Red rose in full fresh condition.");
+        driver.findElement(description).sendKeys(text);
     }
 
     public void input_submit(){
