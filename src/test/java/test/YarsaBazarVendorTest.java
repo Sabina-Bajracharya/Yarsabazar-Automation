@@ -1,5 +1,6 @@
 package test;
 
+import YBtestData.ReadExcelFile;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
@@ -107,15 +108,25 @@ public class YarsaBazarVendorTest {
 
         @DataProvider(name = "loginData")
         public Object[][] getLoginData(){
-            return new Object[][]{
 
-				{"9823579453", "Sabina12@34"}
+			ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\OneDrive\\Documents\\Yarsa Office\\My Assessments\\YBtestCredentials.xlsx");
 
-            };
-        }
+			int rows = config.getRowCount(3);
+			Object[][] credentials = new Object[rows - 1 ][2];
 
-    	@Test(priority = 3, dataProvider = "UserUpdateData")
-	public void UserDashboardTest(String Name, String Email) throws InterruptedException {
+			// Assuming the headers are present, use getHeaders to skip the header row
+			String[] headers = config.getHeaders(3);
+
+			for (int i = 1; i < rows; i++) { // Start from 1 to skip the header row
+				credentials[i - 1][0] = config.getData(3, i, 0); // Adjust index to match the data row
+				credentials[i - 1][1] = config.getData(3, i, 1);
+			}
+			return credentials;
+		}
+
+
+    	@Test(priority = 3, dataProvider = "VendorRFQ")
+	public void UserDashboardTest(String Rfullname, String Rmobile,  String RproductName, String Rquantity, String Rdesc ) throws InterruptedException {
 		ExtentTest test = extent.createTest("Verify User Dashboard");
 		UserDashboard UserDashboardobj = new UserDashboard(driver);
 
@@ -125,7 +136,7 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.click_Full_Name_Update_button();
 		UserDashboardobj.clear_Full_Name_bar();
 		Thread.sleep(1000);
-		UserDashboardobj.edit_Full_Name_bar(Name);
+		UserDashboardobj.edit_Full_Name_bar("Sabina Bajracharya");
 		Thread.sleep(1000);
 		UserDashboardobj.click_buttton_Full_Name_Savechange();
 		Thread.sleep(1000);
@@ -134,7 +145,7 @@ public class YarsaBazarVendorTest {
 		Thread.sleep(1000);
 		UserDashboardobj.clear_Email_bar();
 		Thread.sleep(1000);
-		UserDashboardobj.edit_Email_bar(Email);
+		UserDashboardobj.edit_Email_bar("sabina1@gmail.com");
 		Thread.sleep(1000);
 		UserDashboardobj.click_Email_savechange_button();
             test.pass("Email updated successfully");
@@ -209,6 +220,8 @@ public class YarsaBazarVendorTest {
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardobj.click_request_for_quote();
 		Thread.sleep(1000);
+
+		//RFQ section
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/rfq")){
 			test.pass("Request for Quote page opened successfully");
 		}
@@ -216,17 +229,20 @@ public class YarsaBazarVendorTest {
 			test.fail("Request for Quote page didn't opened");
 		}
 
-		UserDashboardobj.input_fullname_request("Sabina Bajra");
-		UserDashboardobj.input_MobileNumber_request("9823579453");
-		UserDashboardobj.input_ProductName_request("Boat earphones");
-		UserDashboardobj.input_quantity_request("18");
-		UserDashboardobj.input_More_Information_request("I need good quality Boat earphones before Tihar");
+		UserDashboardobj.input_fullname_request(Rfullname);
+		UserDashboardobj.input_MobileNumber_request(Rmobile);
+		UserDashboardobj.input_ProductName_request(RproductName);
+		UserDashboardobj.input_quantity_request(Rquantity);
+		UserDashboardobj.input_More_Information_request(Rdesc);
 		UserDashboardobj.click_submit_request();
 		Thread.sleep(1000);
 		UserDashboardobj.click_dismiss_request();
 		test.pass("Request submitted successfully");
 		driver.navigate().to("https://www.yarsabazar.com/vendor/products");
 		test.pass("Navigated back to vendor dashboard successfully");
+
+
+
 
 		///for business infromation section
 		UserDashboardobj.click_business_information();
@@ -283,7 +299,7 @@ public class YarsaBazarVendorTest {
 			else {
 				test.fail("Owners section didnot opened");
 			}
-
+		driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 		UserDashboardobj.click_add_owners();
 			Thread.sleep(2000);
 		UserDashboardobj.click_cancel_add_owners();
@@ -363,18 +379,33 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.click_logout_button();
 		Thread.sleep(1000);
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")){
-			test.pass("User" +Name+ "logged out successfully");
+			test.pass("User logged out successfully");
 		}
 		else {
-			test.fail("User" +Name+ "didn't logged out");
+			test.fail("User didn't logged out");
 		}
 	}
 
-	@DataProvider(name = "UserUpdateData")
-	public Object[][] getuserUpdateData(){
-		return new Object[][]{
-				{"Sabina Bajracharya", "sabina1@gmail.com"}
-		};
+	@DataProvider(name = "VendorRFQ")
+	public Object[][] getuserUpdateData() {
+		ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\OneDrive\\Documents\\Yarsa Office\\My Assessments\\YBtestCredentials.xlsx");
+
+		int rows = config.getRowCount(4);
+		Object[][] credentials = new Object[rows - 1 ][5];
+
+		// Assuming the headers are present, use getHeaders to skip the header row
+		String[] headers = config.getHeaders(4);
+
+		for (int i = 1; i < rows; i++) { // Start from 1 to skip the header row
+			credentials[i - 1][0] = config.getData(4, i, 0); // Adjust index to match the data row
+			credentials[i - 1][1] = config.getData(4, i, 1);
+			credentials[i - 1][2] = config.getData(4, i, 2); // Adjust index to match the data row
+			credentials[i - 1][3] = config.getData(4, i, 3);
+			credentials[i - 1][4] = config.getData(4, i, 4); // Adjust index to match the data row
+
+		}
+		return credentials;
+
 	}
 
 

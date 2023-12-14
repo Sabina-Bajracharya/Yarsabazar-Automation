@@ -84,7 +84,7 @@ public class UserDashboard {
     By Add_Branches = By.xpath("//button[contains(text(),'Add Branch')]");
     By Cancel_Add_Branches = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/div[1]/div[1]/button[1]");
     By Owners = By.linkText("Owners");
-    By Add_Owners = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/button[1]");
+    By Add_Owners = By.xpath("//button[contains(text(),'Add Owner')]");
     By Cancel_Add_Owners = By.xpath("//body/div[2]/div[2]/div[3]/div[1]/div[1]/div[1]/button[1]");
     By Payment_Methods = By.linkText("Payment Methods");
     By Cash_Payment_Mehtods = By.xpath("//body/div[2]/div[2]/div[3]/div[2]/button[1]");
@@ -296,23 +296,23 @@ public class UserDashboard {
     }
 
     public void input_fullname_request(String text){
-        driver.findElement(request_fullname_input).sendKeys("Sabina Bajra");
+        driver.findElement(request_fullname_input).sendKeys(text);
     }
 
     public void input_MobileNumber_request(String text){
-        driver.findElement(request_MobileNumber_input).sendKeys("9823579453");
+        driver.findElement(request_MobileNumber_input).sendKeys(text);
     }
 
     public void input_ProductName_request(String text){
-        driver.findElement(request_ProductName_input).sendKeys("Boat earphones");
+        driver.findElement(request_ProductName_input).sendKeys(text);
     }
 
     public void input_quantity_request(String text){
-        driver.findElement(request_quantity_input).sendKeys("18");
+        driver.findElement(request_quantity_input).sendKeys(text);
     }
 
     public void input_More_Information_request(String text){
-        driver.findElement(reuest_More_Information_input).sendKeys("I need good quality Boat earphones before Tihar");
+        driver.findElement(reuest_More_Information_input).sendKeys(text);
     }
 
     public void click_submit_request(){

@@ -313,12 +313,15 @@ public class YarsaBazarTest {
 		test.pass("Password changed successfully");
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_Email_Verify_Button();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.verify_email_cancel();
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_help_button();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.drop_Account_information();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.drop_negotiation();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.drop_shopping();
 		UserDashboardBeforeobj.drop_user_onboarding_process();
 		Thread.sleep(2000);
