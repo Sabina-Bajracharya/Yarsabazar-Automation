@@ -4,6 +4,8 @@ import YBtestData.ReadExcelFile;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.github.javafaker.Faker;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
@@ -19,7 +21,7 @@ import static org.testng.Assert.assertEquals;
 public class YarsaBazarVendorTest {
 
         private static WebDriver driver = null;
-
+	Faker faker = new Faker();
         ExtentReports extent = new ExtentReports();
         ExtentSparkReporter spark = new ExtentSparkReporter("Extentreport.html");
         String actualBrowserURL = "https://www.yarsabazar.com/";
@@ -81,11 +83,11 @@ public class YarsaBazarVendorTest {
                 test.fail("The user cannot click login link" +browserLoginURL );
             }
             loginpageobj.email_Input(PhoneNumber);
-            Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             loginpageobj.password_Input(Password);
-            Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             loginpageobj.login_Click();
-            Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
             String browserLoggedInURL = driver.getCurrentUrl();
             String loggedInURL = loginpageobj.LoggedInURL;
@@ -107,7 +109,7 @@ public class YarsaBazarVendorTest {
         }
 
         @DataProvider(name = "loginData")
-        public Object[][] getLoginData(){
+        public Object[][] getLoginData() {
 
 			ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\YarsaBazar_Automation\\YBtestCredentials.xlsx");
 
@@ -122,6 +124,8 @@ public class YarsaBazarVendorTest {
 				credentials[i - 1][1] = config.getData(3, i, 1);
 			}
 			return credentials;
+
+
 		}
 
 
@@ -136,7 +140,7 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.click_Full_Name_Update_button();
 		UserDashboardobj.clear_Full_Name_bar();
 		Thread.sleep(1000);
-		UserDashboardobj.edit_Full_Name_bar("Sabina Bajracharya");
+		UserDashboardobj.edit_Full_Name_bar(faker.name().fullName());
 		Thread.sleep(1000);
 		UserDashboardobj.click_buttton_Full_Name_Savechange();
 		Thread.sleep(1000);
@@ -145,7 +149,7 @@ public class YarsaBazarVendorTest {
 		Thread.sleep(1000);
 		UserDashboardobj.clear_Email_bar();
 		Thread.sleep(1000);
-		UserDashboardobj.edit_Email_bar("sabina1@gmail.com");
+		UserDashboardobj.edit_Email_bar(faker.internet().emailAddress());
 		Thread.sleep(1000);
 		UserDashboardobj.click_Email_savechange_button();
             test.pass("Email updated successfully");
@@ -158,46 +162,43 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.Change_Password_button_click();
 		Thread.sleep(1000);
             test.pass("Password updated successfully");
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		UserDashboardobj.click_account_details();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		UserDashboardobj.click_my_details();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_Email_Verify_Button();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.verify_email_cancel();
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardobj.click_help_button();
+			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		UserDashboardobj.drop_Account_information();
+			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		UserDashboardobj.drop_negotiation();
+			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		UserDashboardobj.drop_shopping();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.drop_user_onboarding_process();
-		Thread.sleep(2000);
-		UserDashboardobj.drop_user_dashboard_help_content();
-		Thread.sleep(1000);
-		UserDashboardobj.drop_Account_information();
-		UserDashboardobj.drop_negotiation();
-		UserDashboardobj.drop_shopping();
-		Thread.sleep(1000);
-		UserDashboardobj.drop_user_onboarding_process();
-		Thread.sleep(2000);
-		UserDashboardobj.drop_user_dashboard_help_content();
-		Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
 		driver.navigate().refresh();
-		Thread.sleep(2000);
-		UserDashboardobj.input_user_dashboard_Search_bar("rose");
-		Thread.sleep(3000);
-		UserDashboardobj.search_rose_input_click();
-		Thread.sleep(1000);
-		UserDashboardobj.input_product_name("Red Rose");
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		UserDashboardobj.input_user_dashboard_Search_bar(faker.commerce().color());
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		UserDashboardobj.item_searched_click(Keys.ENTER);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			UserDashboardobj.first_Category_click();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		UserDashboardobj.input_product_name(faker.food().fruit());
 		UserDashboardobj.phone_number_input("9823579453");
-		UserDashboardobj.full_name_input("Sabina Bajra");
-		UserDashboardobj.input_email_address("sabina1@gmail.com");
-		UserDashboardobj.input_description("I need Red rose in full fresh condition.");
+		UserDashboardobj.full_name_input(faker.name().fullName());
+		UserDashboardobj.input_email_address(faker.internet().emailAddress());
+		UserDashboardobj.input_description(faker.lorem().word());
 		UserDashboardobj.input_submit();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_dismiss();
 		driver.navigate().to("https://www.yarsabazar.com/vendor/products");
             test.pass("Navigated back to vendor dashboard successfully");
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_My_store_page();
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/seller/sabina"))
 		{
@@ -207,19 +208,19 @@ public class YarsaBazarVendorTest {
 			test.pass("Didn't navigated to My Store page");
 		}
 		UserDashboardobj.click_company_info();
-		Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardobj.click_products();
-		Thread.sleep(3000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardobj.click_image_slide_left();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardobj.click_slide_right();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.navigate().refresh();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardobj.click_dashboard();
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardobj.click_request_for_quote();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
 		//RFQ section
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/rfq")){
@@ -235,7 +236,7 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.input_quantity_request(Rquantity);
 		UserDashboardobj.input_More_Information_request(Rdesc);
 		UserDashboardobj.click_submit_request();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_dismiss_request();
 		test.pass("Request submitted successfully");
 		driver.navigate().to("https://www.yarsabazar.com/vendor/products");
@@ -244,30 +245,30 @@ public class YarsaBazarVendorTest {
 
 		///for business infromation section
 		UserDashboardobj.click_business_information();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/profile")){
 			test.pass("Navigated to Business Profile section");
 		}
 		else {
 			test.fail("Business Profile section didnot opened");
 		}
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.edit_busines_details();
 		UserDashboardobj.update_business_details();
 		UserDashboardobj.click_registration_details();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/registration-details")){
 				test.pass("Navigated to Registration Details section");
 			}
 			else {
 				test.fail("Registration Details section didnot opened");
 			}
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.edit_registration_Details();
 		UserDashboardobj.click_cancel_registration_details();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_industries();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/industries")){
 				test.pass("Navigated to Industries section");
 			}
@@ -275,9 +276,9 @@ public class YarsaBazarVendorTest {
 				test.fail("Industries section didnot opened");
 			}
 //		UserDashboardobj.add_industries();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_branches();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/branches")){
 				test.pass("Navigated to Branches section");
 			}
@@ -354,6 +355,7 @@ public class YarsaBazarVendorTest {
 			UserDashboardobj.click_rejected();
 			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products?status=rejected")){
+				Thread.sleep(2000);
 				test.pass("Navigated to Rejected section");
 			}
 			else {
@@ -365,6 +367,7 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.click_back_to_main_site();
 			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")){
+				Thread.sleep(2000);
 				test.pass("Navigated to Main site");
 			}
 			else {

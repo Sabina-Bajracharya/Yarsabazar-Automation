@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 public class UserDashboard {
@@ -22,6 +23,7 @@ public class UserDashboard {
     By New_Password_field = By.xpath("//body/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/input[1]");
     By Confirm_New_Password_field = By.xpath("//body/div[2]/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/input[1]");
     By Change_Password_click = By.xpath("//button[contains(text(),'Change Password')]");
+    By My_details_click = By.linkText("My Details");
     By Email_verify_button_click =By.xpath("//button[contains(text(),'Verify')]");
     By cancel_email_verify = By.xpath("//button[contains(text(),'Cancel')]");
 
@@ -37,7 +39,8 @@ public class UserDashboard {
     //// for user search bar
 
     By user_dashboard_search_bar = By.tagName("input");
-    By rose_input_search = By.xpath("//header/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/a[1]/div[1]/span[1]");
+    By click_dashboard_Search_bar_item = By.tagName("input");
+    By category_first = By.xpath("//body/main[1]/div[2]/div[1]/div[1]/div[1]/a[1]/div[1]");
     By product_name = By.xpath("//body/main[1]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/fieldset[1]/div[1]/input[1]");
     By phone_number = By.xpath("//body/main[1]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/fieldset[1]/div[2]/input[1]");
     By full_name = By.xpath("//body/main[1]/div[2]/div[1]/div[1]/div[1]/div[2]/form[1]/fieldset[1]/div[3]/div[1]/input[1]");
@@ -187,6 +190,9 @@ public class UserDashboard {
     public void Change_Password_button_click(){
         driver.findElement(Change_Password_click).click();
     }
+    public void click_my_details(){
+        driver.findElement(My_details_click).click();
+    }
 
     public  void click_Email_Verify_Button(){
         driver.findElement(Email_verify_button_click).click();
@@ -224,31 +230,40 @@ public class UserDashboard {
     ////for Search Bar Section
 
     public void input_user_dashboard_Search_bar(String text){
-        driver.findElement(user_dashboard_search_bar).sendKeys("rose");
+        driver.findElement(user_dashboard_search_bar).sendKeys(text);
     }
 
-    public void search_rose_input_click(){
-        driver.findElement(rose_input_search).click();
+
+    public  void item_searched_click(Keys enter){
+        driver.findElement(click_dashboard_Search_bar_item).sendKeys(Keys.ENTER);
     }
+
+
+    public  void first_Category_click(){
+        driver.findElement(category_first).click();
+    }
+//    public void search_rose_input_click(){
+//        driver.findElement(rose_input_search).click();
+//    }
 
     public void input_product_name(String text){
-        driver.findElement(product_name).sendKeys("Red Rose");
+        driver.findElement(product_name).sendKeys(text);
     }
 
     public void phone_number_input(String text){
-        driver.findElement(phone_number).sendKeys("9823579453");
+        driver.findElement(phone_number).sendKeys(text);
     }
 
     public  void full_name_input(String text){
-        driver.findElement(full_name).sendKeys("Sabina Bajra");
+        driver.findElement(full_name).sendKeys(text);
     }
 
     public void input_email_address(String text){
-        driver.findElement(email_address).sendKeys("sabina1@gmail.com");
+        driver.findElement(email_address).sendKeys(text);
     }
 
     public void input_description(String text){
-        driver.findElement(description).sendKeys("I need Red rose in full fresh condition.");
+        driver.findElement(description).sendKeys(text);
     }
 
     public void input_submit(){
