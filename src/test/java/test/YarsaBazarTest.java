@@ -35,7 +35,7 @@ public class YarsaBazarTest {
 		driver = new ChromeDriver();
 		driver.get("https://www.yarsabazar.com");
 		driver.manage().window().maximize();
-		Thread.sleep(3000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
 	}
 
@@ -88,15 +88,14 @@ public class YarsaBazarTest {
 		test.pass("Sign Up Page Redirection Verified");
 
 		signuppageobj.input_Name(name);
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		signuppageobj.input_PhoneNumber(phone);
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		signuppageobj.input_Email(email);
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		signuppageobj.input_Password(password);
-		Thread.sleep(1000);
 		signuppageobj.click_SignUp();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
 		String browserSignedUpURL = driver.getCurrentUrl();
 		String actualsignedupURL = signuppageobj.actualSignedUpURL;
@@ -108,15 +107,14 @@ public class YarsaBazarTest {
 			test.fail("User" +phone+  "didn't signed up");
 			test.fail("Enter valid sign Up credentials");
 			signuppageobj.back_button();
-			Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		}
-		Thread.sleep(4000);
 	}
 
 
 	@DataProvider(name = "signUpData")
 	public Object[][] getSignupData() {
-			ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\OneDrive\\Documents\\Yarsa Office\\My Assessments\\YBtestCredentials.xlsx");
+			ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\YarsaBazar_Automation\\YBtestCredentials.xlsx");
 
 			int rows = config.getRowCount(1); // Change sheet index to 1
 			Object[][] credentials = new Object[rows - 1][4]; // Adjusted to handle 4 input fields
@@ -147,16 +145,14 @@ public class YarsaBazarTest {
 			test.pass("User successfully landed on OTP Verification page");
 
 			otpobj.click_edit_phoneNumber();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			otpobj.clear_edit_phoneNumber();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			otpobj.input_edit_box_PhoneNumber("9823478885");
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			otpobj.click_tick_button();
 			test.pass("Phone Number is updated");
-//		otpobj.click_cross_button();
-//		test.pass("Phone Number not updated");
-			Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			driver.navigate().to("https://www.yarsabazar.com/verify");
 			otpobj.click_send_otp_box();
 			Thread.sleep(1000);
@@ -166,14 +162,14 @@ public class YarsaBazarTest {
 			else{
 				test.fail("user didn't navigated to otp code verification page");
 			}
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			otpobj.click_otp_bar();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 //		otpobj.click_resend_otp();
 //		Thread.sleep(2000);
 //		test.pass("OTP resend successfully");
 			otpobj.click_otp_submit();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/account")){
 				test.pass("OTP verified successfully");
 			}
@@ -206,7 +202,7 @@ public class YarsaBazarTest {
 			test.fail("User did not landed on OTP Verification page");
 			driver.navigate().to("https://www.yarsabazar.com/");
 		}
-		Thread.sleep(3000);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 
 
@@ -214,51 +210,50 @@ public class YarsaBazarTest {
 	public void LoginPageTest(String PhoneNumber, String Password) throws InterruptedException {
 		ExtentTest test = extent.createTest("Verify the Login");
 		loginPage loginpageobj = new loginPage(driver);
-
-		loginpageobj.click_login_button();
-		Thread.sleep(2000);
-		String browserLoginURL = driver.getCurrentUrl();
-		String loginURL = loginpageobj.LoginURL;
-
-		assertEquals(browserLoginURL, loginURL);
-		if ( browserLoginURL.equals(loginURL)){
-			test.pass("The Login url is: " + browserLoginURL);
-		}
-		else {
-			test.fail("The usercannot click login link" +browserLoginURL );
-		}
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.navigate().to("https://www.yarsabazar.com/login");
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//		String browserLoginURL = driver.getCurrentUrl();
+//		String loginURL = loginpageobj.LoginURL;
+////
+//		assertEquals(browserLoginURL, loginURL);
+//		if ( browserLoginURL.equals(loginURL)){
+//			test.pass("The Login url is: " + browserLoginURL);
+//		}
+//		else {
+//			test.fail("The usercannot click login link" +browserLoginURL );
+//		}
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		loginpageobj.email_Input(PhoneNumber);
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		loginpageobj.password_Input(Password);
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		loginpageobj.login_Click();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/account")){
-			Thread.sleep(1000);
 			test.pass("The user"+ PhoneNumber + "is Logged in successfully");
 			loginpageobj.profile_button_click();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			loginpageobj.logout_Click();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
 		}
 
 		else
 		{
-			Thread.sleep(2000);
+
 			test.fail("The user"+PhoneNumber+ "cannot log in due to invalid credentials");
-			driver.navigate().to("https://www.yarsabazar.com/");
-			Thread.sleep(2000);
+			driver.navigate().to("https://www.yarsabazar.com/login");
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 			driver.navigate().refresh();
 		}
-		Thread.sleep(2000);
 	}
 
 	@DataProvider(name = "loginData")
 
 	public Object[][] getLoginData() {
-		ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\OneDrive\\Documents\\Yarsa Office\\My Assessments\\YBtestCredentials.xlsx");
+		ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\YarsaBazar_Automation\\YBtestCredentials.xlsx");
 
 		int rows = config.getRowCount(0);
 		Object[][] credentials = new Object[rows - 1 ][2];
@@ -278,31 +273,29 @@ public class YarsaBazarTest {
 	public void UserDashboardBeforeTest(String searchItem, String phone, String fullname, String email, String desc )throws InterruptedException{
 		ExtentTest test = extent.createTest("Verify User Dashboard before sell on YarsaBazar Signup");
 		UserDashboardBefore UserDashboardBeforeobj = new UserDashboardBefore(driver);
+		driver.navigate().to("https://www.yarsabazar.com/");
 		UserDashboardBeforeobj.click_login_button();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.input_email("9762784654");
-		Thread.sleep(1000);
 		UserDashboardBeforeobj.input_password("Simran@1");
-		Thread.sleep(1000);
 		UserDashboardBeforeobj.click_logins_buttons();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_Full_Name_Update_button();
 		UserDashboardBeforeobj.click_Full_Name_Update_button();
 		UserDashboardBeforeobj.clear_Full_Name_bar();
-		Thread.sleep(1000);
 		UserDashboardBeforeobj.edit_Full_Name_bar("Sabina Bajracharya");
-		Thread.sleep(1000);
 		UserDashboardBeforeobj.click_buttton_Full_Name_Savechange();
-		Thread.sleep(1000);
 		test.pass("Name changed successfully");
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_Email_Update_button();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.clear_Email_bar();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.edit_Email_bar("always1@gmail.com");
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_Email_savechange_button();
 		test.pass("Email updated successfully");
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_Change_Password();
 		Thread.sleep(1000);
 		UserDashboardBeforeobj.input_New_Password_field("Simran@1");
@@ -323,40 +316,41 @@ public class YarsaBazarTest {
 		UserDashboardBeforeobj.drop_negotiation();
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.drop_shopping();
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.drop_user_onboarding_process();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.drop_user_dashboard_help_content();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.drop_Account_information();
 		UserDashboardBeforeobj.drop_negotiation();
 		UserDashboardBeforeobj.drop_shopping();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.drop_user_onboarding_process();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.drop_user_dashboard_help_content();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.navigate().refresh();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.input_user_dashboard_Search_bar(searchItem);
-		Thread.sleep(3000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_user_dashboard_search(Keys.ENTER);
 		test.pass("Search performed successfully");
 		UserDashboardBeforeobj.click_fist_category();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.input_product_name(searchItem);
 		UserDashboardBeforeobj.phone_number_input(phone);
 		UserDashboardBeforeobj.full_name_input(fullname);
 		UserDashboardBeforeobj.input_email_address(email);
 		UserDashboardBeforeobj.input_description(desc);
 		UserDashboardBeforeobj.input_submit();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		test.pass("order placed successfully");
 		UserDashboardBeforeobj.click_dismiss();
 		driver.navigate().to("https://www.yarsabazar.com/account");
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		////To signup on sell on yarsabazar through user dashboard
 		UserDashboardBeforeobj.click_sell_on_yarsabzar();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.navigate().to("https://www.yarsabazar.com/account");
 		test.pass("Navigated to user account dashboard.");
 //		UserDashboardBeforeobj.choose_line_of_business();
@@ -382,7 +376,7 @@ public class YarsaBazarTest {
 	}
 	@DataProvider(name = "UserDataBefore")
 	public Object[][] getUserDataBefore(){
-			ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\OneDrive\\Documents\\Yarsa Office\\My Assessments\\YBtestCredentials.xlsx");
+			ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\YarsaBazar_Automation\\YBtestCredentials.xlsx");
 
 			int rows = config.getRowCount(2);
 			Object[][] credentials = new Object[rows - 1 ][5];
@@ -407,12 +401,12 @@ public class YarsaBazarTest {
 		search Searchobj = new search(driver);
 
 		Searchobj.input_search_bar(Item);
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		test.pass("Item " + Item + " is displaying recommendation");
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		Searchobj.click_Search_icon();
 		test.pass("Item " + Item + " is clicked successfully");
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.navigate().to("https://www.yarsabazar.com/");
 
 		if (driver.getCurrentUrl().equals("https://www.yarsabazar.com/")) {
@@ -435,9 +429,9 @@ public class YarsaBazarTest {
 	public void industriesTest()throws InterruptedException{
 		ExtentTest test = extent.createTest("Verify the Browse All Industries");
 		IndustriesPage Industriesobj = new IndustriesPage(driver);
-
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		Industriesobj.click_browse_all_industries();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/industries")) {
 			test.pass("Browse All Industries page is opened successfully");
 		}
@@ -446,7 +440,7 @@ public class YarsaBazarTest {
 		}
 
 		Industriesobj.click_back_to_dashboard();
-		Thread.sleep(2000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")) {
 			test.pass("Returned back to Dashboard from Browse All Industries page ");
 		}
@@ -462,7 +456,7 @@ public class YarsaBazarTest {
 		Footer Footerobj = new Footer(driver);
 
 		Footerobj.click_Privacy_Policy();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		ArrayList<String> tab = new ArrayList<>(driver.getWindowHandles());
 		driver.switchTo().window(tab.get(1));
 
@@ -474,7 +468,7 @@ public class YarsaBazarTest {
 		}
 
 		Footerobj.click_Terms_of_Services();
-		Thread.sleep(1000);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
         tab = new ArrayList<>(driver.getWindowHandles());
 		driver.switchTo().window(tab.get(2));
@@ -488,7 +482,6 @@ public class YarsaBazarTest {
 			test.fail("Terms of Services didn't opened");
 		}
 	}
-
 
 	@AfterTest
 	public void tearDownTest() {

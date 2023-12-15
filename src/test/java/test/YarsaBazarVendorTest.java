@@ -109,7 +109,7 @@ public class YarsaBazarVendorTest {
         @DataProvider(name = "loginData")
         public Object[][] getLoginData(){
 
-			ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\OneDrive\\Documents\\Yarsa Office\\My Assessments\\YBtestCredentials.xlsx");
+			ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\YarsaBazar_Automation\\YBtestCredentials.xlsx");
 
 			int rows = config.getRowCount(3);
 			Object[][] credentials = new Object[rows - 1 ][2];
@@ -240,8 +240,6 @@ public class YarsaBazarVendorTest {
 		test.pass("Request submitted successfully");
 		driver.navigate().to("https://www.yarsabazar.com/vendor/products");
 		test.pass("Navigated back to vendor dashboard successfully");
-
-
 
 
 		///for business infromation section
@@ -388,7 +386,7 @@ public class YarsaBazarVendorTest {
 
 	@DataProvider(name = "VendorRFQ")
 	public Object[][] getuserUpdateData() {
-		ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\OneDrive\\Documents\\Yarsa Office\\My Assessments\\YBtestCredentials.xlsx");
+		ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\YarsaBazar_Automation\\YBtestCredentials.xlsx");
 
 		int rows = config.getRowCount(4);
 		Object[][] credentials = new Object[rows - 1 ][5];
@@ -407,9 +405,6 @@ public class YarsaBazarVendorTest {
 		return credentials;
 
 	}
-
-
-
 
     @AfterTest
     public void tearDownTest() {

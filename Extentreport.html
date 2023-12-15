@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary"></span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Dec 14, 2023 02:10:39 PM</span></a>
+<a href="#"><span class="badge badge-primary">Dec 15, 2023 10:04:14 AM</span></a>
 </li>
 </ul>
 </div>
@@ -67,6 +67,7 @@
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
 <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
 <a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
+<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
 <div class="dropdown-divider"></div>
 <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
 </ul>
@@ -81,7 +82,7 @@
           <div class="test-detail">
             <p class="name">Launch website</p>
             <p class="text-sm">
-              <span>2:10:45 PM</span> / <span>00:00:00:088</span>
+              <span>10:04:17 AM</span> / <span>00:00:00:097</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -90,9 +91,9 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-pass">Launch website</h5>
-<span class='badge badge-success'>12.14.2023 2:10:45 PM</span>
-<span class='badge badge-danger'>12.14.2023 2:10:45 PM</span>
-<span class='badge badge-default'>00:00:00:088</span>
+<span class='badge badge-success'>12.15.2023 10:04:17 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:04:17 AM</span>
+<span class='badge badge-default'>00:00:00:097</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -104,21 +105,21 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:10:45 PM</td>
+        <td>10:04:17 AM</td>
         <td>
           User launched to website URL : https://www.yarsabazar.com/
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:10:45 PM</td>
+        <td>10:04:17 AM</td>
         <td>
           Logo is displayed
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:10:45 PM</td>
+        <td>10:04:17 AM</td>
         <td>
           Successfully landed on the correct dashboard
         </td>
@@ -128,25 +129,25 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="2"
+        <li class="test-item"  status="fail" test-id="2"
           author=""
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Verify the Login</p>
+            <p class="name">Verify SignUp</p>
             <p class="text-sm">
-              <span>2:10:46 PM</span> / <span>00:00:04:450</span>
-              <span class="badge pass-bg log float-right">Pass</span>
+              <span>10:04:18 AM</span> / <span>00:00:03:425</span>
+              <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">Verify the Login</h5>
-<span class='badge badge-success'>12.14.2023 2:10:46 PM</span>
-<span class='badge badge-danger'>12.14.2023 2:10:50 PM</span>
-<span class='badge badge-default'>00:00:04:450</span>
+<h5 class="test-status text-fail">Verify SignUp</h5>
+<span class='badge badge-success'>12.15.2023 10:04:18 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:04:21 AM</span>
+<span class='badge badge-default'>00:00:03:425</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -158,16 +159,30 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:10:47 PM</td>
+        <td>10:04:21 AM</td>
         <td>
-          The Login url is: https://www.yarsabazar.com/login
+          User Redirected to Sign Up URL as: https://www.yarsabazar.com/signup
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:10:50 PM</td>
+        <td>10:04:21 AM</td>
         <td>
-          The user9823579453is Logged in successfully
+          Sign Up Page Redirection Verified
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:21 AM</td>
+        <td>
+          User9803321453didn't signed up
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:21 AM</td>
+        <td>
+          Enter valid sign Up credentials
         </td>
       </tr>
   </tbody>
@@ -175,25 +190,25 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="3"
+        <li class="test-item"  status="fail" test-id="3"
           author=""
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Verify User Dashboard</p>
+            <p class="name">Verify SignUp</p>
             <p class="text-sm">
-              <span>2:10:51 PM</span> / <span>00:01:48:072</span>
-              <span class="badge pass-bg log float-right">Pass</span>
+              <span>10:04:21 AM</span> / <span>00:00:03:775</span>
+              <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">Verify User Dashboard</h5>
-<span class='badge badge-success'>12.14.2023 2:10:51 PM</span>
-<span class='badge badge-danger'>12.14.2023 2:12:39 PM</span>
-<span class='badge badge-default'>00:01:48:072</span>
+<h5 class="test-status text-fail">Verify SignUp</h5>
+<span class='badge badge-success'>12.15.2023 10:04:21 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:04:25 AM</span>
+<span class='badge badge-default'>00:00:03:775</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -205,163 +220,1693 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:10:53 PM</td>
+        <td>10:04:24 AM</td>
         <td>
-          Account Details opened successfully
+          User Redirected to Sign Up URL as: https://www.yarsabazar.com/signup
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:10:57 PM</td>
+        <td>10:04:24 AM</td>
         <td>
-          Full Name updated successfully
+          Sign Up Page Redirection Verified
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:25 AM</td>
+        <td>
+          User9825874166didn't signed up
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:25 AM</td>
+        <td>
+          Enter valid sign Up credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="4"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify SignUp</p>
+            <p class="text-sm">
+              <span>10:04:25 AM</span> / <span>00:00:03:770</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify SignUp</h5>
+<span class='badge badge-success'>12.15.2023 10:04:25 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:04:29 AM</span>
+<span class='badge badge-default'>00:00:03:770</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:28 AM</td>
+        <td>
+          User Redirected to Sign Up URL as: https://www.yarsabazar.com/signup
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:11:00 PM</td>
+        <td>10:04:28 AM</td>
+        <td>
+          Sign Up Page Redirection Verified
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:29 AM</td>
+        <td>
+          User99665726307didn't signed up
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:29 AM</td>
+        <td>
+          Enter valid sign Up credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="5"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify SignUp</p>
+            <p class="text-sm">
+              <span>10:04:29 AM</span> / <span>00:00:03:765</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify SignUp</h5>
+<span class='badge badge-success'>12.15.2023 10:04:29 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:04:32 AM</span>
+<span class='badge badge-default'>00:00:03:765</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=5</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:32 AM</td>
+        <td>
+          User Redirected to Sign Up URL as: https://www.yarsabazar.com/signup
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:32 AM</td>
+        <td>
+          Sign Up Page Redirection Verified
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:32 AM</td>
+        <td>
+          User1234569808didn't signed up
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:32 AM</td>
+        <td>
+          Enter valid sign Up credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="6"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify SignUp</p>
+            <p class="text-sm">
+              <span>10:04:32 AM</span> / <span>00:00:03:865</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify SignUp</h5>
+<span class='badge badge-success'>12.15.2023 10:04:32 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:04:36 AM</span>
+<span class='badge badge-default'>00:00:03:865</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=6</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:36 AM</td>
+        <td>
+          User Redirected to Sign Up URL as: https://www.yarsabazar.com/signup
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:36 AM</td>
+        <td>
+          Sign Up Page Redirection Verified
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:36 AM</td>
+        <td>
+          User9800000000didn't signed up
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:36 AM</td>
+        <td>
+          Enter valid sign Up credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="7"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify SignUp</p>
+            <p class="text-sm">
+              <span>10:04:36 AM</span> / <span>00:00:03:742</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify SignUp</h5>
+<span class='badge badge-success'>12.15.2023 10:04:36 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:04:40 AM</span>
+<span class='badge badge-default'>00:00:03:742</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=7</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:40 AM</td>
+        <td>
+          User Redirected to Sign Up URL as: https://www.yarsabazar.com/signup
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:40 AM</td>
+        <td>
+          Sign Up Page Redirection Verified
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:40 AM</td>
+        <td>
+          User9652915006didn't signed up
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:40 AM</td>
+        <td>
+          Enter valid sign Up credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="8"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify SignUp</p>
+            <p class="text-sm">
+              <span>10:04:40 AM</span> / <span>00:00:03:770</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify SignUp</h5>
+<span class='badge badge-success'>12.15.2023 10:04:40 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:04:44 AM</span>
+<span class='badge badge-default'>00:00:03:770</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=8</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:44 AM</td>
+        <td>
+          User Redirected to Sign Up URL as: https://www.yarsabazar.com/signup
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:44 AM</td>
+        <td>
+          Sign Up Page Redirection Verified
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:44 AM</td>
+        <td>
+          User977258888didn't signed up
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:44 AM</td>
+        <td>
+          Enter valid sign Up credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="9"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify SignUp</p>
+            <p class="text-sm">
+              <span>10:04:44 AM</span> / <span>00:00:03:879</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify SignUp</h5>
+<span class='badge badge-success'>12.15.2023 10:04:44 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:04:48 AM</span>
+<span class='badge badge-default'>00:00:03:879</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=9</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:48 AM</td>
+        <td>
+          User Redirected to Sign Up URL as: https://www.yarsabazar.com/signup
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:48 AM</td>
+        <td>
+          Sign Up Page Redirection Verified
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:48 AM</td>
+        <td>
+          User9772552113didn't signed up
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:48 AM</td>
+        <td>
+          Enter valid sign Up credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="10"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify SignUp</p>
+            <p class="text-sm">
+              <span>10:04:48 AM</span> / <span>00:00:03:673</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify SignUp</h5>
+<span class='badge badge-success'>12.15.2023 10:04:48 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:04:52 AM</span>
+<span class='badge badge-default'>00:00:03:673</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=10</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:51 AM</td>
+        <td>
+          User Redirected to Sign Up URL as: https://www.yarsabazar.com/signup
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:51 AM</td>
+        <td>
+          Sign Up Page Redirection Verified
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:52 AM</td>
+        <td>
+          User2808407149x034didn't signed up
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:52 AM</td>
+        <td>
+          Enter valid sign Up credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="11"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify SignUp</p>
+            <p class="text-sm">
+              <span>10:04:52 AM</span> / <span>00:00:03:851</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify SignUp</h5>
+<span class='badge badge-success'>12.15.2023 10:04:52 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:04:56 AM</span>
+<span class='badge badge-default'>00:00:03:851</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=11</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:55 AM</td>
+        <td>
+          User Redirected to Sign Up URL as: https://www.yarsabazar.com/signup
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:55 AM</td>
+        <td>
+          Sign Up Page Redirection Verified
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:56 AM</td>
+        <td>
+          User001-646-806-6811x279didn't signed up
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:56 AM</td>
+        <td>
+          Enter valid sign Up credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="12"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify SignUp</p>
+            <p class="text-sm">
+              <span>10:04:56 AM</span> / <span>00:00:03:794</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify SignUp</h5>
+<span class='badge badge-success'>12.15.2023 10:04:56 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:04:59 AM</span>
+<span class='badge badge-default'>00:00:03:794</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=12</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:59 AM</td>
+        <td>
+          User Redirected to Sign Up URL as: https://www.yarsabazar.com/signup
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:04:59 AM</td>
+        <td>
+          Sign Up Page Redirection Verified
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:59 AM</td>
+        <td>
+          User(555)760-5734x826didn't signed up
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:04:59 AM</td>
+        <td>
+          Enter valid sign Up credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="13"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify SignUp</p>
+            <p class="text-sm">
+              <span>10:04:59 AM</span> / <span>00:00:03:821</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify SignUp</h5>
+<span class='badge badge-success'>12.15.2023 10:04:59 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:03 AM</span>
+<span class='badge badge-default'>00:00:03:821</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=13</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:05:03 AM</td>
+        <td>
+          User Redirected to Sign Up URL as: https://www.yarsabazar.com/signup
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:05:03 AM</td>
+        <td>
+          Sign Up Page Redirection Verified
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:03 AM</td>
+        <td>
+          User001-487-651-5915x04002didn't signed up
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:03 AM</td>
+        <td>
+          Enter valid sign Up credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="14"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify SignUp</p>
+            <p class="text-sm">
+              <span>10:05:03 AM</span> / <span>00:00:03:862</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify SignUp</h5>
+<span class='badge badge-success'>12.15.2023 10:05:03 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:07 AM</span>
+<span class='badge badge-default'>00:00:03:862</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=14</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:05:07 AM</td>
+        <td>
+          User Redirected to Sign Up URL as: https://www.yarsabazar.com/signup
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:05:07 AM</td>
+        <td>
+          Sign Up Page Redirection Verified
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:07 AM</td>
+        <td>
+          User875.398.0732x7081didn't signed up
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:07 AM</td>
+        <td>
+          Enter valid sign Up credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="15"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify SignUp</p>
+            <p class="text-sm">
+              <span>10:05:07 AM</span> / <span>00:00:03:867</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify SignUp</h5>
+<span class='badge badge-success'>12.15.2023 10:05:07 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:11 AM</span>
+<span class='badge badge-default'>00:00:03:867</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=15</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:05:11 AM</td>
+        <td>
+          User Redirected to Sign Up URL as: https://www.yarsabazar.com/signup
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:05:11 AM</td>
+        <td>
+          Sign Up Page Redirection Verified
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:11 AM</td>
+        <td>
+          User+1-637-288-9548x76869didn't signed up
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:11 AM</td>
+        <td>
+          Enter valid sign Up credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="16"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify SignUp</p>
+            <p class="text-sm">
+              <span>10:05:11 AM</span> / <span>00:00:03:868</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify SignUp</h5>
+<span class='badge badge-success'>12.15.2023 10:05:11 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:15 AM</span>
+<span class='badge badge-default'>00:00:03:868</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=16</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:05:15 AM</td>
+        <td>
+          User Redirected to Sign Up URL as: https://www.yarsabazar.com/signup
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:05:15 AM</td>
+        <td>
+          Sign Up Page Redirection Verified
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:15 AM</td>
+        <td>
+          User977258888didn't signed up
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:15 AM</td>
+        <td>
+          Enter valid sign Up credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="17"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the otp</p>
+            <p class="text-sm">
+              <span>10:05:15 AM</span> / <span>00:00:00:017</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the otp</h5>
+<span class='badge badge-success'>12.15.2023 10:05:15 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:15 AM</span>
+<span class='badge badge-default'>00:00:00:017</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=17</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:15 AM</td>
+        <td>
+          User did not landed on OTP Verification page
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="18"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Login</p>
+            <p class="text-sm">
+              <span>10:05:16 AM</span> / <span>00:00:00:410</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Login</h5>
+<span class='badge badge-success'>12.15.2023 10:05:16 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:16 AM</span>
+<span class='badge badge-default'>00:00:00:410</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=18</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:16 AM</td>
+        <td>
+          The user9762784654cannot log in due to invalid credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="19"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Login</p>
+            <p class="text-sm">
+              <span>10:05:17 AM</span> / <span>00:00:00:273</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Login</h5>
+<span class='badge badge-success'>12.15.2023 10:05:17 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:17 AM</span>
+<span class='badge badge-default'>00:00:00:273</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=19</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:17 AM</td>
+        <td>
+          The user9233775446cannot log in due to invalid credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="20"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Login</p>
+            <p class="text-sm">
+              <span>10:05:17 AM</span> / <span>00:00:00:287</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Login</h5>
+<span class='badge badge-success'>12.15.2023 10:05:17 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:17 AM</span>
+<span class='badge badge-default'>00:00:00:287</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=20</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:17 AM</td>
+        <td>
+          The user3289803370cannot log in due to invalid credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="21"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Login</p>
+            <p class="text-sm">
+              <span>10:05:18 AM</span> / <span>00:00:00:317</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Login</h5>
+<span class='badge badge-success'>12.15.2023 10:05:18 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:19 AM</span>
+<span class='badge badge-default'>00:00:00:317</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=21</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:19 AM</td>
+        <td>
+          The user8179960820cannot log in due to invalid credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="22"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Login</p>
+            <p class="text-sm">
+              <span>10:05:19 AM</span> / <span>00:00:00:282</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Login</h5>
+<span class='badge badge-success'>12.15.2023 10:05:19 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:19 AM</span>
+<span class='badge badge-default'>00:00:00:282</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=22</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:19 AM</td>
+        <td>
+          The user9274210705cannot log in due to invalid credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="23"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Login</p>
+            <p class="text-sm">
+              <span>10:05:20 AM</span> / <span>00:00:00:328</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Login</h5>
+<span class='badge badge-success'>12.15.2023 10:05:20 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:20 AM</span>
+<span class='badge badge-default'>00:00:00:328</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=23</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:20 AM</td>
+        <td>
+          The user276458227cannot log in due to invalid credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="24"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Login</p>
+            <p class="text-sm">
+              <span>10:05:20 AM</span> / <span>00:00:00:281</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Login</h5>
+<span class='badge badge-success'>12.15.2023 10:05:20 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:21 AM</span>
+<span class='badge badge-default'>00:00:00:281</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=24</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:21 AM</td>
+        <td>
+          The user5804349844cannot log in due to invalid credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="25"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Login</p>
+            <p class="text-sm">
+              <span>10:05:21 AM</span> / <span>00:00:00:289</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Login</h5>
+<span class='badge badge-success'>12.15.2023 10:05:21 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:21 AM</span>
+<span class='badge badge-default'>00:00:00:289</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=25</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:21 AM</td>
+        <td>
+          The user4781440808cannot log in due to invalid credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="26"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Login</p>
+            <p class="text-sm">
+              <span>10:05:21 AM</span> / <span>00:00:00:295</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Login</h5>
+<span class='badge badge-success'>12.15.2023 10:05:21 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:22 AM</span>
+<span class='badge badge-default'>00:00:00:295</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=26</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:22 AM</td>
+        <td>
+          The user9565223436cannot log in due to invalid credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="27"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Login</p>
+            <p class="text-sm">
+              <span>10:05:22 AM</span> / <span>00:00:00:300</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Login</h5>
+<span class='badge badge-success'>12.15.2023 10:05:22 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:22 AM</span>
+<span class='badge badge-default'>00:00:00:300</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=27</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:22 AM</td>
+        <td>
+          The user1667678975cannot log in due to invalid credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="28"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Login</p>
+            <p class="text-sm">
+              <span>10:05:23 AM</span> / <span>00:00:00:279</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Login</h5>
+<span class='badge badge-success'>12.15.2023 10:05:23 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:23 AM</span>
+<span class='badge badge-default'>00:00:00:279</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=28</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:23 AM</td>
+        <td>
+          The user6864291128cannot log in due to invalid credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="29"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Login</p>
+            <p class="text-sm">
+              <span>10:05:23 AM</span> / <span>00:00:00:320</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Login</h5>
+<span class='badge badge-success'>12.15.2023 10:05:23 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:24 AM</span>
+<span class='badge badge-default'>00:00:00:320</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=29</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:24 AM</td>
+        <td>
+          The user7561030268cannot log in due to invalid credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="30"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Login</p>
+            <p class="text-sm">
+              <span>10:05:24 AM</span> / <span>00:00:00:269</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Login</h5>
+<span class='badge badge-success'>12.15.2023 10:05:24 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:24 AM</span>
+<span class='badge badge-default'>00:00:00:269</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=30</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:24 AM</td>
+        <td>
+          The user2718114383cannot log in due to invalid credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="31"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Login</p>
+            <p class="text-sm">
+              <span>10:05:24 AM</span> / <span>00:00:00:308</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Login</h5>
+<span class='badge badge-success'>12.15.2023 10:05:24 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:25 AM</span>
+<span class='badge badge-default'>00:00:00:308</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=31</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:25 AM</td>
+        <td>
+          The user8896886236cannot log in due to invalid credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="32"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Login</p>
+            <p class="text-sm">
+              <span>10:05:25 AM</span> / <span>00:00:00:300</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Login</h5>
+<span class='badge badge-success'>12.15.2023 10:05:25 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:25 AM</span>
+<span class='badge badge-default'>00:00:00:300</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=32</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:25 AM</td>
+        <td>
+          The user9274210705cannot log in due to invalid credentials
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="33"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify User Dashboard before sell on YarsaBazar Signup</p>
+            <p class="text-sm">
+              <span>10:05:26 AM</span> / <span>00:00:10:395</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Verify User Dashboard before sell on YarsaBazar Signup</h5>
+<span class='badge badge-success'>12.15.2023 10:05:26 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:36 AM</span>
+<span class='badge badge-default'>00:00:10:395</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=33</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:05:27 AM</td>
+        <td>
+          Name changed successfully
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:05:27 AM</td>
         <td>
           Email updated successfully
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:11:04 PM</td>
+        <td>10:05:31 AM</td>
         <td>
-          Password updated successfully
+          Password changed successfully
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:11:24 PM</td>
+        <td>10:05:32 AM</td>
         <td>
-          Navigated back to vendor dashboard successfully
+          Search performed successfully
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:11:25 PM</td>
+        <td>10:05:33 AM</td>
         <td>
-          Didn't navigated to My Store page
+          order placed successfully
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:11:36 PM</td>
+        <td>10:05:34 AM</td>
         <td>
-          Request for Quote page opened successfully
+          Navigated to user account dashboard.
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:11:38 PM</td>
+        <td>10:05:36 AM</td>
         <td>
-          Request submitted successfully
+          User Logged out successfully
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="34"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Search</p>
+            <p class="text-sm">
+              <span>10:05:36 AM</span> / <span>00:00:00:751</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Verify the Search</h5>
+<span class='badge badge-success'>12.15.2023 10:05:36 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:37 AM</span>
+<span class='badge badge-default'>00:00:00:751</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=34</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:05:36 AM</td>
+        <td>
+          Item Banana is displaying recommendation
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:11:38 PM</td>
+        <td>10:05:36 AM</td>
         <td>
-          Navigated back to vendor dashboard successfully
+          Item Banana is clicked successfully
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:11:39 PM</td>
+        <td>10:05:37 AM</td>
         <td>
-          Navigated to Business Profile section
+          Returned back to dashborad successfully
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="fail" test-id="35"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Browse All Industries</p>
+            <p class="text-sm">
+              <span>10:05:37 AM</span> / <span>00:00:00:523</span>
+              <span class="badge fail-bg log float-right">Fail</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-fail">Verify the Browse All Industries</h5>
+<span class='badge badge-success'>12.15.2023 10:05:37 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:37 AM</span>
+<span class='badge badge-default'>00:00:00:523</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=35</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:37 AM</td>
+        <td>
+          Browse All Industries page did not opened.
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>10:05:37 AM</td>
+        <td>
+          Didn't returned to dashboard
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="36"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Verify the Footer</p>
+            <p class="text-sm">
+              <span>10:05:37 AM</span> / <span>00:00:00:656</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Verify the Footer</h5>
+<span class='badge badge-success'>12.15.2023 10:05:37 AM</span>
+<span class='badge badge-danger'>12.15.2023 10:05:38 AM</span>
+<span class='badge badge-default'>00:00:00:656</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=36</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>10:05:38 AM</td>
+        <td>
+          Privacy Policy is opened successfully
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:11:43 PM</td>
+        <td>10:05:38 AM</td>
         <td>
-          Navigated to Registration Details section
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:11:49 PM</td>
-        <td>
-          Navigated to Industries section
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:11:54 PM</td>
-        <td>
-          Navigated to Branches section
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:12:02 PM</td>
-        <td>
-          Navigated to Owners section
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:12:08 PM</td>
-        <td>
-          Navigated to Payment Methods section
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:12:14 PM</td>
-        <td>
-          Navigated to Store Images section
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:12:18 PM</td>
-        <td>
-          Navigated to Products section
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:12:23 PM</td>
-        <td>
-          Navigated to Draft section
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:12:27 PM</td>
-        <td>
-          Navigated to Waiting Approval section
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:12:31 PM</td>
-        <td>
-          Navigated to Rejected section
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:12:35 PM</td>
-        <td>
-          Navigated to Main site
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:12:37 PM</td>
-        <td>
-          Navigated to main site
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log pass-bg">Pass</span></td>
-        <td>2:12:39 PM</td>
-        <td>
-          User logged out successfully
+          Terms of Services is opened successfully
         </td>
       </tr>
   </tbody>
@@ -383,25 +1928,25 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Dec 14, 2023 02:10:39 PM</h3>
+<h3>Dec 15, 2023 10:04:14 AM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Dec 14, 2023 02:12:40 PM</h3>
+<h3>Dec 15, 2023 10:05:38 AM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Tests Passed</p>
-<h3>3</h3>
+<h3>4</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Tests Failed</p>
-<h3>0</h3>
+<h3>32</h3>
 </div></div>
 </div>
 </div>
@@ -417,12 +1962,12 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'>
-<b>3</b> tests passed
+<div><small data-tooltip='11%'>
+<b>4</b> tests passed
 </small>
 </div>
 <div>
-<small data-tooltip='0%'><b>0</b> tests failed,
+<small data-tooltip='88%'><b>32</b> tests failed,
 <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
@@ -440,9 +1985,9 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>28</b> events passed</small></div>
+<div><small data-tooltip='48%'><b>45</b> events passed</small></div>
 <div>
-<small data-tooltip='0%'><b>0</b> events failed,
+<small data-tooltip='51%'><b>48</b> events failed,
 <b data-tooltip='%'>0</b> others
 </small>
 </div>
@@ -459,7 +2004,7 @@
 </div></div>
 <script>
 var timeline = {
-"Launch website":0.088,"Verify the Login":4.45,"Verify User Dashboard":108.072
+"Launch website":0.097,"Verify SignUp":3.425,"Verify SignUp":3.775,"Verify SignUp":3.77,"Verify SignUp":3.765,"Verify SignUp":3.865,"Verify SignUp":3.742,"Verify SignUp":3.77,"Verify SignUp":3.879,"Verify SignUp":3.673,"Verify SignUp":3.851,"Verify SignUp":3.794,"Verify SignUp":3.821,"Verify SignUp":3.862,"Verify SignUp":3.867,"Verify SignUp":3.868,"Verify the otp":0.017,"Verify the Login":0.41,"Verify the Login":0.273,"Verify the Login":0.287,"Verify the Login":0.317,"Verify the Login":0.282,"Verify the Login":0.328,"Verify the Login":0.281,"Verify the Login":0.289,"Verify the Login":0.295,"Verify the Login":0.3,"Verify the Login":0.279,"Verify the Login":0.32,"Verify the Login":0.269,"Verify the Login":0.308,"Verify the Login":0.3,"Verify User Dashboard before sell on YarsaBazar Signup":10.395,"Verify the Search":0.751,"Verify the Browse All Industries":0.523,"Verify the Footer":0.656
 };
 </script>
 <div class="row">
@@ -468,8 +2013,8 @@ var timeline = {
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 3,
-failParent: 0,
+passParent: 4,
+failParent: 32,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
@@ -485,8 +2030,8 @@ warningGrandChild: 0,
 skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
-passEvents: 28,
-failEvents: 0,
+passEvents: 45,
+failEvents: 48,
 warningEvents: 0,
 skipEvents: 0,
 infoEvents: 0
