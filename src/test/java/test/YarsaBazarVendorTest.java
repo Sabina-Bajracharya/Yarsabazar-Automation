@@ -20,7 +20,7 @@ import static org.testng.Assert.assertEquals;
 
 public class YarsaBazarVendorTest {
 
-        private static WebDriver driver = null;
+        public static WebDriver driver = null;
 	Faker faker = new Faker();
         ExtentReports extent = new ExtentReports();
         ExtentSparkReporter spark = new ExtentSparkReporter("Extentreport.html");

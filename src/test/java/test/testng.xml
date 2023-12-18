@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="YarsaBazarSuite">
+
+    <test name="YarsaBazarTest_Chrome">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="test.YarsaBazarTest"/>
+        </classes>
+    </test>
+
+    <test name="YarsaBazarTest_Firefox">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="test.YarsaBazarTest"/>
+        </classes>
+    </test>
+
+</suite>

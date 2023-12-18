@@ -5,11 +5,7 @@ import YBtestData.ReadExcelFile;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
@@ -18,26 +14,25 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 
-public class YarsaBazarTest {
+public class YarsaBazarTest extends CrossBrowserScript{
 	Faker faker = new Faker();
-	private static WebDriver driver = null;
+	private WebDriver driver;
 
 	ExtentReports extent = new ExtentReports();
 	ExtentSparkReporter spark = new ExtentSparkReporter("Extentreport.html");
 	String actualBrowserURL = "https://www.yarsabazar.com/";
 
 	@BeforeTest
-	public void setUpTest() throws InterruptedException {
-
+	@Parameters("browser")
+	public void setUpTest(@Optional("chrome") String browser) throws Exception {
+		setup(browser);
 		extent.attachReporter(spark);
-
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\chromedriver-win64\\chromedriver.exe");
-		driver = new ChromeDriver();
 		driver.get("https://www.yarsabazar.com");
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
 	}
+
 
 
 	@Test(priority = 1)
