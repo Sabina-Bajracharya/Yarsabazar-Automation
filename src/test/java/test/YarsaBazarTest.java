@@ -35,7 +35,7 @@ public class YarsaBazarTest{
 			driver = new ChromeDriver();
 
 		}
-		//Check if parameter passed from TestNg is "firefox"
+		//Check if parameter passed from TestNg is "edge"
 		else if
 		(browser.equalsIgnoreCase("edge")) {
 			System.setProperty("webdriver.edge.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\edgedriver_win64\\msedgedriver.exe");
@@ -121,6 +121,7 @@ public class YarsaBazarTest{
 			test.fail("User" +phone+  "didn't signed up");
 			test.fail("Enter valid sign Up credentials");
 			Thread.sleep(2000);
+
 			signuppageobj.back_button();
 			Thread.sleep(2000);
 
