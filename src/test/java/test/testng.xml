@@ -1,0 +1,32 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="YarsaBazarSuite" parallel="tests">
+
+    <test name="YarsaBazarTest_Chrome">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="test.YarsaBazarTest"/>
+        </classes>
+    </test>
+
+    <test name="YarsaBazarTest_Edge">
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="test.YarsaBazarTest"/>
+        </classes>
+    </test>
+
+    <test name="YarsaBazarVendorTest_Chrome">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="test.YarsaBazarVendorTest"/>
+        </classes>
+    </test>
+
+    <test name="YarsaBazarVendorTest_Edge">
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="test.YarsaBazarVendorTest"/>
+        </classes>
+    </test>
+
+</suite>

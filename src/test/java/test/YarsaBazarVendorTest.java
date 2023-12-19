@@ -1,14 +1,15 @@
 package test;
 
+import YBtestData.ReadExcelFile;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.github.javafaker.Faker;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.*;
 import pages.UserDashboard;
 import pages.dashboard;
 import pages.loginPage;
@@ -17,18 +18,35 @@ import static org.testng.Assert.assertEquals;
 
 public class YarsaBazarVendorTest {
 
-        private static WebDriver driver = null;
-
+        public static WebDriver driver = null;
+		Faker faker = new Faker();
         ExtentReports extent = new ExtentReports();
         ExtentSparkReporter spark = new ExtentSparkReporter("Extentreport.html");
         String actualBrowserURL = "https://www.yarsabazar.com/";
 
         @BeforeTest
-        public void setUpTest() throws InterruptedException {
+		@Parameters("browser")
+		public void setup(@Optional("chrome") String browser) throws Exception{
+			System.out.println("Browser:" + browser);
+			//Check if parameter passed from TestNg is "chrome"
+			if
+			(browser.equalsIgnoreCase("chrome")) {
+				System.setProperty("webdriver.chrome.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\chromedriver-win64\\chromedriver.exe");
+				driver = new ChromeDriver();
 
+			}
+			//Check if parameter passed from TestNg is "edge"
+			else if
+			(browser.equalsIgnoreCase("edge")) {
+				System.setProperty("webdriver.edge.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\edgedriver_win64\\msedgedriver.exe");
+				driver = new EdgeDriver();
+			}
+			else
+			{
+				//If no browser passed throw exception
+				throw new Exception("Incorrect Browser");
+			}
             extent.attachReporter(spark);
-            System.setProperty("webdriver.chrome.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\chromedriver-win64\\chromedriver.exe");
-            driver = new ChromeDriver();
             driver.get("https://www.yarsabazar.com");
             driver.manage().window().maximize();
             Thread.sleep(3000);
@@ -80,11 +98,11 @@ public class YarsaBazarVendorTest {
                 test.fail("The user cannot click login link" +browserLoginURL );
             }
             loginpageobj.email_Input(PhoneNumber);
-            Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             loginpageobj.password_Input(Password);
-            Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
             loginpageobj.login_Click();
-            Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
             String browserLoggedInURL = driver.getCurrentUrl();
             String loggedInURL = loginpageobj.LoggedInURL;
@@ -106,16 +124,28 @@ public class YarsaBazarVendorTest {
         }
 
         @DataProvider(name = "loginData")
-        public Object[][] getLoginData(){
-            return new Object[][]{
+        public Object[][] getLoginData() {
 
-				{"9823579453", "Sabina12@34"}
+			ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\YarsaBazar_Automation\\YBtestCredentials.xlsx");
 
-            };
-        }
+			int rows = config.getRowCount(3);
+			Object[][] credentials = new Object[rows - 1 ][2];
 
-    	@Test(priority = 3, dataProvider = "UserUpdateData")
-	public void UserDashboardTest(String Name, String Email) throws InterruptedException {
+			// Assuming the headers are present, use getHeaders to skip the header row
+			String[] headers = config.getHeaders(3);
+
+			for (int i = 1; i < rows; i++) { // Start from 1 to skip the header row
+				credentials[i - 1][0] = config.getData(3, i, 0); // Adjust index to match the data row
+				credentials[i - 1][1] = config.getData(3, i, 1);
+			}
+			return credentials;
+
+
+		}
+
+
+    	@Test(priority = 3, dataProvider = "VendorRFQ")
+	public void UserDashboardTest(String Rfullname, String Rmobile,  String RproductName, String Rquantity, String Rdesc ) throws InterruptedException {
 		ExtentTest test = extent.createTest("Verify User Dashboard");
 		UserDashboard UserDashboardobj = new UserDashboard(driver);
 
@@ -125,7 +155,7 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.click_Full_Name_Update_button();
 		UserDashboardobj.clear_Full_Name_bar();
 		Thread.sleep(1000);
-		UserDashboardobj.edit_Full_Name_bar(Name);
+		UserDashboardobj.edit_Full_Name_bar(faker.name().fullName());
 		Thread.sleep(1000);
 		UserDashboardobj.click_buttton_Full_Name_Savechange();
 		Thread.sleep(1000);
@@ -134,7 +164,7 @@ public class YarsaBazarVendorTest {
 		Thread.sleep(1000);
 		UserDashboardobj.clear_Email_bar();
 		Thread.sleep(1000);
-		UserDashboardobj.edit_Email_bar(Email);
+		UserDashboardobj.edit_Email_bar(faker.internet().emailAddress());
 		Thread.sleep(1000);
 		UserDashboardobj.click_Email_savechange_button();
             test.pass("Email updated successfully");
@@ -147,46 +177,42 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.Change_Password_button_click();
 		Thread.sleep(1000);
             test.pass("Password updated successfully");
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		UserDashboardobj.click_account_details();
-		Thread.sleep(1000);
+			Thread.sleep(3000);
+		UserDashboardobj.click_my_details();
+			Thread.sleep(3000);
 		UserDashboardobj.click_Email_Verify_Button();
-		Thread.sleep(1000);
+			Thread.sleep(3000);
 		UserDashboardobj.verify_email_cancel();
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		UserDashboardobj.click_help_button();
-		UserDashboardobj.drop_Account_information();
-		UserDashboardobj.drop_negotiation();
-		UserDashboardobj.drop_shopping();
-		UserDashboardobj.drop_user_onboarding_process();
-		Thread.sleep(2000);
-		UserDashboardobj.drop_user_dashboard_help_content();
-		Thread.sleep(1000);
-		UserDashboardobj.drop_Account_information();
-		UserDashboardobj.drop_negotiation();
-		UserDashboardobj.drop_shopping();
-		Thread.sleep(1000);
-		UserDashboardobj.drop_user_onboarding_process();
-		Thread.sleep(2000);
-		UserDashboardobj.drop_user_dashboard_help_content();
-		Thread.sleep(2000);
-		driver.navigate().refresh();
-		Thread.sleep(2000);
-		UserDashboardobj.input_user_dashboard_Search_bar("rose");
 		Thread.sleep(3000);
-		UserDashboardobj.search_rose_input_click();
-		Thread.sleep(1000);
-		UserDashboardobj.input_product_name("Red Rose");
+		UserDashboardobj.click_help_button();
+			Thread.sleep(1000);
+		UserDashboardobj.drop_Account_information();
+			Thread.sleep(1000);
+		UserDashboardobj.drop_negotiation();
+			Thread.sleep(1000);
+		UserDashboardobj.drop_shopping();
+			Thread.sleep(1000);
+		UserDashboardobj.drop_user_onboarding_process();
+			Thread.sleep(1000);
+		driver.navigate().refresh();
+			Thread.sleep(1000);
+		UserDashboardobj.input_user_dashboard_Search_bar(faker.commerce().color());
+			Thread.sleep(1000);
+		UserDashboardobj.item_searched_click(Keys.ENTER);
+			Thread.sleep(1000);
+			UserDashboardobj.first_Category_click();
+			Thread.sleep(1000);
+		UserDashboardobj.input_product_name(faker.food().fruit());
 		UserDashboardobj.phone_number_input("9823579453");
-		UserDashboardobj.full_name_input("Sabina Bajra");
-		UserDashboardobj.input_email_address("sabina1@gmail.com");
-		UserDashboardobj.input_description("I need Red rose in full fresh condition.");
+		UserDashboardobj.full_name_input(faker.name().fullName());
+		UserDashboardobj.input_email_address(faker.internet().emailAddress());
+		UserDashboardobj.input_description(faker.lorem().word());
 		UserDashboardobj.input_submit();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_dismiss();
 		driver.navigate().to("https://www.yarsabazar.com/vendor/products");
             test.pass("Navigated back to vendor dashboard successfully");
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_My_store_page();
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/seller/sabina"))
 		{
@@ -196,19 +222,21 @@ public class YarsaBazarVendorTest {
 			test.pass("Didn't navigated to My Store page");
 		}
 		UserDashboardobj.click_company_info();
-		Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_products();
-		Thread.sleep(3000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_image_slide_left();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_slide_right();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.navigate().refresh();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_dashboard();
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_request_for_quote();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		//RFQ section
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/rfq")){
 			test.pass("Request for Quote page opened successfully");
 		}
@@ -216,44 +244,45 @@ public class YarsaBazarVendorTest {
 			test.fail("Request for Quote page didn't opened");
 		}
 
-		UserDashboardobj.input_fullname_request("Sabina Bajra");
-		UserDashboardobj.input_MobileNumber_request("9823579453");
-		UserDashboardobj.input_ProductName_request("Boat earphones");
-		UserDashboardobj.input_quantity_request("18");
-		UserDashboardobj.input_More_Information_request("I need good quality Boat earphones before Tihar");
+		UserDashboardobj.input_fullname_request(Rfullname);
+		UserDashboardobj.input_MobileNumber_request(Rmobile);
+		UserDashboardobj.input_ProductName_request(RproductName);
+		UserDashboardobj.input_quantity_request(Rquantity);
+		UserDashboardobj.input_More_Information_request(Rdesc);
 		UserDashboardobj.click_submit_request();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_dismiss_request();
 		test.pass("Request submitted successfully");
 		driver.navigate().to("https://www.yarsabazar.com/vendor/products");
 		test.pass("Navigated back to vendor dashboard successfully");
 
+
 		///for business infromation section
 		UserDashboardobj.click_business_information();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/profile")){
 			test.pass("Navigated to Business Profile section");
 		}
 		else {
 			test.fail("Business Profile section didnot opened");
 		}
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.edit_busines_details();
 		UserDashboardobj.update_business_details();
 		UserDashboardobj.click_registration_details();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/registration-details")){
 				test.pass("Navigated to Registration Details section");
 			}
 			else {
 				test.fail("Registration Details section didnot opened");
 			}
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.edit_registration_Details();
 		UserDashboardobj.click_cancel_registration_details();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_industries();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/industries")){
 				test.pass("Navigated to Industries section");
 			}
@@ -261,9 +290,9 @@ public class YarsaBazarVendorTest {
 				test.fail("Industries section didnot opened");
 			}
 //		UserDashboardobj.add_industries();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_branches();
-			Thread.sleep(2000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/branches")){
 				test.pass("Navigated to Branches section");
 			}
@@ -283,24 +312,24 @@ public class YarsaBazarVendorTest {
 			else {
 				test.fail("Owners section didnot opened");
 			}
-
+		driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 		UserDashboardobj.click_add_owners();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 		UserDashboardobj.click_cancel_add_owners();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 		UserDashboardobj.click_payment_methods();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/payment-methods")){
 				test.pass("Navigated to Payment Methods section");
 			}
 			else {
 				test.fail("Payment Methods section didnot opened");
 			}
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 		UserDashboardobj.click_cash_payement_method();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 		UserDashboardobj.click_store_iamges();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/store-images")){
 				test.pass("Navigated to Store Images section");
 			}
@@ -311,70 +340,87 @@ public class YarsaBazarVendorTest {
 
 			////for Products section
 			UserDashboardobj.click_products_active();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products")){
 				test.pass("Navigated to Products section");
 			}
 			else {
 				test.fail("Products section didnot opened");
 			}
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			UserDashboardobj.click_drafts();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products?status=draft")){
 				test.pass("Navigated to Draft section");
 			}
 			else {
 				test.fail("Draft section didnot opened");
 			}
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			UserDashboardobj.click_waiting_approval();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products?status=waiting_approval")){
 				test.pass("Navigated to Waiting Approval section");
 			}
 			else {
 				test.fail("Waiting Approval section didnot opened");
 			}
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			UserDashboardobj.click_rejected();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products?status=rejected")){
+				Thread.sleep(1000);
 				test.pass("Navigated to Rejected section");
 			}
 			else {
 				test.fail("Rejected section didnot opened");
 			}
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 
 ////for logout
 		UserDashboardobj.click_back_to_main_site();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")){
+				Thread.sleep(1000);
 				test.pass("Navigated to Main site");
 			}
 			else {
 				test.fail("Main site didnot opened");
 			}
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		test.pass("Navigated to main site");
 		UserDashboardobj.click_profile_button();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.click_logout_button();
-		Thread.sleep(1000);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")){
-			test.pass("User" +Name+ "logged out successfully");
+			test.pass("User logged out successfully");
 		}
 		else {
-			test.fail("User" +Name+ "didn't logged out");
+			test.fail("User didn't logged out");
 		}
 	}
 
-	@DataProvider(name = "UserUpdateData")
-	public Object[][] getuserUpdateData(){
-		return new Object[][]{
-				{"Sabina Bajracharya", "sabina1@gmail.com"}
-		};
+	@DataProvider(name = "VendorRFQ")
+	public Object[][] getuserUpdateData() {
+		ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\YarsaBazar_Automation\\YBtestCredentials.xlsx");
+
+		int rows = config.getRowCount(4);
+		Object[][] credentials = new Object[rows - 1 ][5];
+
+		// Assuming the headers are present, use getHeaders to skip the header row
+		String[] headers = config.getHeaders(4);
+
+		for (int i = 1; i < rows; i++) { // Start from 1 to skip the header row
+			credentials[i - 1][0] = config.getData(4, i, 0); // Adjust index to match the data row
+			credentials[i - 1][1] = config.getData(4, i, 1);
+			credentials[i - 1][2] = config.getData(4, i, 2); // Adjust index to match the data row
+			credentials[i - 1][3] = config.getData(4, i, 3);
+			credentials[i - 1][4] = config.getData(4, i, 4); // Adjust index to match the data row
+
+		}
+		return credentials;
+
 	}
 
     @AfterTest
