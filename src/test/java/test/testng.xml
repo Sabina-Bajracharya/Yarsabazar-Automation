@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="YarsaBazarSuite">
+<suite name="YarsaBazarSuite" parallel="tests">
 
     <test name="YarsaBazarTest_Chrome">
         <parameter name="browser" value="chrome"/>
@@ -8,8 +8,8 @@
         </classes>
     </test>
 
-    <test name="YarsaBazarTest_Firefox">
-        <parameter name="browser" value="firefox"/>
+    <test name="YarsaBazarTest_Edge">
+        <parameter name="browser" value="edge"/>
         <classes>
             <class name="test.YarsaBazarTest"/>
         </classes>

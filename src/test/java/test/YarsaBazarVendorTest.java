@@ -21,7 +21,7 @@ import static org.testng.Assert.assertEquals;
 public class YarsaBazarVendorTest {
 
         public static WebDriver driver = null;
-	Faker faker = new Faker();
+		Faker faker = new Faker();
         ExtentReports extent = new ExtentReports();
         ExtentSparkReporter spark = new ExtentSparkReporter("Extentreport.html");
         String actualBrowserURL = "https://www.yarsabazar.com/";
@@ -168,26 +168,23 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.click_Email_Verify_Button();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardobj.verify_email_cancel();
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-		UserDashboardobj.click_help_button();
-			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(3000);
 		UserDashboardobj.drop_Account_information();
-			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			Thread.sleep(3000);
 		UserDashboardobj.drop_negotiation();
-			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			Thread.sleep(3000);
 		UserDashboardobj.drop_shopping();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			Thread.sleep(3000);
 		UserDashboardobj.drop_user_onboarding_process();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+			Thread.sleep(3000);
 		driver.navigate().refresh();
-			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+			Thread.sleep(3000);
 		UserDashboardobj.input_user_dashboard_Search_bar(faker.commerce().color());
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			Thread.sleep(3000);
 		UserDashboardobj.item_searched_click(Keys.ENTER);
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			Thread.sleep(3000);
 			UserDashboardobj.first_Category_click();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			Thread.sleep(3000);
 		UserDashboardobj.input_product_name(faker.food().fruit());
 		UserDashboardobj.phone_number_input("9823579453");
 		UserDashboardobj.full_name_input(faker.name().fullName());

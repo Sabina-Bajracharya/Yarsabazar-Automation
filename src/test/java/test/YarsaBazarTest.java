@@ -5,6 +5,8 @@ import YBtestData.ReadExcelFile;
 import com.github.javafaker.Faker;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.*;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -14,29 +16,46 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 
-public class YarsaBazarTest extends CrossBrowserScript{
+public class YarsaBazarTest{
+	public static WebDriver driver = null;
 	Faker faker = new Faker();
-	private WebDriver driver;
-
 	ExtentReports extent = new ExtentReports();
 	ExtentSparkReporter spark = new ExtentSparkReporter("Extentreport.html");
 	String actualBrowserURL = "https://www.yarsabazar.com/";
 
+
 	@BeforeTest
 	@Parameters("browser")
-	public void setUpTest(@Optional("chrome") String browser) throws Exception {
-		setup(browser);
+	public void setup(@Optional("chrome") String browser) throws Exception{
+		System.out.println("Browser:" + browser);
+		//Check if parameter passed from TestNg is "chrome"
+		if
+		(browser.equalsIgnoreCase("chrome")) {
+			System.setProperty("webdriver.chrome.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\chromedriver-win64\\chromedriver.exe");
+			driver = new ChromeDriver();
+
+		}
+		//Check if parameter passed from TestNg is "firefox"
+		else if
+		(browser.equalsIgnoreCase("edge")) {
+			System.setProperty("webdriver.edge.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\edgedriver_win64\\msedgedriver.exe");
+			driver = new EdgeDriver();
+		}
+		else
+		{
+			//If no browser passed throw exception
+			throw new Exception("Incorrect Browser");
+		}
+
 		extent.attachReporter(spark);
 		driver.get("https://www.yarsabazar.com");
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 	}
 
-
-
 	@Test(priority = 1)
-	public void dashboardTest() {
+	public void dashboardTest() throws InterruptedException {
 		ExtentTest test = extent.createTest("Launch website");
 		dashboard dashboardobject = new dashboard(driver);
 
@@ -60,8 +79,9 @@ public class YarsaBazarTest extends CrossBrowserScript{
 			else {
 				test.fail("Didn't landed on the correct dashboard");
 			}
-
+		Thread.sleep(3000);
 	}
+
 
 
 	@Test(priority = 2, dataProvider = "signUpData")
@@ -71,9 +91,8 @@ public class YarsaBazarTest extends CrossBrowserScript{
 		ExtentTest test = extent.createTest("Verify SignUp");
 
 		signUpPage signuppageobj = new signUpPage(driver);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		signuppageobj.click_SignUp_Button();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 
 		String browserSignUpURL = driver.getCurrentUrl();
 		String actualsignupURL = signuppageobj.actualSignUpURL;
@@ -101,9 +120,10 @@ public class YarsaBazarTest extends CrossBrowserScript{
 		else {
 			test.fail("User" +phone+  "didn't signed up");
 			test.fail("Enter valid sign Up credentials");
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			Thread.sleep(2000);
 			signuppageobj.back_button();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			Thread.sleep(2000);
+
 		}
 	}
 
@@ -301,37 +321,39 @@ public class YarsaBazarTest extends CrossBrowserScript{
 		test.pass("Password changed successfully");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_Email_Verify_Button();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.verify_email_cancel();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_help_button();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(3000);
 		UserDashboardBeforeobj.drop_Account_information();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(3000);
 		UserDashboardBeforeobj.drop_negotiation();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(3000);
 		UserDashboardBeforeobj.drop_shopping();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(3000);
 		UserDashboardBeforeobj.drop_user_onboarding_process();
-//		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-//		UserDashboardBeforeobj.drop_user_dashboard_help_content();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(3000);
+		UserDashboardBeforeobj.drop_user_dashboard_help_content();
+		Thread.sleep(3000);
 		UserDashboardBeforeobj.drop_Account_information();
+		Thread.sleep(3000);
 		UserDashboardBeforeobj.drop_negotiation();
+		Thread.sleep(3000);
 		UserDashboardBeforeobj.drop_shopping();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(3000);
 		UserDashboardBeforeobj.drop_user_onboarding_process();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-//		UserDashboardBeforeobj.drop_user_dashboard_help_content();
-//		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		Thread.sleep(3000);
+		UserDashboardBeforeobj.drop_user_dashboard_help_content();
+		Thread.sleep(3000);
 		driver.navigate().refresh();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(3000);
 		UserDashboardBeforeobj.input_user_dashboard_Search_bar(searchItem);
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(3000);
 		UserDashboardBeforeobj.click_user_dashboard_search(Keys.ENTER);
 		test.pass("Search performed successfully");
 		UserDashboardBeforeobj.click_fist_category();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.input_product_name(searchItem);
 		UserDashboardBeforeobj.phone_number_input(phone);
 		UserDashboardBeforeobj.full_name_input(fullname);
@@ -410,7 +432,7 @@ public class YarsaBazarTest extends CrossBrowserScript{
 		else{
 			test.fail("Didn't returned to dashboard");
 		}
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	@DataProvider(name = "SearchData")
@@ -425,9 +447,9 @@ public class YarsaBazarTest extends CrossBrowserScript{
 	public void industriesTest()throws InterruptedException{
 		ExtentTest test = extent.createTest("Verify the Browse All Industries");
 		IndustriesPage Industriesobj = new IndustriesPage(driver);
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(3000);
 		Industriesobj.click_browse_all_industries();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(3000);
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/industries")) {
 			test.pass("Browse All Industries page is opened successfully");
 		}
@@ -436,7 +458,7 @@ public class YarsaBazarTest extends CrossBrowserScript{
 		}
 
 		Industriesobj.click_back_to_dashboard();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		Thread.sleep(3000);
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")) {
 			test.pass("Returned back to Dashboard from Browse All Industries page ");
 		}
