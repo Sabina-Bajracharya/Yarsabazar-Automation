@@ -15,6 +15,15 @@
         </classes>
     </test>
 
+    <test name="YarsaBazarTest_Firefox">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="test.YarsaBazarTest"/>
+        </classes>
+    </test>
+
+
+
     <test name="YarsaBazarVendorTest_Chrome">
         <parameter name="browser" value="chrome"/>
         <classes>

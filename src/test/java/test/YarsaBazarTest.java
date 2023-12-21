@@ -7,6 +7,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -26,7 +27,7 @@ public class YarsaBazarTest{
 
 	@BeforeTest
 	@Parameters("browser")
-	public void setup(@Optional("chrome") String browser) throws Exception{
+	public void setup(@Optional("firefox") String browser) throws Exception{
 		System.out.println("Browser:" + browser);
 		//Check if parameter passed from TestNg is "chrome"
 		if
@@ -37,9 +38,12 @@ public class YarsaBazarTest{
 		}
 		//Check if parameter passed from TestNg is "edge"
 		else if
-		(browser.equalsIgnoreCase("edge")) {
-			System.setProperty("webdriver.edge.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\edgedriver_win64\\msedgedriver.exe");
-			driver = new EdgeDriver();
+		(browser.equalsIgnoreCase("firefox")) {
+			System.setProperty("webdriver.gecko.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\geckodriver-v0.33.0-win64\\geckodriver.exe");
+			driver = new FirefoxDriver();
+//		(browser.equalsIgnoreCase("edge")) {
+//			System.setProperty("webdriver.edge.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\edgedriver_win64\\msedgedriver.exe");
+//			driver = new EdgeDriver();
 		}
 		else
 		{
@@ -229,17 +233,7 @@ public class YarsaBazarTest{
 		loginPage loginpageobj = new loginPage(driver);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.navigate().to("https://www.yarsabazar.com/login");
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-//		String browserLoginURL = driver.getCurrentUrl();
-//		String loginURL = loginpageobj.LoginURL;
-////
-//		assertEquals(browserLoginURL, loginURL);
-//		if ( browserLoginURL.equals(loginURL)){
-//			test.pass("The Login url is: " + browserLoginURL);
-//		}
-//		else {
-//			test.fail("The usercannot click login link" +browserLoginURL );
-//		}
+
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		loginpageobj.email_Input(PhoneNumber);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -250,6 +244,7 @@ public class YarsaBazarTest{
 
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/account")){
 			test.pass("The user"+ PhoneNumber + "is Logged in successfully");
+			driver.navigate().to("https://www.yarsabazar.com/account");
 			loginpageobj.profile_button_click();
 			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 			loginpageobj.logout_Click();
@@ -291,33 +286,38 @@ public class YarsaBazarTest{
 		ExtentTest test = extent.createTest("Verify User Dashboard before sell on YarsaBazar Signup");
 		UserDashboardBefore UserDashboardBeforeobj = new UserDashboardBefore(driver);
 		driver.navigate().to("https://www.yarsabazar.com/");
+		driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_login_button();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.input_email("9762784654");
 		UserDashboardBeforeobj.input_password("Simran@1");
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_logins_buttons();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_Full_Name_Update_button();
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.clear_Full_Name_bar();
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.edit_Full_Name_bar(faker.name().fullName());
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_buttton_Full_Name_Savechange();
 		test.pass("Name changed successfully");
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_Email_Update_button();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.clear_Email_bar();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.edit_Email_bar(faker.internet().emailAddress());
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 //		UserDashboardBeforeobj.click_Email_savechange_button();
 		test.pass("Email updated successfully");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_Change_Password();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.input_New_Password_field("Simran@1");
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.input_confirm_New_Password_field("Simran@1");
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.Change_Password_button_click();
 		test.pass("Password changed successfully");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -326,31 +326,31 @@ public class YarsaBazarTest{
 		UserDashboardBeforeobj.verify_email_cancel();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_help_button();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		UserDashboardBeforeobj.drop_Account_information();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		UserDashboardBeforeobj.drop_negotiation();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		UserDashboardBeforeobj.drop_shopping();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		UserDashboardBeforeobj.drop_user_onboarding_process();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		UserDashboardBeforeobj.drop_user_dashboard_help_content();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		UserDashboardBeforeobj.drop_Account_information();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		UserDashboardBeforeobj.drop_negotiation();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		UserDashboardBeforeobj.drop_shopping();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		UserDashboardBeforeobj.drop_user_onboarding_process();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		UserDashboardBeforeobj.drop_user_dashboard_help_content();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		driver.navigate().refresh();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		UserDashboardBeforeobj.input_user_dashboard_Search_bar(searchItem);
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		UserDashboardBeforeobj.click_user_dashboard_search(Keys.ENTER);
 		test.pass("Search performed successfully");
 		UserDashboardBeforeobj.click_fist_category();
