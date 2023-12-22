@@ -7,7 +7,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -27,7 +26,7 @@ public class YarsaBazarTest{
 
 	@BeforeTest
 	@Parameters("browser")
-	public void setup(@Optional("firefox") String browser) throws Exception{
+	public void setup(@Optional("chrome") String browser) throws Exception{
 		System.out.println("Browser:" + browser);
 		//Check if parameter passed from TestNg is "chrome"
 		if
@@ -38,12 +37,14 @@ public class YarsaBazarTest{
 		}
 		//Check if parameter passed from TestNg is "edge"
 		else if
-		(browser.equalsIgnoreCase("firefox")) {
-			System.setProperty("webdriver.gecko.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\geckodriver-v0.33.0-win64\\geckodriver.exe");
-			driver = new FirefoxDriver();
-//		(browser.equalsIgnoreCase("edge")) {
-//			System.setProperty("webdriver.edge.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\edgedriver_win64\\msedgedriver.exe");
-//			driver = new EdgeDriver();
+//		(browser.equalsIgnoreCase("firefox")) {
+//			System.setProperty("webdriver.gecko.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\geckodriver-v0.33.0-win64\\geckodriver.exe");
+//			driver = new FirefoxDriver();
+
+
+		(browser.equalsIgnoreCase("edge")) {
+			System.setProperty("webdriver.edge.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\edgedriver_win64\\msedgedriver.exe");
+			driver = new EdgeDriver();
 		}
 		else
 		{
@@ -81,7 +82,7 @@ public class YarsaBazarTest{
 				test.pass("Successfully landed on the correct dashboard");
 			}
 			else {
-				test.fail("Didn't landed on the correct dashboard");
+				test.fail("Didn't land on the correct dashboard");
 			}
 		Thread.sleep(3000);
 	}
@@ -122,7 +123,7 @@ public class YarsaBazarTest{
 			test.pass("User redirected to the otp verification");
 		}
 		else {
-			test.fail("User" +phone+  "didn't signed up");
+			test.fail("User" +phone+  "didn't sign up");
 			test.fail("Enter valid sign Up credentials");
 			Thread.sleep(2000);
 
@@ -137,17 +138,17 @@ public class YarsaBazarTest{
 	public Object[][] getSignupData() {
 			ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\YarsaBazar_Automation\\YBtestCredentials.xlsx");
 
-			int rows = config.getRowCount(1); // Change sheet index to 1
+			int rows = config.getRowCount(0); // Change sheet index to 1
 			Object[][] credentials = new Object[rows - 1][4]; // Adjusted to handle 4 input fields
 
 			// Assuming the headers are present, use getHeaders to skip the header row
-			String[] headers = config.getHeaders(1); // Change sheet index to 1
+			String[] headers = config.getHeaders(0); // Change sheet index to 1
 
 			for (int i = 1; i < rows; i++) { // Start from 1 to skip the header row
-				credentials[i - 1][0] = config.getData(1, i, 0); // Adjust index to match the data row
-				credentials[i - 1][1] = config.getData(1, i, 1);
-				credentials[i - 1][2] = config.getData(1, i, 2);
-				credentials[i - 1][3] = config.getData(1, i, 3);
+				credentials[i - 1][0] = config.getData(0, i, 0); // Adjust index to match the data row
+				credentials[i - 1][1] = config.getData(0, i, 1);
+				credentials[i - 1][2] = config.getData(0, i, 2);
+				credentials[i - 1][3] = config.getData(0, i, 3);
 			}
 
 			return credentials;
@@ -271,11 +272,11 @@ public class YarsaBazarTest{
 		Object[][] credentials = new Object[rows - 1 ][2];
 
 			// Assuming the headers are present, use getHeaders to skip the header row
-			String[] headers = config.getHeaders(0);
+			String[] headers = config.getHeaders(1);
 
 			for (int i = 1; i < rows; i++) { // Start from 1 to skip the header row
-				credentials[i - 1][0] = config.getData(0, i, 0); // Adjust index to match the data row
-				credentials[i - 1][1] = config.getData(0, i, 1);
+				credentials[i - 1][0] = config.getData(0, i, 1); // Adjust index to match the data row
+				credentials[i - 1][1] = config.getData(0, i, 3);
 			}
 		return credentials;
 	}
@@ -293,6 +294,11 @@ public class YarsaBazarTest{
 		UserDashboardBeforeobj.input_password("Simran@1");
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_logins_buttons();
+		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/account")){
+			test.pass("The user 9762784654 is Logged in successfully");
+		} else {
+			test.fail("The user 9762784654 cannot log in due to invalid credentials");
+		}
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_Full_Name_Update_button();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -309,7 +315,6 @@ public class YarsaBazarTest{
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.edit_Email_bar(faker.internet().emailAddress());
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//		UserDashboardBeforeobj.click_Email_savechange_button();
 		test.pass("Email updated successfully");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_Change_Password();
@@ -396,18 +401,18 @@ public class YarsaBazarTest{
 	public Object[][] getUserDataBefore(){
 			ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\YarsaBazar_Automation\\YBtestCredentials.xlsx");
 
-			int rows = config.getRowCount(2);
+			int rows = config.getRowCount(1);
 			Object[][] credentials = new Object[rows - 1 ][5];
 
 			// Assuming the headers are present, use getHeaders to skip the header row
-			String[] headers = config.getHeaders(2);
+			String[] headers = config.getHeaders(1);
 
 			for (int i = 1; i < rows; i++) { // Start from 1 to skip the header row
-				credentials[i - 1][0] = config.getData(2, i, 0); // Adjust index to match the data row
-				credentials[i - 1][1] = config.getData(2, i, 1);
-				credentials[i - 1][2] = config.getData(2, i, 2); // Adjust index to match the data row
-				credentials[i - 1][3] = config.getData(2, i, 3);
-				credentials[i - 1][4] = config.getData(2, i, 4); // Adjust index to match the data row
+				credentials[i - 1][0] = config.getData(1, i, 0); // Adjust index to match the data row
+				credentials[i - 1][1] = config.getData(1, i, 1);
+				credentials[i - 1][2] = config.getData(1, i, 2); // Adjust index to match the data row
+				credentials[i - 1][3] = config.getData(1, i, 3);
+				credentials[i - 1][4] = config.getData(1, i, 4); // Adjust index to match the data row
 
 			}
 			return credentials;
@@ -498,7 +503,7 @@ public class YarsaBazarTest{
 		}
 		else
 		{
-			test.fail("Terms of Services didn't opened");
+			test.fail("Terms of Services didn't open");
 		}
 	}
 

@@ -5,10 +5,13 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.github.javafaker.Faker;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import pages.UserDashboard;
 import pages.dashboard;
@@ -23,6 +26,7 @@ public class YarsaBazarVendorTest {
         ExtentReports extent = new ExtentReports();
         ExtentSparkReporter spark = new ExtentSparkReporter("Extentreport.html");
         String actualBrowserURL = "https://www.yarsabazar.com/";
+//	WebDriverWait wait = new WebDriverWait(driver,20, 12 );
 
         @BeforeTest
 		@Parameters("browser")
@@ -128,15 +132,15 @@ public class YarsaBazarVendorTest {
 
 			ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\YarsaBazar_Automation\\YBtestCredentials.xlsx");
 
-			int rows = config.getRowCount(3);
+			int rows = config.getRowCount(2);
 			Object[][] credentials = new Object[rows - 1 ][2];
 
 			// Assuming the headers are present, use getHeaders to skip the header row
-			String[] headers = config.getHeaders(3);
+			String[] headers = config.getHeaders(2);
 
 			for (int i = 1; i < rows; i++) { // Start from 1 to skip the header row
-				credentials[i - 1][0] = config.getData(3, i, 0); // Adjust index to match the data row
-				credentials[i - 1][1] = config.getData(3, i, 1);
+				credentials[i - 1][0] = config.getData(2, i, 0); // Adjust index to match the data row
+				credentials[i - 1][1] = config.getData(2, i, 1);
 			}
 			return credentials;
 
@@ -184,7 +188,9 @@ public class YarsaBazarVendorTest {
 			Thread.sleep(3000);
 		UserDashboardobj.verify_email_cancel();
 		Thread.sleep(3000);
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//header/div[1]/div[1]/div[1]/ul[1]/li[1]/button[1]")));
 		UserDashboardobj.click_help_button();
+//			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Account Information')]")));
 			Thread.sleep(1000);
 		UserDashboardobj.drop_Account_information();
 			Thread.sleep(1000);
@@ -261,6 +267,7 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.click_business_information();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/profile")){
+			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 			test.pass("Navigated to Business Profile section");
 		}
 		else {
@@ -272,6 +279,7 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.click_registration_details();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/registration-details")){
+				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 				test.pass("Navigated to Registration Details section");
 			}
 			else {
@@ -284,6 +292,7 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.click_industries();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/industries")){
+				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 				test.pass("Navigated to Industries section");
 			}
 			else {
@@ -294,6 +303,7 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.click_branches();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/branches")){
+				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 				test.pass("Navigated to Branches section");
 			}
 			else {
@@ -307,12 +317,13 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.click_owners();
 			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/owners")){
+				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 				test.pass("Navigated to Owners section");
 			}
 			else {
 				test.fail("Owners section didnot opened");
 			}
-		driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		UserDashboardobj.click_add_owners();
 			Thread.sleep(1000);
 		UserDashboardobj.click_cancel_add_owners();
@@ -405,18 +416,18 @@ public class YarsaBazarVendorTest {
 	public Object[][] getuserUpdateData() {
 		ReadExcelFile config = new ReadExcelFile("C:\\Users\\hp\\YarsaBazar_Automation\\YBtestCredentials.xlsx");
 
-		int rows = config.getRowCount(4);
+		int rows = config.getRowCount(1);
 		Object[][] credentials = new Object[rows - 1 ][5];
 
 		// Assuming the headers are present, use getHeaders to skip the header row
-		String[] headers = config.getHeaders(4);
+		String[] headers = config.getHeaders(1);
 
 		for (int i = 1; i < rows; i++) { // Start from 1 to skip the header row
-			credentials[i - 1][0] = config.getData(4, i, 0); // Adjust index to match the data row
-			credentials[i - 1][1] = config.getData(4, i, 1);
-			credentials[i - 1][2] = config.getData(4, i, 2); // Adjust index to match the data row
-			credentials[i - 1][3] = config.getData(4, i, 3);
-			credentials[i - 1][4] = config.getData(4, i, 4); // Adjust index to match the data row
+			credentials[i - 1][0] = config.getData(1, i, 2); // Adjust index to match the data row
+			credentials[i - 1][1] = config.getData(1, i, 1);
+			credentials[i - 1][2] = config.getData(1, i, 5); // Adjust index to match the data row
+			credentials[i - 1][3] = config.getData(1, i, 6);
+			credentials[i - 1][4] = config.getData(1, i, 4); // Adjust index to match the data row
 
 		}
 		return credentials;
