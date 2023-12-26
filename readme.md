@@ -10,9 +10,11 @@ Before running the tests, make sure you have the following prerequisites set up:
 - Selenium WebDriver
 - TestNG
 - Chrome WebDriver
+- Edge WebDriver
 - Extent Reports
 - YarsaBazar website URL
 - Maven Dependencies
+- Microsoft Excel
 
 ## Installation
 1. Install the "IntelliJ IDEA Community Edition" version of Intellij from this link https://www.jetbrains.com/idea/download/?section=windows based on your OS.
@@ -28,15 +30,15 @@ Before running the tests, make sure you have the following prerequisites set up:
 5. Click on Maven symbol shown on the image below to load all the presented Maven Dependencies.
 6. The Maven Dependencies consist of  Selenium Webdriver, junit, testng, and extent reports.
 7. Optional -> [If required you can search for maven dependencies from this link https://mvnrepository.com/ ]
-8. Copy the full path of your chrome driver from your local device.
-9. Replace the existing chrome driver path with your local chrome driver path.
-8. Run the test by right-clicking on YarsabazarTest and click on run.
-9. Leave the automation browser till it closes itself to generate the real time report.
-10. If the automated browser is closed before finishing the automation, the real time report will not overwrite.
-11. Right Click on Extentreport.html then click on open in browser to see the html report.
+8. Copy the full path of your chrome driver and edge driverfrom your local device. 
+9. Replace the current paths for the Chrome driver and Edge driver with the respective paths on your local machine. 
+10. Select the preferred browser for execution and replace it with the current browser option in @parameter section. 
+11. Run the test by right-clicking on YarsabazarTest and click on run. 
+12. Leave the automation browser till it closes itself to generate the real time report. 
+13. If the automated browser is closed before finishing the automation, the real time report will not overwrite. 
+14. Right Click on Extentreport.html then click on open in browser to see the html report.
 
 ## Running Tests
-
 
 The main test class to execute is `YarsaBazarTest`.
 The vendor test class to execute is `YarsaBazarVendorTest`.
@@ -57,3 +59,6 @@ getSignUpData: Provides data for testing the sign-up process.
 getLoginData: Provides data for testing the login process.
 getSearchData: Provides data for testing the search functionality.
 
+A data provider employs the Faker library for creating simulated data and relies on an Excel sheet to extract information from an integrated Excel file.
+
+For Excel data, information is stored in a Microsoft Excel file named YBtestCredentials.xlsx.
