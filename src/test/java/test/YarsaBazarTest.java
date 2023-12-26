@@ -27,7 +27,7 @@ public class YarsaBazarTest{
 	ExtentReports extent = new ExtentReports();
 	ExtentSparkReporter spark = new ExtentSparkReporter("Extentreport.html");
 	String actualBrowserURL = "https://www.yarsabazar.com/";
-	WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(6000));
+
 
 	@BeforeTest
 	@Parameters("browser")
@@ -100,7 +100,7 @@ public class YarsaBazarTest{
 	public void SignUpPageTest(String name, String phone, String email, String password) throws InterruptedException {
 
 		ExtentTest test = extent.createTest("Verify SignUp");
-
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6000));
 		signUpPage signuppageobj = new signUpPage(driver);
 		signuppageobj.click_SignUp_Button();
 		Thread.sleep(1000);
@@ -114,11 +114,11 @@ public class YarsaBazarTest{
 //		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 //		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		signuppageobj.input_Name(name);
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@id='phone'])[1]")));
 		signuppageobj.input_PhoneNumber(phone);
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@id='email'])[1]")));
 		signuppageobj.input_Email(email);
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@id='password'])[1]")));
 		signuppageobj.input_Password(password);
 		signuppageobj.click_SignUp();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -291,15 +291,16 @@ public class YarsaBazarTest{
 
 	@Test(priority = 5, dataProvider = "UserDataBefore")
 	public void UserDashboardBeforeTest(String searchItem, String phone, String fullname, String email, String desc )throws InterruptedException{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6000));
 		ExtentTest test = extent.createTest("Verify User Dashboard before sell on YarsaBazar Signup");
 		UserDashboardBefore UserDashboardBeforeobj = new UserDashboardBefore(driver);
 		driver.navigate().to("https://www.yarsabazar.com/");
-		driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Login")));
 		UserDashboardBeforeobj.click_login_button();
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#username")));
 		UserDashboardBeforeobj.input_email("9762784654");
 		UserDashboardBeforeobj.input_password("Simran@1");
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html[1]/body[1]/div[2]/div[2]/div[1]/form[1]/button[1]")));
 		UserDashboardBeforeobj.click_logins_buttons();
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/account")){
 			test.pass("The user 9762784654 is Logged in successfully");
@@ -338,6 +339,7 @@ public class YarsaBazarTest{
 		UserDashboardBeforeobj.verify_email_cancel();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_help_button();
+
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Account Information')]")));
 		UserDashboardBeforeobj.drop_Account_information();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Negotiation')]")));
@@ -428,8 +430,10 @@ public class YarsaBazarTest{
 	@Test(priority = 6, dataProvider = "SearchData")
 	public  void SearchTest(String Item) throws InterruptedException {
 		ExtentTest test = extent.createTest("Verify the Search");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6000));
 		search Searchobj = new search(driver);
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/div[1]/input[1]")));
+
 		Searchobj.input_search_bar(Item);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		test.pass("Item " + Item + " is displaying recommendation");
@@ -459,8 +463,10 @@ public class YarsaBazarTest{
 	@Test (priority = 7)
 	public void industriesTest()throws InterruptedException{
 		ExtentTest test = extent.createTest("Verify the Browse All Industries");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6000));
 		IndustriesPage Industriesobj = new IndustriesPage(driver);
-		Thread.sleep(3000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html[1]/body[1]/main[1]/div[3]/a[1]")));
+
 		Industriesobj.click_browse_all_industries();
 		Thread.sleep(3000);
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/industries")) {
