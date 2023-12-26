@@ -3,15 +3,20 @@ package test;
 import static org.testng.Assert.assertEquals;
 import YBtestData.ReadExcelFile;
 import com.github.javafaker.Faker;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import pages.*;
+
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +27,7 @@ public class YarsaBazarTest{
 	ExtentReports extent = new ExtentReports();
 	ExtentSparkReporter spark = new ExtentSparkReporter("Extentreport.html");
 	String actualBrowserURL = "https://www.yarsabazar.com/";
-
+	WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(6000));
 
 	@BeforeTest
 	@Parameters("browser")
@@ -62,6 +67,7 @@ public class YarsaBazarTest{
 	@Test(priority = 1)
 	public void dashboardTest() throws InterruptedException {
 		ExtentTest test = extent.createTest("Launch website");
+
 		dashboard dashboardobject = new dashboard(driver);
 
 		String browserURL = driver.getCurrentUrl();
@@ -105,7 +111,8 @@ public class YarsaBazarTest{
 
 		test.pass("User Redirected to Sign Up URL as: " + browserSignUpURL);
 		test.pass("Sign Up Page Redirection Verified");
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		signuppageobj.input_Name(name);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		signuppageobj.input_PhoneNumber(phone);
@@ -331,25 +338,25 @@ public class YarsaBazarTest{
 		UserDashboardBeforeobj.verify_email_cancel();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		UserDashboardBeforeobj.click_help_button();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Account Information')]")));
 		UserDashboardBeforeobj.drop_Account_information();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Negotiation')]")));
 		UserDashboardBeforeobj.drop_negotiation();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Shopping')]")));
 		UserDashboardBeforeobj.drop_shopping();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'User Onboarding Process')]")));
 		UserDashboardBeforeobj.drop_user_onboarding_process();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'User Dashboard Help Content')]")));
 		UserDashboardBeforeobj.drop_user_dashboard_help_content();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Account Information')]")));
 		UserDashboardBeforeobj.drop_Account_information();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Negotiation')]")));
 		UserDashboardBeforeobj.drop_negotiation();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Shopping')]")));
 		UserDashboardBeforeobj.drop_shopping();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'User Onboarding Process')]")));
 		UserDashboardBeforeobj.drop_user_onboarding_process();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'User Dashboard Help Content')]")));
 		UserDashboardBeforeobj.drop_user_dashboard_help_content();
 		Thread.sleep(2000);
 		driver.navigate().refresh();

@@ -1,0 +1,1 @@
+{"uuid":"fdd093b1-fc87-4c02-8b9e-b6e97d825b08","name":"test.broclass.setup","children":["25ef4e3d-ad39-4901-b0ea-2ab9ff534690"],"description":"","befores":[{"name":"setup","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1703222244917,"stop":1703222257244}],"afters":[],"start":1703222244917,"stop":1703222257244}
