@@ -48,4 +48,28 @@ public class signUpPage {
     public void back_button(){
         driver.findElement(back_button).click();
     }
+
+    public By getclick_SignUp_Button(){
+        return click_SignUp_Button;
+    }
+
+    public By getinput_Name(){
+        return input_Name;
+    }
+
+    public  By getInput_PhoneNumber(){
+        return input_PhoneNumber;
+    }
+
+    public By getInput_Email(){
+        return input_Email;
+    }
+
+    public By getInput_Password(){
+        return input_Password;
+    }
+
+    public By getBack_button(){
+        return back_button;
+    }
 }

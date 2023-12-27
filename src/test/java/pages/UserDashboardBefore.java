@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
+import javax.print.DocFlavor;
+
 public class UserDashboardBefore {
     WebDriver driver;
     By login_button_click = By.linkText("Login");
@@ -240,6 +242,102 @@ public class UserDashboardBefore {
 
     public void click_logout_button(){
         driver.findElement(Logout_click).click();
+    }
+
+    public By getLogin_button_click(){
+        return login_button_click;
+    }
+
+    public By getEmail_input(){
+        return email_input;
+    }
+
+    public By getClick_logins_button(){
+        return click_logins_button;
+    }
+
+    public By getFull_Name_Update_button(){
+        return Full_Name_Update_button;
+    }
+
+    public By getFull_Name_bar(){
+        return Full_Name_bar;
+    }
+
+    public By getFull_Name_Savechange_button(){
+        return Full_Name_Savechange_button;
+    }
+
+    public By getEmail_Update_button(){
+        return Email_Update_button;
+    }
+
+    public  By getEmail_bar(){
+        return Email_bar;
+    }
+
+    public By getChange_Password_button(){
+        return Change_Password_button;
+    }
+
+    public By getNew_Password_field(){
+        return New_Password_field;
+    }
+
+    public By getConfirm_New_Password_field(){
+        return Confirm_New_Password_field;
+    }
+
+    public By getChange_Password_click(){
+        return Change_Password_click;
+    }
+
+    public By getEmail_verify_button_click(){
+        return Email_verify_button_click;
+    }
+
+    public  By getCancel_email_verify(){
+        return cancel_email_verify;
+    }
+
+    public By getHelp_button_click(){
+        return help_button_click;
+    }
+
+    public By getAccount_information_drop(){
+        return account_information_drop;
+    }
+
+    public By getNegotiation_drop(){
+        return negotiation_drop;
+    }
+
+    public By getShopping_drop(){
+        return shopping_drop;
+    }
+
+    public By getUser_onboarding_process_drop(){
+        return user_onboarding_process_drop;
+    }
+
+    public By getUser_dashboard_help_content_drop(){
+        return user_dashboard_help_content_drop;
+    }
+
+    public  By getProduct_name(){
+        return product_name;
+    }
+
+    public By getSell_on_Yarsabazar(){
+        return sell_on_Yarsabazar;
+    }
+
+    public By getProfile_button_click(){
+        return Profile_button_click;
+    }
+
+    public By getLogout_click(){
+        return Logout_click;
     }
 }
 

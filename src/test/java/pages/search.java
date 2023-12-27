@@ -19,6 +19,7 @@ public class search {
         driver.findElement(search_bar_input).sendKeys(text);
     }
 
+
 //    public void click_dog_food(){
 //        driver.findElement(dog_food_click).click();
 //    }
@@ -29,5 +30,16 @@ public class search {
         driver.findElement(back_to_dashboard).click();
     }
 
+    public By getBack_to_dashboard() {
+        return back_to_dashboard;
+    }
+
+    public By getSearch_bar_input(){
+        return search_bar_input;
+    }
+
+    public By getSearch_icon_click(){
+        return search_icon_click;
+    }
 }
 

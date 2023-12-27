@@ -3,7 +3,6 @@ package test;
 import static org.testng.Assert.assertEquals;
 import YBtestData.ReadExcelFile;
 import com.github.javafaker.Faker;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -39,13 +38,9 @@ public class YarsaBazarTest{
 			driver = new ChromeDriver();
 
 		}
-		//Check if parameter passed from TestNg is "edge"
+
 		else if
-//		(browser.equalsIgnoreCase("firefox")) {
-//			System.setProperty("webdriver.gecko.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\geckodriver-v0.33.0-win64\\geckodriver.exe");
-//			driver = new FirefoxDriver();
-
-
+			////Check if parameter passed from TestNg is "edge"
 		(browser.equalsIgnoreCase("edge")) {
 			System.setProperty("webdriver.edge.driver", "C:\\Users\\hp\\YarsaBazar_Automation\\drivers\\edgedriver_win64\\msedgedriver.exe");
 			driver = new EdgeDriver();
@@ -101,6 +96,7 @@ public class YarsaBazarTest{
 		ExtentTest test = extent.createTest("Verify SignUp");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6000));
 		signUpPage signuppageobj = new signUpPage(driver);
+		wait.until(ExpectedConditions.elementToBeClickable(signuppageobj.getclick_SignUp_Button()));
 		signuppageobj.click_SignUp_Button();
 		Thread.sleep(1000);
 
@@ -110,17 +106,16 @@ public class YarsaBazarTest{
 
 		test.pass("User Redirected to Sign Up URL as: " + browserSignUpURL);
 		test.pass("Sign Up Page Redirection Verified");
-//		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.elementToBeClickable(signuppageobj.getinput_Name()));
 		signuppageobj.input_Name(name);
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@id='phone'])[1]")));
+		wait.until(ExpectedConditions.elementToBeClickable(signuppageobj.getInput_PhoneNumber()));
 		signuppageobj.input_PhoneNumber(phone);
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@id='email'])[1]")));
+		wait.until(ExpectedConditions.elementToBeClickable(signuppageobj.getInput_Email()));
 		signuppageobj.input_Email(email);
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@id='password'])[1]")));
+		wait.until(ExpectedConditions.elementToBeClickable(signuppageobj.getInput_Password()));
 		signuppageobj.input_Password(password);
 		signuppageobj.click_SignUp();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
 		String browserSignedUpURL = driver.getCurrentUrl();
 		String actualsignedupURL = signuppageobj.actualSignedUpURL;
@@ -131,11 +126,9 @@ public class YarsaBazarTest{
 		else {
 			test.fail("User" +phone+  "didn't sign up");
 			test.fail("Enter valid sign Up credentials");
-			Thread.sleep(2000);
-
+			wait.until(ExpectedConditions.elementToBeClickable(signuppageobj.getBack_button()));
 			signuppageobj.back_button();
-			Thread.sleep(2000);
-
+			driver.manage().timeouts().implicitlyWait(200, TimeUnit.SECONDS);
 		}
 	}
 
@@ -165,6 +158,7 @@ public class YarsaBazarTest{
 	@Test(priority = 3)
 	public void otpTest() throws InterruptedException{
 		ExtentTest test = extent.createTest("Verify the otp");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6000));
 		otp otpobj = new otp(driver);
 
 		String BrowserURL = driver.getCurrentUrl();
@@ -173,11 +167,11 @@ public class YarsaBazarTest{
 			test.pass("User successfully landed on OTP Verification page");
 
 			otpobj.click_edit_phoneNumber();
-			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(otpobj.getEdit_box_PhoneNumber()));
 			otpobj.clear_edit_phoneNumber();
-			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-			otpobj.input_edit_box_PhoneNumber("9823478885");
-			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(otpobj.getEdit_box_PhoneNumber()));
+			otpobj.input_edit_box_PhoneNumber("9823578878");
+			wait.until(ExpectedConditions.elementToBeClickable(otpobj.getTick_button()));
 			otpobj.click_tick_button();
 			test.pass("Phone Number is updated");
 			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -190,33 +184,33 @@ public class YarsaBazarTest{
 			else{
 				test.fail("user didn't navigated to otp code verification page");
 			}
-			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(otpobj.getOtp_bar()));
 			otpobj.click_otp_bar();
-			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 //		otpobj.click_resend_otp();
 //		Thread.sleep(2000);
 //		test.pass("OTP resend successfully");
+			wait.until(ExpectedConditions.elementToBeClickable(otpobj.getOtp_submit()));
 			otpobj.click_otp_submit();
-			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/account")){
 				test.pass("OTP verified successfully");
 			}
 			else {
 				test.fail("Invalid OTP. Enter valid OTP dislayed");
 			}
-			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(otpobj.getOtp_try_again()));
 			otpobj.click_otp_try_again();
-			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(otpobj.getHelp()));
 			otpobj.click_help();
 			test.pass("Help section is displayed");
 			driver.navigate().refresh();
-			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(otpobj.getProfile_view()));
 			otpobj.click_profile_view();
-			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(otpobj.getAccount()));
 			otpobj.click_account();
-			Thread.sleep(4000);
+			wait.until(ExpectedConditions.elementToBeClickable(otpobj.getVerfiy_Now()));
 			otpobj.click_Verify_Now();
-			Thread.sleep(2000);
+			wait.until(ExpectedConditions.elementToBeClickable(otpobj.getLogout()));
 			otpobj.click_logout();
 			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")){
@@ -237,23 +231,22 @@ public class YarsaBazarTest{
 	@Test(priority = 4, dataProvider = "loginData")
 	public void LoginPageTest(String PhoneNumber, String Password) throws InterruptedException {
 		ExtentTest test = extent.createTest("Verify the Login");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6000));
 		loginPage loginpageobj = new loginPage(driver);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.navigate().to("https://www.yarsabazar.com/login");
-
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(loginpageobj.getEmail_input()));
 		loginpageobj.email_Input(PhoneNumber);
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(loginpageobj.getPassword_input()));
 		loginpageobj.password_Input(Password);
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(loginpageobj.getlogin_Click()));
 		loginpageobj.login_Click();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/account")){
 			test.pass("The user"+ PhoneNumber + "is Logged in successfully");
 			driver.navigate().to("https://www.yarsabazar.com/account");
 			loginpageobj.profile_button_click();
-			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(loginpageobj.getlogout_Click()));
 			loginpageobj.logout_Click();
 			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
@@ -290,74 +283,75 @@ public class YarsaBazarTest{
 
 	@Test(priority = 5, dataProvider = "UserDataBefore")
 	public void UserDashboardBeforeTest(String searchItem, String phone, String fullname, String email, String desc )throws InterruptedException{
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6000));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(9000));
 		ExtentTest test = extent.createTest("Verify User Dashboard before sell on YarsaBazar Signup");
 		UserDashboardBefore UserDashboardBeforeobj = new UserDashboardBefore(driver);
 		driver.navigate().to("https://www.yarsabazar.com/");
-		wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Login")));
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getLogin_button_click()));
 		UserDashboardBeforeobj.click_login_button();
-		wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#username")));
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getEmail_input()));
 		UserDashboardBeforeobj.input_email("9762784654");
 		UserDashboardBeforeobj.input_password("Simran@1");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html[1]/body[1]/div[2]/div[2]/div[1]/form[1]/button[1]")));
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getClick_logins_button()));
 		UserDashboardBeforeobj.click_logins_buttons();
+		Thread.sleep(2000);
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/account")){
 			test.pass("The user 9762784654 is Logged in successfully");
 		} else {
 			test.fail("The user 9762784654 cannot log in due to invalid credentials");
 		}
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getFull_Name_Update_button()));
 		UserDashboardBeforeobj.click_Full_Name_Update_button();
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getFull_Name_bar()));
 		UserDashboardBeforeobj.clear_Full_Name_bar();
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getFull_Name_bar()));
 		UserDashboardBeforeobj.edit_Full_Name_bar(faker.name().fullName());
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getFull_Name_Savechange_button()));
 		UserDashboardBeforeobj.click_buttton_Full_Name_Savechange();
 		test.pass("Name changed successfully");
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getEmail_Update_button()));
 		UserDashboardBeforeobj.click_Email_Update_button();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getEmail_bar()));
 		UserDashboardBeforeobj.clear_Email_bar();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getEmail_bar()));
 		UserDashboardBeforeobj.edit_Email_bar(faker.internet().emailAddress());
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		test.pass("Email updated successfully");
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getChange_Password_button()));
 		UserDashboardBeforeobj.click_Change_Password();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getNew_Password_field()));
 		UserDashboardBeforeobj.input_New_Password_field("Simran@1");
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getConfirm_New_Password_field()));
 		UserDashboardBeforeobj.input_confirm_New_Password_field("Simran@1");
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getChange_Password_click()));
 		UserDashboardBeforeobj.Change_Password_button_click();
 		test.pass("Password changed successfully");
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getEmail_verify_button_click()));
 		UserDashboardBeforeobj.click_Email_Verify_Button();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getCancel_email_verify()));
 		UserDashboardBeforeobj.verify_email_cancel();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getHelp_button_click()));
 		UserDashboardBeforeobj.click_help_button();
 
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Account Information')]")));
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getAccount_information_drop()));
 		UserDashboardBeforeobj.drop_Account_information();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Negotiation')]")));
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getNegotiation_drop()));
 		UserDashboardBeforeobj.drop_negotiation();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Shopping')]")));
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getShopping_drop()));
 		UserDashboardBeforeobj.drop_shopping();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'User Onboarding Process')]")));
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getUser_onboarding_process_drop()));
 		UserDashboardBeforeobj.drop_user_onboarding_process();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'User Dashboard Help Content')]")));
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getUser_dashboard_help_content_drop()));
 		UserDashboardBeforeobj.drop_user_dashboard_help_content();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Account Information')]")));
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getAccount_information_drop()));
 		UserDashboardBeforeobj.drop_Account_information();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Negotiation')]")));
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getNegotiation_drop()));
 		UserDashboardBeforeobj.drop_negotiation();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Shopping')]")));
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getShopping_drop()));
 		UserDashboardBeforeobj.drop_shopping();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'User Onboarding Process')]")));
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getUser_onboarding_process_drop()));
 		UserDashboardBeforeobj.drop_user_onboarding_process();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'User Dashboard Help Content')]")));
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getUser_dashboard_help_content_drop()));
 		UserDashboardBeforeobj.drop_user_dashboard_help_content();
 		Thread.sleep(2000);
 		driver.navigate().refresh();
@@ -367,21 +361,21 @@ public class YarsaBazarTest{
 		UserDashboardBeforeobj.click_user_dashboard_search(Keys.ENTER);
 		test.pass("Search performed successfully");
 		UserDashboardBeforeobj.click_fist_category();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getProduct_name()));
 		UserDashboardBeforeobj.input_product_name(searchItem);
 		UserDashboardBeforeobj.phone_number_input(phone);
 		UserDashboardBeforeobj.full_name_input(fullname);
 		UserDashboardBeforeobj.input_email_address(email);
 		UserDashboardBeforeobj.input_description(desc);
 		UserDashboardBeforeobj.input_submit();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		test.pass("order placed successfully");
 		UserDashboardBeforeobj.click_dismiss();
 		driver.navigate().to("https://www.yarsabazar.com/account");
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getSell_on_Yarsabazar()));
 		////To signup on sell on yarsabazar through user dashboard
 		UserDashboardBeforeobj.click_sell_on_yarsabzar();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.navigate().to("https://www.yarsabazar.com/account");
 		test.pass("Navigated to user account dashboard.");
 //		UserDashboardBeforeobj.choose_line_of_business();
@@ -399,8 +393,9 @@ public class YarsaBazarTest{
 //		UserDashboardBeforeobj.drop_company_type();
 //		UserDashboardBeforeobj.input_start_year("2019");
 //		UserDashboardBeforeobj.click_start_Selling();
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getProfile_button_click()));
 		UserDashboardBeforeobj.click_profile_button();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardBeforeobj.getLogout_click()));
 		UserDashboardBeforeobj.click_logout_button();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		test.pass("User Logged out successfully");
@@ -431,12 +426,12 @@ public class YarsaBazarTest{
 		ExtentTest test = extent.createTest("Verify the Search");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6000));
 		search Searchobj = new search(driver);
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html[1]/body[1]/main[1]/div[1]/div[1]/div[1]/div[1]/input[1]")));
+		wait.until(ExpectedConditions.elementToBeClickable(Searchobj.getSearch_bar_input()));
 
 		Searchobj.input_search_bar(Item);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		test.pass("Item " + Item + " is displaying recommendation");
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		wait.until(ExpectedConditions.elementToBeClickable(Searchobj.getSearch_icon_click()));
 		Searchobj.click_Search_icon();
 		test.pass("Item " + Item + " is clicked successfully");
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -464,8 +459,7 @@ public class YarsaBazarTest{
 		ExtentTest test = extent.createTest("Verify the Browse All Industries");
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6000));
 		IndustriesPage Industriesobj = new IndustriesPage(driver);
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html[1]/body[1]/main[1]/div[3]/a[1]")));
-
+		wait.until(ExpectedConditions.elementToBeClickable(Industriesobj.getBrowse_all_industries_click()));
 		Industriesobj.click_browse_all_industries();
 		Thread.sleep(3000);
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/industries")) {
@@ -474,7 +468,7 @@ public class YarsaBazarTest{
 		else{
 			test.fail("Browse All Industries page did not opened.");
 		}
-
+		wait.until(ExpectedConditions.elementToBeClickable(Industriesobj.getBack_to_dashboard()));
 		Industriesobj.click_back_to_dashboard();
 		Thread.sleep(3000);
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")) {

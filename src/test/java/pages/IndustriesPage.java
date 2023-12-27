@@ -20,4 +20,12 @@ public class IndustriesPage {
     public  void click_back_to_dashboard(){
         driver.findElement(back_to_dashboard).click();
     }
+
+    public By getBrowse_all_industries_click() {
+        return browse_all_industries_click;
+    }
+
+    public By getBack_to_dashboard() {
+        return back_to_dashboard;
+    }
 }

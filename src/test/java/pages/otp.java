@@ -87,4 +87,43 @@ public class otp {
     public void click_logout(){
         driver.findElement(logout).click();
     }
+
+    public By getEdit_box_PhoneNumber(){
+        return edit_box_PhoneNumber;
+    }
+
+    public By getTick_button(){
+        return tick_button;
+    }
+
+    public By getOtp_bar(){
+        return otp_bar;
+    }
+
+    public By getOtp_submit(){
+        return otp_submit;
+    }
+    public By getOtp_try_again(){
+        return otp_try_again;
+    }
+
+    public By getHelp(){
+        return help;
+    }
+
+    public By getProfile_view(){
+        return profile_view;
+    }
+
+    public By getAccount(){
+        return account;
+    }
+
+    public  By getVerfiy_Now(){
+        return verfiy_Now;
+    }
+
+    public By getLogout(){
+        return logout;
+    }
 }

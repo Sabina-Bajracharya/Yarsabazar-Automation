@@ -45,4 +45,21 @@ public class loginPage {
     public void logout_Click() {
         driver.findElement(logout_click).click();
     }
+
+    public By getEmail_input(){
+        return email_input;
+    }
+
+    public By getPassword_input(){
+        return password_input;
+    }
+
+    public By getlogin_Click(){
+        return  login_click;
+    }
+
+    public By getlogout_Click(){
+        return logout_click;
+    }
+
 }
