@@ -440,4 +440,194 @@ public class UserDashboard {
     public void click_logout_button(){
         driver.findElement(Logout_click).click();
     }
+
+    public By getFull_Name_bar(){
+        return Full_Name_bar;
+    }
+
+    public By getFull_Name_Savechange_button(){
+        return Full_Name_Savechange_button;
+    }
+
+    public By getEmail_Update_button(){
+        return Email_Update_button;
+    }
+
+    public By getEmail_bar(){
+        return Email_bar;
+    }
+
+    public By getEmail_Savechange_button(){
+        return Email_Savechange_button;
+    }
+
+    public By getNew_Password_field(){
+        return New_Password_field;
+    }
+
+    public By getConfirm_New_Password_field(){
+        return Confirm_New_Password_field;
+    }
+
+    public By getChange_Password_button(){
+        return Change_Password_button;
+    }
+
+    public By getMy_details_click(){
+        return My_details_click;
+    }
+
+    public By getEmail_verify_button_click(){
+        return Email_verify_button_click;
+    }
+
+    public By getCancel_email_verify(){
+        return cancel_email_verify;
+    }
+
+
+    public By getHelp_button_click(){
+        return help_button_click;
+    }
+
+    public By getAccount_information_drop(){
+        return account_information_drop;
+    }
+
+    public By getNegotiation_drop(){
+        return negotiation_drop;
+    }
+
+    public By getShopping_drop(){
+        return shopping_drop;
+    }
+
+    public By getUser_onboarding_process_drop(){
+        return user_onboarding_process_drop;
+    }
+
+    public By getUser_dashboard_search_bar(){
+        return user_dashboard_search_bar;
+    }
+
+    public By getProduct_name(){
+        return product_name;
+    }
+
+    public By getDismiss_click(){
+        return dismiss_click;
+    }
+
+    public By getCategory_first(){
+        return category_first;
+    }
+
+    public By getMy_Store_Page_click(){
+        return My_Store_Page_click;
+    }
+
+    public By getCompany_Info_click(){
+        return Company_Info_click;
+    }
+
+    public  By getProducts_click(){
+        return products_click;
+    }
+
+
+    public By getImage_slide_left_click(){
+        return image_slide_left_click;
+    }
+
+
+    public By getImage_slide_right_click(){
+        return image_slide_right_click;
+    }
+
+
+    public By getDashboard_click(){
+        return Dashboard_click;
+    }
+
+
+    public By getRequest_for_quote_click(){
+        return request_for_quote_click;
+    }
+
+    public By getRequest_dismiss_click(){
+        return request_dismiss_click;
+    }
+
+    public By getEdit_Business_Information_Details(){
+        return Edit_Business_Information_Details;
+    }
+
+
+    public By getBranches(){
+        return Branches;
+    }
+
+    public By getAdd_Branches(){
+        return Add_Branches;
+    }
+
+    public By getCancel_Add_Branches(){
+        return Cancel_Add_Branches;
+    }
+
+    public By getOwners(){
+        return Owners;
+    }
+
+    public By getAdd_Owners(){
+        return Add_Owners;
+    }
+
+    public By getCancel_Add_Owners(){
+        return Cancel_Add_Owners;
+    }
+
+    public By getPayment_Methods(){
+        return Payment_Methods;
+    }
+
+    public By getIndustries(){
+        return Industries;
+    }
+
+    public By getCash_Payment_Mehtods(){
+        return Cash_Payment_Mehtods;
+    }
+
+
+    public By getStore_Images(){
+        return Store_Images;
+    }
+
+    public By getDraft(){
+        return Draft;
+    }
+
+    public By getWaiting_Approval(){
+        return Waiting_Approval;
+    }
+
+    public By getRejected(){
+        return Rejected;
+    }
+
+    public By getProfile_button_click(){
+        return Profile_button_click;
+    }
+
+    public By getLogout_click(){
+        return Logout_click;
+    }
+
+    public  By getEdit_Registration_Details(){
+        return Edit_Registration_Details;
+    }
+
 }
+
+

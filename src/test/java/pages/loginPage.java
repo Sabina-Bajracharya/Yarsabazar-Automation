@@ -46,6 +46,10 @@ public class loginPage {
         driver.findElement(logout_click).click();
     }
 
+    public By getLogin_button_click(){
+        return login_button_click;
+    }
+
     public By getEmail_input(){
         return email_input;
     }
@@ -61,5 +65,7 @@ public class loginPage {
     public By getlogout_Click(){
         return logout_click;
     }
+
+
 
 }

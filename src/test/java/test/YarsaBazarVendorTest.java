@@ -16,6 +16,8 @@ import org.testng.annotations.*;
 import pages.UserDashboard;
 import pages.dashboard;
 import pages.loginPage;
+
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 import static org.testng.Assert.assertEquals;
 
@@ -53,8 +55,7 @@ public class YarsaBazarVendorTest {
             extent.attachReporter(spark);
             driver.get("https://www.yarsabazar.com");
             driver.manage().window().maximize();
-            Thread.sleep(3000);
-
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         }
 
         @Test(priority = 1)
@@ -87,9 +88,11 @@ public class YarsaBazarVendorTest {
         @Test(priority = 2, dataProvider = "loginData")
         public void LoginPageTest(String PhoneNumber, String Password) throws InterruptedException {
             ExtentTest test = extent.createTest("Verify the Login");
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6000));
             loginPage loginpageobj = new loginPage(driver);
 
-            loginpageobj.click_login_button();
+			wait.until(ExpectedConditions.elementToBeClickable(loginpageobj.getLogin_button_click()));
+			loginpageobj.click_login_button();
             Thread.sleep(1000);
             String browserLoginURL = driver.getCurrentUrl();
             String loginURL = loginpageobj.LoginURL;
@@ -101,12 +104,13 @@ public class YarsaBazarVendorTest {
             else {
                 test.fail("The user cannot click login link" +browserLoginURL );
             }
+			wait.until(ExpectedConditions.elementToBeClickable(loginpageobj.getEmail_input()));
             loginpageobj.email_Input(PhoneNumber);
-			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(loginpageobj.getPassword_input()));
             loginpageobj.password_Input(Password);
-			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(loginpageobj.getlogin_Click()));
             loginpageobj.login_Click();
-			driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
             String browserLoggedInURL = driver.getCurrentUrl();
             String loggedInURL = loginpageobj.LoggedInURL;
@@ -151,6 +155,7 @@ public class YarsaBazarVendorTest {
     	@Test(priority = 3, dataProvider = "VendorRFQ")
 	public void UserDashboardTest(String Rfullname, String Rmobile,  String RproductName, String Rquantity, String Rdesc ) throws InterruptedException {
 		ExtentTest test = extent.createTest("Verify User Dashboard");
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(6000));
 		UserDashboard UserDashboardobj = new UserDashboard(driver);
 
 		UserDashboardobj.click_account_details();
@@ -158,67 +163,66 @@ public class YarsaBazarVendorTest {
             test.pass("Account Details opened successfully");
 		UserDashboardobj.click_Full_Name_Update_button();
 		UserDashboardobj.clear_Full_Name_bar();
-		Thread.sleep(1000);
+		wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getFull_Name_bar()));
 		UserDashboardobj.edit_Full_Name_bar(faker.name().fullName());
-		Thread.sleep(1000);
-		UserDashboardobj.click_buttton_Full_Name_Savechange();
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getFull_Name_Savechange_button()));
+			UserDashboardobj.click_buttton_Full_Name_Savechange();
 		Thread.sleep(1000);
             test.pass("Full Name updated successfully");
-		UserDashboardobj.click_Email_Update_button();
-		Thread.sleep(1000);
-		UserDashboardobj.clear_Email_bar();
-		Thread.sleep(1000);
-		UserDashboardobj.edit_Email_bar(faker.internet().emailAddress());
-		Thread.sleep(1000);
-		UserDashboardobj.click_Email_savechange_button();
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getEmail_Update_button()));
+			UserDashboardobj.click_Email_Update_button();
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getEmail_bar()));
+			UserDashboardobj.clear_Email_bar();
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getEmail_bar()));
+			UserDashboardobj.edit_Email_bar(faker.internet().emailAddress());
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getEmail_Savechange_button()));
+			UserDashboardobj.click_Email_savechange_button();
             test.pass("Email updated successfully");
 		UserDashboardobj.click_Change_Password();
-		Thread.sleep(1000);
-		UserDashboardobj.input_New_Password_field("Sabina12@34");
-		Thread.sleep(1000);
-		UserDashboardobj.input_confirm_New_Password_field("Sabina12@34");
-		Thread.sleep(1000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getNew_Password_field()));
+			UserDashboardobj.input_New_Password_field("Sabina12@34");
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getConfirm_New_Password_field()));
+			UserDashboardobj.input_confirm_New_Password_field("Sabina12@34");
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getChange_Password_button()));
 		UserDashboardobj.Change_Password_button_click();
 		Thread.sleep(1000);
             test.pass("Password updated successfully");
-			Thread.sleep(3000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getMy_details_click()));
 		UserDashboardobj.click_my_details();
-			Thread.sleep(3000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getEmail_verify_button_click()));
 		UserDashboardobj.click_Email_Verify_Button();
-			Thread.sleep(3000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getCancel_email_verify()));
 		UserDashboardobj.verify_email_cancel();
-		Thread.sleep(3000);
-//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//header/div[1]/div[1]/div[1]/ul[1]/li[1]/button[1]")));
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getHelp_button_click()));
 		UserDashboardobj.click_help_button();
-//			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Account Information')]")));
-			Thread.sleep(1000);
-		UserDashboardobj.drop_Account_information();
-			Thread.sleep(1000);
-		UserDashboardobj.drop_negotiation();
-			Thread.sleep(1000);
-		UserDashboardobj.drop_shopping();
-			Thread.sleep(1000);
-		UserDashboardobj.drop_user_onboarding_process();
-			Thread.sleep(1000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getAccount_information_drop()));
+			UserDashboardobj.drop_Account_information();
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getNegotiation_drop()));
+			UserDashboardobj.drop_negotiation();
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getShopping_drop()));
+			UserDashboardobj.drop_shopping();
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getUser_onboarding_process_drop()));
+			UserDashboardobj.drop_user_onboarding_process();
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.navigate().refresh();
-			Thread.sleep(1000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getUser_dashboard_search_bar()));
 		UserDashboardobj.input_user_dashboard_Search_bar(faker.commerce().color());
 			Thread.sleep(1000);
 		UserDashboardobj.item_searched_click(Keys.ENTER);
-			Thread.sleep(1000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getCategory_first()));
 			UserDashboardobj.first_Category_click();
-			Thread.sleep(1000);
-		UserDashboardobj.input_product_name(faker.food().fruit());
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getProduct_name()));
+			UserDashboardobj.input_product_name(faker.food().fruit());
 		UserDashboardobj.phone_number_input("9823579453");
 		UserDashboardobj.full_name_input(faker.name().fullName());
 		UserDashboardobj.input_email_address(faker.internet().emailAddress());
 		UserDashboardobj.input_description(faker.lorem().word());
 		UserDashboardobj.input_submit();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getDismiss_click()));
 		UserDashboardobj.click_dismiss();
 		driver.navigate().to("https://www.yarsabazar.com/vendor/products");
             test.pass("Navigated back to vendor dashboard successfully");
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getMy_Store_Page_click()));
 		UserDashboardobj.click_My_store_page();
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/seller/sabina"))
 		{
@@ -227,20 +231,21 @@ public class YarsaBazarVendorTest {
 		else {
 			test.pass("Didn't navigated to My Store page");
 		}
-		UserDashboardobj.click_company_info();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getCompany_Info_click()));
+			UserDashboardobj.click_company_info();
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getProducts_click()));
 		UserDashboardobj.click_products();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getImage_slide_left_click()));
 		UserDashboardobj.click_image_slide_left();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getImage_slide_right_click()));
 		UserDashboardobj.click_slide_right();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.navigate().refresh();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getDashboard_click()));
 		UserDashboardobj.click_dashboard();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getRequest_for_quote_click()));
 		UserDashboardobj.click_request_for_quote();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(50,TimeUnit.SECONDS);
 
 		//RFQ section
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/rfq")){
@@ -256,7 +261,7 @@ public class YarsaBazarVendorTest {
 		UserDashboardobj.input_quantity_request(Rquantity);
 		UserDashboardobj.input_More_Information_request(Rdesc);
 		UserDashboardobj.click_submit_request();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getRequest_dismiss_click()));
 		UserDashboardobj.click_dismiss_request();
 		test.pass("Request submitted successfully");
 		driver.navigate().to("https://www.yarsabazar.com/vendor/products");
@@ -265,55 +270,55 @@ public class YarsaBazarVendorTest {
 
 		///for business infromation section
 		UserDashboardobj.click_business_information();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(50,TimeUnit.SECONDS);
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/profile")){
-			driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(50,TimeUnit.SECONDS);
 			test.pass("Navigated to Business Profile section");
 		}
 		else {
 			test.fail("Business Profile section didnot opened");
 		}
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getEdit_Business_Information_Details()));
 		UserDashboardobj.edit_busines_details();
 		UserDashboardobj.update_business_details();
 		UserDashboardobj.click_registration_details();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(50,TimeUnit.SECONDS);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/registration-details")){
-				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+				driver.manage().timeouts().implicitlyWait(50,TimeUnit.SECONDS);
 				test.pass("Navigated to Registration Details section");
 			}
 			else {
 				test.fail("Registration Details section didnot opened");
 			}
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		UserDashboardobj.edit_registration_Details();
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getEdit_Registration_Details()));
+			UserDashboardobj.edit_registration_Details();
 		UserDashboardobj.click_cancel_registration_details();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getIndustries()));
 		UserDashboardobj.click_industries();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(50,TimeUnit.SECONDS);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/industries")){
-				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+				driver.manage().timeouts().implicitlyWait(50,TimeUnit.SECONDS);
 				test.pass("Navigated to Industries section");
 			}
 			else {
 				test.fail("Industries section didnot opened");
 			}
 //		UserDashboardobj.add_industries();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getBranches()));
 		UserDashboardobj.click_branches();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(50,TimeUnit.SECONDS);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/branches")){
-				driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+				driver.manage().timeouts().implicitlyWait(50,TimeUnit.SECONDS);
 				test.pass("Navigated to Branches section");
 			}
 			else {
 				test.fail("Branches section didnot opened");
 			}
-			Thread.sleep(2000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getAdd_Branches()));
 		UserDashboardobj.click_add_branches();
-			Thread.sleep(2000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getCancel_Add_Branches()));
 		UserDashboardobj.click_cancel_add_branches();
-			Thread.sleep(2000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getOwners()));
 		UserDashboardobj.click_owners();
 			Thread.sleep(2000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/owners")){
@@ -323,11 +328,11 @@ public class YarsaBazarVendorTest {
 			else {
 				test.fail("Owners section didnot opened");
 			}
-		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getAdd_Owners()));
 		UserDashboardobj.click_add_owners();
-			Thread.sleep(1000);
-		UserDashboardobj.click_cancel_add_owners();
-			Thread.sleep(1000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getCancel_Add_Owners()));
+			UserDashboardobj.click_cancel_add_owners();
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getPayment_Methods()));
 		UserDashboardobj.click_payment_methods();
 			Thread.sleep(1000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/payment-methods")){
@@ -336,9 +341,9 @@ public class YarsaBazarVendorTest {
 			else {
 				test.fail("Payment Methods section didnot opened");
 			}
-			Thread.sleep(1000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getCash_Payment_Mehtods()));
 		UserDashboardobj.click_cash_payement_method();
-			Thread.sleep(1000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getStore_Images()));
 		UserDashboardobj.click_store_iamges();
 			Thread.sleep(1000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/business/store-images")){
@@ -358,7 +363,7 @@ public class YarsaBazarVendorTest {
 			else {
 				test.fail("Products section didnot opened");
 			}
-			Thread.sleep(1000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getDraft()));
 			UserDashboardobj.click_drafts();
 			Thread.sleep(1000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products?status=draft")){
@@ -367,7 +372,7 @@ public class YarsaBazarVendorTest {
 			else {
 				test.fail("Draft section didnot opened");
 			}
-			Thread.sleep(1000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getWaiting_Approval()));
 			UserDashboardobj.click_waiting_approval();
 			Thread.sleep(1000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products?status=waiting_approval")){
@@ -376,7 +381,7 @@ public class YarsaBazarVendorTest {
 			else {
 				test.fail("Waiting Approval section didnot opened");
 			}
-			Thread.sleep(1000);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getRejected()));
 			UserDashboardobj.click_rejected();
 			Thread.sleep(1000);
 			if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/vendor/products?status=rejected")){
@@ -400,8 +405,9 @@ public class YarsaBazarVendorTest {
 			}
 		Thread.sleep(1000);
 		test.pass("Navigated to main site");
-		UserDashboardobj.click_profile_button();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getProfile_button_click()));
+			UserDashboardobj.click_profile_button();
+			wait.until(ExpectedConditions.elementToBeClickable(UserDashboardobj.getLogout_click()));
 		UserDashboardobj.click_logout_button();
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		if(driver.getCurrentUrl().equals("https://www.yarsabazar.com/")){
